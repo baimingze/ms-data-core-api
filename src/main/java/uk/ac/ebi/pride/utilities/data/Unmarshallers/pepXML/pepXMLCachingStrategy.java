@@ -2,8 +2,8 @@ package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML;
 
 import uk.ac.ebi.pride.utilities.data.controller.cache.CacheEntry;
 import uk.ac.ebi.pride.utilities.data.controller.cache.strategy.AbstractCachingStrategy;
-import uk.ac.ebi.pride.utilities.data.controller.impl.ControllerImpl.MzMLControllerImpl;
-import uk.ac.ebi.pride.utilities.data.io.file.MzMLUnmarshallerAdaptor;
+import uk.ac.ebi.pride.utilities.data.controller.impl.ControllerImpl.pepXMLControllerImpl;
+import uk.ac.ebi.pride.utilities.data.io.file.pepXMLUnmarshallerAdaptor;
 
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ public class pepXMLCachingStrategy extends AbstractCachingStrategy {
     @Override
     public void cache() {
         // get a direct reference to unmarshaller
-        MzMLUnmarshallerAdaptor unmarshaller = ((MzMLControllerImpl) controller).getUnmarshaller();
+        pepXMLUnmarshallerAdaptor unmarshaller = ((pepXMLControllerImpl) controller).getUnmarshaller();
 
         // clear and add spectrum ids
         cache.clear(CacheEntry.SPECTRUM_ID);

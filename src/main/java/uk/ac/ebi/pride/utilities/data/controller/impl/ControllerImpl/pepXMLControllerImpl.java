@@ -3,13 +3,13 @@ package uk.ac.ebi.pride.utilities.data.controller.impl.ControllerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uk.ac.ebi.jmzml.model.mzml.*;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLCachingStrategy;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLUnmarshallerException;
 import uk.ac.ebi.pride.utilities.data.controller.DataAccessController;
 import uk.ac.ebi.pride.utilities.data.controller.DataAccessException;
 import uk.ac.ebi.pride.utilities.data.controller.DataAccessMode;
 import uk.ac.ebi.pride.utilities.data.controller.DataAccessUtilities;
 import uk.ac.ebi.pride.utilities.data.controller.cache.CacheEntry;
-import uk.ac.ebi.pride.utilities.data.controller.cache.strategy.MzMlCachingStrategy;
 import uk.ac.ebi.pride.utilities.data.controller.impl.Transformer.MzMLTransformer;
 import uk.ac.ebi.pride.utilities.data.core.*;
 import uk.ac.ebi.pride.utilities.data.core.Chromatogram;
@@ -80,7 +80,7 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
                 DataAccessController.ContentCategory.SOFTWARE,
                 DataAccessController.ContentCategory.DATA_PROCESSING);
         // create cache builder
-        setCachingStrategy(new MzMlCachingStrategy());
+        setCachingStrategy(new pepXMLCachingStrategy());
         // populate cache
         populateCache();
     }
