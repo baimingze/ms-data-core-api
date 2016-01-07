@@ -22,7 +22,7 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml;
 
-import uk.ac.ebi.jmzml.MzMLElement;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLElement;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -53,7 +53,7 @@ public class Constants {
     private static Set<String> xpathsToIndex = new HashSet<String>();
 
     static {
-        for (MzMLElement element : MzMLElement.values()) {
+        for (pepXMLElement element : pepXMLElement.values()) {
             if (element.isIndexed()) {
                 xpathsToIndex.add(element.getXpath());
                 //need to include indexedmzML elements as well

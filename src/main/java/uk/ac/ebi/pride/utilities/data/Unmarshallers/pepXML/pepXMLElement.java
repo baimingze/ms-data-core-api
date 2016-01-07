@@ -1,34 +1,9 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML;
 
 import org.apache.log4j.Logger;
-import uk.ac.ebi.jmzml.MzMLElement;
-import uk.ac.ebi.jmzml.model.mzml.*;
-import uk.ac.ebi.jmzml.model.mzml.AnalyzerComponent;
-import uk.ac.ebi.jmzml.model.mzml.BinaryDataArray;
-import uk.ac.ebi.jmzml.model.mzml.BinaryDataArrayList;
-import uk.ac.ebi.jmzml.model.mzml.CV;
-import uk.ac.ebi.jmzml.model.mzml.CVList;
-import uk.ac.ebi.jmzml.model.mzml.CVParam;
-import uk.ac.ebi.jmzml.model.mzml.Chromatogram;
-import uk.ac.ebi.jmzml.model.mzml.ChromatogramList;
-import uk.ac.ebi.jmzml.model.mzml.Component;
-import uk.ac.ebi.jmzml.model.mzml.ComponentList;
-import uk.ac.ebi.jmzml.model.mzml.DataProcessing;
-import uk.ac.ebi.jmzml.model.mzml.DataProcessingList;
-import uk.ac.ebi.jmzml.model.mzml.DetectorComponent;
-import uk.ac.ebi.jmzml.model.mzml.FileDescription;
-import uk.ac.ebi.jmzml.model.mzml.Index;
-import uk.ac.ebi.jmzml.model.mzml.IndexList;
-import uk.ac.ebi.jmzml.model.mzml.InstrumentConfiguration;
-import uk.ac.ebi.jmzml.model.mzml.InstrumentConfigurationList;
-import uk.ac.ebi.jmzml.model.mzml.Offset;
-import uk.ac.ebi.jmzml.model.mzml.ParamGroup;
-import uk.ac.ebi.jmzml.model.mzml.Precursor;
-import uk.ac.ebi.jmzml.model.mzml.PrecursorList;
-import uk.ac.ebi.jmzml.model.mzml.ProcessingMethod;
-import uk.ac.ebi.jmzml.model.mzml.ProductList;
-import uk.ac.ebi.jmzml.model.mzml.utilities.MzMLElementConfig;
-import uk.ac.ebi.jmzml.model.mzml.utilities.MzMLElementProperties;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.*;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.pepXMLElementConfig;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.pepXMLElementProperties;
 import uk.ac.ebi.jmzml.xml.jaxb.resolver.AbstractReferenceResolver;
 
 import javax.xml.bind.JAXB;
@@ -193,13 +168,13 @@ public enum pepXMLElement {
           getCfg().get(Index.class.getName()).getRefResolverClass()),
 
 //    IndexedmzML(                "indexedmzML",                  true,       "/indexedmzML",                                                                                 false,      IndexedmzML.class,                  false,          null),
-    IndexedmzML(getCfg().get(IndexedmzML.class.getName()).getTagName(),
-                getCfg().get(IndexedmzML.class.getName()).isIndexed(),
-                getCfg().get(IndexedmzML.class.getName()).getXpath(),
-                getCfg().get(IndexedmzML.class.getName()).isIdMapped(),
-                getCfg().get(IndexedmzML.class.getName()).getClazz(),
-                getCfg().get(IndexedmzML.class.getName()).isAutoRefResolving(),
-                getCfg().get(IndexedmzML.class.getName()).getRefResolverClass()),
+    IndexedmzML(getCfg().get(IndexedpepXML.class.getName()).getTagName(),
+                getCfg().get(IndexedpepXML.class.getName()).isIndexed(),
+                getCfg().get(IndexedpepXML.class.getName()).getXpath(),
+                getCfg().get(IndexedpepXML.class.getName()).isIdMapped(),
+                getCfg().get(IndexedpepXML.class.getName()).getClazz(),
+                getCfg().get(IndexedpepXML.class.getName()).isAutoRefResolving(),
+                getCfg().get(IndexedpepXML.class.getName()).getRefResolverClass()),
 
 //    IndexList(                  "indexList",                    true,       "/indexedmzML/indexList/",                                                                      false,      IndexList.class,                    false,          null),
     IndexList(getCfg().get(IndexList.class.getName()).getTagName(),
@@ -229,13 +204,13 @@ public enum pepXMLElement {
                                 getCfg().get(InstrumentConfigurationList.class.getName()).getRefResolverClass()),
 
 //    MzML(                       "mzML",                         true,       "/mzML",                                                                                        false,      MzML.class,                         false,          null),
-    MzML(getCfg().get(MzML.class.getName()).getTagName(),
-         getCfg().get(MzML.class.getName()).isIndexed(),
-         getCfg().get(MzML.class.getName()).getXpath(),
-         getCfg().get(MzML.class.getName()).isIdMapped(),
-         getCfg().get(MzML.class.getName()).getClazz(),
-         getCfg().get(MzML.class.getName()).isAutoRefResolving(),
-         getCfg().get(MzML.class.getName()).getRefResolverClass()),
+    MzML(getCfg().get(pepXML.class.getName()).getTagName(),
+         getCfg().get(pepXML.class.getName()).isIndexed(),
+         getCfg().get(pepXML.class.getName()).getXpath(),
+         getCfg().get(pepXML.class.getName()).isIdMapped(),
+         getCfg().get(pepXML.class.getName()).getClazz(),
+         getCfg().get(pepXML.class.getName()).isAutoRefResolving(),
+         getCfg().get(pepXML.class.getName()).getRefResolverClass()),
 
 //    Offset(                     "offset",                       true,       "/indexedmzML/indexList/index/offset",                                                          false,      Offset.class,                       false,          null),
     Offset(getCfg().get(Offset.class.getName()).getTagName(),
@@ -531,11 +506,11 @@ public enum pepXMLElement {
     /**
      * This should be called first in order to retrieve configuration from a file and populate cfgMap.
      */
-    private <T extends MzMLObject> pepXMLElement() {
+    private <T extends pepXMLObject> pepXMLElement() {
         loadProperties();
     }
 
-    private <T extends MzMLObject> pepXMLElement(String tagName,
+    private <T extends pepXMLObject> pepXMLElement(String tagName,
                                                  boolean indexed,
                                                  String xpath,
                                                  boolean idMapped,
@@ -552,11 +527,11 @@ public enum pepXMLElement {
     }
 
 
-    private static Map<String, MzMLElementConfig> cfgMap;
+    private static Map<String, pepXMLElementConfig> cfgMap;
 
-    private static Map<String, MzMLElementConfig> getCfg() {
+    private static Map<String, pepXMLElementConfig> getCfg() {
         if (cfgMap == null) {
-            cfgMap = new HashMap<String, MzMLElementConfig>();
+            cfgMap = new HashMap<String, pepXMLElementConfig>();
         }
         return cfgMap;
     }
@@ -567,19 +542,19 @@ public enum pepXMLElement {
      */
     public static void loadProperties() {
 
-        Logger logger = Logger.getLogger(MzMLElement.class);
+        Logger logger = Logger.getLogger(pepXMLElement.class);
 
         //check to see if we have a project-specific configuration file
-        URL xmlFileURL = MzMLElement.class.getClassLoader().getResource("MzMLElement.cfg.xml");
+        URL xmlFileURL = pepXMLElement.class.getClassLoader().getResource("pepXMLElement.cfg.xml");
         //if not, use default config
         if (xmlFileURL == null) {
-            xmlFileURL = MzMLElement.class.getClassLoader().getResource("defaultMzMLElement.cfg.xml");
+            xmlFileURL = pepXMLElement.class.getClassLoader().getResource("defaultpepXMLElement.cfg.xml");
         }
         logger.warn("MzIdentML Configuration file: " + xmlFileURL.toString());
 
-        MzMLElementProperties props = JAXB.unmarshal(xmlFileURL, MzMLElementProperties.class);
-        Map<String, MzMLElementConfig> localCfg = getCfg();
-        for (MzMLElementConfig cfg : props.getConfigurations()) {
+        pepXMLElementProperties props = JAXB.unmarshal(xmlFileURL, pepXMLElementProperties.class);
+        Map<String, pepXMLElementConfig> localCfg = getCfg();
+        for (pepXMLElementConfig cfg : props.getConfigurations()) {
             Class clazz = cfg.getClazz();
             if (clazz != null) {
                 localCfg.put(clazz.getName(), cfg);
@@ -605,12 +580,12 @@ public enum pepXMLElement {
     }
 
     @SuppressWarnings("unchecked")
-    public <T extends MzMLObject> Class<T> getClazz() {
+    public <T extends pepXMLObject> Class<T> getClazz() {
         return clazz;
     }
 
-    public static MzMLElement getType(Class clazz) {
-        for (MzMLElement type : MzMLElement.values()) {
+    public static pepXMLElement getType(Class clazz) {
+        for (pepXMLElement type : pepXMLElement.values()) {
             if (type.getClazz() == clazz) {
                 return type;
             }
@@ -618,8 +593,8 @@ public enum pepXMLElement {
         return null;
     }
 
-    public static MzMLElement getType(String xpath) {
-        for (MzMLElement type : MzMLElement.values()) {
+    public static pepXMLElement getType(String xpath) {
+        for (pepXMLElement type : pepXMLElement.values()) {
             if (type.getXpath() != null && type.getXpath().equals(xpath)) {
                 return type;
             }

@@ -1,9 +1,6 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.model.mzml.ParamGroup;
-import uk.ac.ebi.jmzml.model.mzml.SourceFileList;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -44,7 +41,7 @@ import java.util.List;
     "contact"
 })
 public class FileDescription
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 

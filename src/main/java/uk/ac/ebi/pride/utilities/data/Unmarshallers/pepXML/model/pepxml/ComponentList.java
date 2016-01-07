@@ -1,8 +1,8 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.AnalyzerComponent;
-import uk.ac.ebi.jmzml.model.mzml.Component;
-import uk.ac.ebi.jmzml.model.mzml.*;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.AnalyzerComponent;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Component;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.*;
 
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
@@ -37,7 +37,7 @@ import java.util.List;
         "components"
 })
 public class ComponentList
-        extends MzMLObject
+        extends pepXMLObject
         implements Serializable {
 
     private final static long serialVersionUID = 100L;
@@ -113,10 +113,10 @@ public class ComponentList
         return sources;
     }
 
-    public List<uk.ac.ebi.jmzml.model.mzml.AnalyzerComponent> getAnalyzer() {
-        List<uk.ac.ebi.jmzml.model.mzml.AnalyzerComponent> analyzers = new ArrayList<uk.ac.ebi.jmzml.model.mzml.AnalyzerComponent>();
+    public List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.AnalyzerComponent> getAnalyzer() {
+        List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.AnalyzerComponent> analyzers = new ArrayList<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.AnalyzerComponent>();
         for (Component component : getComponents()) {
-            if (component instanceof uk.ac.ebi.jmzml.model.mzml.AnalyzerComponent) {
+            if (component instanceof uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.AnalyzerComponent) {
                 analyzers.add((AnalyzerComponent) component);
             }
         }

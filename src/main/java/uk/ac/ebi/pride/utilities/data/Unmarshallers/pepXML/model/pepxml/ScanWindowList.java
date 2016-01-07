@@ -1,8 +1,6 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.model.mzml.ParamGroup;
 
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
@@ -35,13 +33,13 @@ import java.util.List;
     "scanWindow"
 })
 public class ScanWindowList
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 
     private final static long serialVersionUID = 100L;
     @XmlElement(required = true)
-    protected List<uk.ac.ebi.jmzml.model.mzml.ParamGroup> scanWindow;
+    protected List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ParamGroup> scanWindow;
     @XmlAttribute(required = true)
     protected int count;
 
@@ -67,7 +65,7 @@ public class ScanWindowList
      *
      *
      */
-    public List<uk.ac.ebi.jmzml.model.mzml.ParamGroup> getScanWindow() {
+    public List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ParamGroup> getScanWindow() {
         if (scanWindow == null) {
             scanWindow = new ArrayList<ParamGroup>();
         }

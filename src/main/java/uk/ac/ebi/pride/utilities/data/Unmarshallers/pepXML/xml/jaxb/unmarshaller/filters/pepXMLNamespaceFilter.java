@@ -27,8 +27,8 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLFilterImpl;
-import uk.ac.ebi.jmzml.model.mzml.utilities.ModelConstants;
-import uk.ac.ebi.jmzml.xml.jaxb.unmarshaller.filters.MzMLNamespaceFilter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.ModelConstants;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.unmarshaller.filters.pepXMLNamespaceFilter;
 
 
 public class pepXMLNamespaceFilter extends XMLFilterImpl {
@@ -41,7 +41,7 @@ public class pepXMLNamespaceFilter extends XMLFilterImpl {
         will replace the empty uri with the namespace defined for the mzML schema.
      */
 
-    private static final Logger logger = Logger.getLogger(MzMLNamespaceFilter.class);
+    private static final Logger logger = Logger.getLogger(pepXMLNamespaceFilter.class);
 
     public pepXMLNamespaceFilter() {
         logger.debug("MzMLNamespaceFilter created. Remember to call setParent(XMLReader)");

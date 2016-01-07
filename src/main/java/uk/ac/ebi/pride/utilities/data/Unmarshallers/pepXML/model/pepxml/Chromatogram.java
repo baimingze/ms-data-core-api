@@ -1,9 +1,9 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.BinaryDataArrayList;
-import uk.ac.ebi.jmzml.model.mzml.*;
-import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.BinaryDataArrayList;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.*;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.adapters.IdRefAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -54,7 +54,7 @@ public class Chromatogram
     protected Product product;
 
     @XmlElement(required = true)
-    protected uk.ac.ebi.jmzml.model.mzml.BinaryDataArrayList binaryDataArrayList;
+    protected uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.BinaryDataArrayList binaryDataArrayList;
 
     @XmlAttribute(required = true)
     protected String id;
@@ -130,7 +130,7 @@ public class Chromatogram
      *     {@link uk.ac.ebi.jmzml.model.mzml.BinaryDataArrayList }
      *
      */
-    public uk.ac.ebi.jmzml.model.mzml.BinaryDataArrayList getBinaryDataArrayList() {
+    public uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.BinaryDataArrayList getBinaryDataArrayList() {
         return binaryDataArrayList;
     }
 

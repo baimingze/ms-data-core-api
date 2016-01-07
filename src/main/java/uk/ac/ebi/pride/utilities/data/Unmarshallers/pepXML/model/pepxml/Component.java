@@ -1,10 +1,6 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.AnalyzerComponent;
-import uk.ac.ebi.jmzml.model.mzml.DetectorComponent;
-import uk.ac.ebi.jmzml.model.mzml.ParamGroup;
-import uk.ac.ebi.jmzml.model.mzml.SourceComponent;
 
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;

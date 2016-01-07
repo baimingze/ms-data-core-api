@@ -1,6 +1,6 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.io;
 
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXMLObject;
 
 import java.util.List;
 
@@ -15,14 +15,14 @@ public interface pepXMLObjectCache {
     // ToDo: that would also mean we can not cache CvParams or UserParams, etc
     // that way we make sure that the objects have an ID which identifies them!
 
-    public void putInCache(String id, MzMLObject object);
+    public void putInCache(String id, pepXMLObject object);
 
-    public void putInCache(MzMLObject element);
+    public void putInCache(pepXMLObject element);
 
-    public <T extends MzMLObject> T getCachedObject(String id, Class<T> cls);
+    public <T extends pepXMLObject> T getCachedObject(String id, Class<T> cls);
 
-    public <T extends MzMLObject> boolean hasEntry(Class<T> clazz);
+    public <T extends pepXMLObject> boolean hasEntry(Class<T> clazz);
 
-    public <T extends MzMLObject> List<T> getEntries(Class<T> clazz);
+    public <T extends pepXMLObject> List<T> getEntries(Class<T> clazz);
 
 }

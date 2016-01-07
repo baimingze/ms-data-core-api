@@ -22,8 +22,8 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities;
 
-import uk.ac.ebi.jmzml.MzMLElement;
-import uk.ac.ebi.jmzml.model.mzml.MzML;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLElement;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXML;
 
 import javax.xml.namespace.QName;
 import java.util.Collections;
@@ -39,13 +39,13 @@ import java.util.Map;
  */
 public class ModelConstants {
 
-    public static final String PACKAGE = MzML.class.getPackage().getName();
+    public static final String PACKAGE = pepXML.class.getPackage().getName();
     public static final String MZML_NS = "http://psi.hupo.org/ms/mzml";
 
     private static Map<Class, QName> modelQNames = new HashMap<Class, QName>();
 
     static {
-       for (MzMLElement element : MzMLElement.values()) {
+       for (pepXMLElement element : pepXMLElement.values()) {
             if (element.getTagName() != null) {
                 modelQNames.put(element.getClazz(), new QName(MZML_NS, element.getTagName()));
             }

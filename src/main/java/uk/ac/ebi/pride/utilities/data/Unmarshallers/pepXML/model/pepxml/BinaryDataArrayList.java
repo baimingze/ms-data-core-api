@@ -1,7 +1,5 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.BinaryDataArray;
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
 
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
@@ -36,13 +34,13 @@ import java.util.List;
     "binaryDataArray"
 })
 public class BinaryDataArrayList
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 
     private final static long serialVersionUID = 100L;
     @XmlElement(required = true)
-    protected List<uk.ac.ebi.jmzml.model.mzml.BinaryDataArray> binaryDataArray;
+    protected List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.BinaryDataArray> binaryDataArray;
     @XmlAttribute(required = true)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected Integer count;
@@ -69,7 +67,7 @@ public class BinaryDataArrayList
      *
      *
      */
-    public List<uk.ac.ebi.jmzml.model.mzml.BinaryDataArray> getBinaryDataArray() {
+    public List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.BinaryDataArray> getBinaryDataArray() {
         if (binaryDataArray == null) {
             binaryDataArray = new ArrayList<BinaryDataArray>();
         }

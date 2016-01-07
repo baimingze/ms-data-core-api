@@ -1,8 +1,6 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.model.mzml.ParamGroup;
 
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
@@ -37,13 +35,13 @@ import java.util.List;
     "selectedIon"
 })
 public class SelectedIonList
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 
     private final static long serialVersionUID = 100L;
     @XmlElement(required = true)
-    protected List<uk.ac.ebi.jmzml.model.mzml.ParamGroup> selectedIon;
+    protected List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ParamGroup> selectedIon;
     @XmlAttribute(required = true)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected Integer count;
@@ -70,7 +68,7 @@ public class SelectedIonList
      *
      *
      */
-    public List<uk.ac.ebi.jmzml.model.mzml.ParamGroup> getSelectedIon() {
+    public List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ParamGroup> getSelectedIon() {
         if (selectedIon == null) {
             selectedIon = new ArrayList<ParamGroup>();
         }

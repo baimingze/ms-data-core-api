@@ -1,14 +1,6 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.BinaryDataArray;
-import uk.ac.ebi.jmzml.model.mzml.BinaryDataArrayList;
-import uk.ac.ebi.jmzml.model.mzml.DataProcessing;
-import uk.ac.ebi.jmzml.model.mzml.ParamGroup;
-import uk.ac.ebi.jmzml.model.mzml.PrecursorList;
-import uk.ac.ebi.jmzml.model.mzml.ProductList;
-import uk.ac.ebi.jmzml.model.mzml.ScanList;
-import uk.ac.ebi.jmzml.model.mzml.SourceFile;
-import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.adapters.*;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;

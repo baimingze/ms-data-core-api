@@ -22,10 +22,10 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities;
 
-import uk.ac.ebi.jmzml.model.mzml.CVParam;
-import uk.ac.ebi.jmzml.model.mzml.ParamGroup;
-import uk.ac.ebi.jmzml.model.mzml.ReferenceableParamGroupRef;
-import uk.ac.ebi.jmzml.model.mzml.UserParam;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CVParam;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ParamGroup;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ReferenceableParamGroupRef;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.UserParam;
 
 import java.util.ArrayList;
 import java.util.List;

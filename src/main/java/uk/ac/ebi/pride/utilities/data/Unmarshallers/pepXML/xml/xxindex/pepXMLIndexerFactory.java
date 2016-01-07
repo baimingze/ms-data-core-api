@@ -6,12 +6,12 @@ import psidev.psi.tools.xxindex.StandardXpathAccess;
 import psidev.psi.tools.xxindex.XmlElementExtractor;
 import psidev.psi.tools.xxindex.index.IndexElement;
 import psidev.psi.tools.xxindex.index.XpathIndex;
-import uk.ac.ebi.jmzml.MzMLElement;
-import uk.ac.ebi.jmzml.model.mzml.Chromatogram;
-import uk.ac.ebi.jmzml.model.mzml.Spectrum;
-import uk.ac.ebi.jmzml.xml.Constants;
-import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
-import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexerFactory;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLElement;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Chromatogram;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Spectrum;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.Constants;
+//import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexer;
+//import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,24 +27,24 @@ import java.util.regex.Pattern;
  */
 public class pepXMLIndexerFactory {
 
-    private static final Logger logger = Logger.getLogger(MzMLIndexerFactory.class);
+    private static final Logger logger = Logger.getLogger(pepXMLIndexerFactory.class);
 
-    private static final MzMLIndexerFactory instance = new MzMLIndexerFactory();
+    private static final pepXMLIndexerFactory instance = new pepXMLIndexerFactory();
     private static final Pattern ID_PATTERN = Pattern.compile("\\sid\\s*=\\s*['\"]([^'\"]*)['\"]", Pattern.CASE_INSENSITIVE);
     private static final Pattern INDEX_PATTERN = Pattern.compile("\\sindex\\s*=\\s*['\"]([^'\"]*)['\"]", Pattern.CASE_INSENSITIVE);
 
     private pepXMLIndexerFactory() {
     }
 
-    public static MzMLIndexerFactory getInstance() {
+    public static pepXMLIndexerFactory getInstance() {
         return instance;
     }
 
-    public MzMLIndexer buildIndex(File xmlFile) {
+    public pepXMLIndexer buildIndex(File xmlFile) {
         return new MzMlIndexerImpl(xmlFile);
     }
 
-    private class MzMlIndexerImpl implements MzMLIndexer {
+    private class MzMlIndexerImpl implements pepXMLIndexer {
 
         private File xmlFile = null;
         private StandardXpathAccess xpathAccess = null;
@@ -88,9 +88,9 @@ public class pepXMLIndexerFactory {
                 index = xpathAccess.getIndex();
                 root = "/mzML";
                 // check if the xxindex contains this root
-                if (!index.containsXpath(MzMLElement.MzML.getXpath())) {
+                if (!index.containsXpath(pepXMLElement.MzML.getXpath())) {
                     // if not contained in the xxindex, then maybe we have a indexedzmML file
-                    if (!index.containsXpath(MzMLElement.IndexedmzML.getXpath())) {
+                    if (!index.containsXpath(pepXMLElement.IndexedmzML.getXpath())) {
                         logger.info("Index does not contain mzML root! We are not dealing with an mzML file!");
                         throw new IllegalStateException("Index does not contain mzML root!");
                     }
@@ -116,10 +116,10 @@ public class pepXMLIndexerFactory {
          * that they extend the Identifiable class to make sure they have a unique ID.
          *
          * @throws IOException in case of a read error from the underlying XML file.
-         * @see MzMLElement
+         * @see pepXMLElement
          */
         private void initIdMaps() throws IOException {
-            for (MzMLElement element : MzMLElement.values()) {
+            for (pepXMLElement element : pepXMLElement.values()) {
                 // only for elements were a ID map is needed and a xpath is given
                 if (element.isIdMapped() && element.isIndexed()) {
                     logger.debug("Initialising ID map for " + element.getClazz().getName());
@@ -146,13 +146,13 @@ public class pepXMLIndexerFactory {
         private String extractMzMLStartTag(File xmlFile) throws IOException {
             // get start position of the mzML element
 
-            List<IndexElement> ie = index.getElements(root + checkRoot(MzMLElement.MzML.getXpath()));
+            List<IndexElement> ie = index.getElements(root + checkRoot(pepXMLElement.MzML.getXpath()));
             // there is only one root
             long startPos = ie.get(0).getStart();
 
             // get end position of the mzML start tag
             // this is the start position of the next tag (cvList)
-            ie = index.getElements(root + checkRoot(MzMLElement.CVList.getXpath()));
+            ie = index.getElements(root + checkRoot(pepXMLElement.CVList.getXpath()));
             // there will always be one and only one cvList
             long stopPos = ie.get(0).getStart() - 1;
 
@@ -217,7 +217,7 @@ public class pepXMLIndexerFactory {
                 } else {
                     throw new IllegalStateException("Error initializing ID cache: No id attribute found for element " + xml);
                 }
-                if (xpath.equalsIgnoreCase(root + checkRoot(MzMLElement.Spectrum.getXpath()))) {
+                if (xpath.equalsIgnoreCase(root + checkRoot(pepXMLElement.Spectrum.getXpath()))) {
                     Integer index = getIndexFromRawXML(xml);
                     if (index != null) {
                         spectrumIndexToIDMap.put(index, id);

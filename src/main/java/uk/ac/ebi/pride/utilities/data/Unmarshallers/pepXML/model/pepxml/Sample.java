@@ -1,7 +1,6 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.ParamGroup;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
@@ -104,7 +103,7 @@ public class Sample
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        uk.ac.ebi.jmzml.model.mzml.Sample sample = (uk.ac.ebi.jmzml.model.mzml.Sample) o;
+        uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Sample sample = (uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Sample) o;
 
         if (id != null ? !id.equals(sample.id) : sample.id != null) return false;
         if (name != null ? !name.equals(sample.name) : sample.name != null) return false;

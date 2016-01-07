@@ -10,14 +10,14 @@ import java.util.List;
  * @since $version
  */
 public class pepXMLElementProperties {
-    private List<MzMLElementConfig> configurations;
+    private List<pepXMLElementConfig> configurations;
 
 
-    public List<MzMLElementConfig> getConfigurations() {
+    public List<pepXMLElementConfig> getConfigurations() {
         return configurations;
     }
 
-    public void setConfigurations(List<MzMLElementConfig> configurations) {
+    public void setConfigurations(List<pepXMLElementConfig> configurations) {
         this.configurations = configurations;
     }
 

@@ -1,4 +1,4 @@
-package uk.ac.ebi.jmzml.xml.jaxb.resolver;
+package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.resolver;
 
 import uk.ac.ebi.jmzml.MzMLElement;
 import uk.ac.ebi.jmzml.model.mzml.InstrumentConfiguration;

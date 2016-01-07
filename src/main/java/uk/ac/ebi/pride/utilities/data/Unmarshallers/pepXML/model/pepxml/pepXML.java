@@ -1,11 +1,11 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
 
-import uk.ac.ebi.jmzml.model.mzml.CVList;
-import uk.ac.ebi.jmzml.model.mzml.DataProcessingList;
-import uk.ac.ebi.jmzml.model.mzml.FileDescription;
-import uk.ac.ebi.jmzml.model.mzml.InstrumentConfigurationList;
-import uk.ac.ebi.jmzml.model.mzml.*;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CVList;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.DataProcessingList;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.FileDescription;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.InstrumentConfigurationList;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.*;
 
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
@@ -54,7 +54,7 @@ import java.io.Serializable;
         "run"
 })
 public class pepXML
-        extends MzMLObject
+        extends pepXMLObject
         implements Serializable {
 
     private final static long serialVersionUID = 100L;

@@ -21,14 +21,11 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.CV;
-import uk.ac.ebi.jmzml.model.mzml.CVParam;
-import uk.ac.ebi.jmzml.model.mzml.DataProcessing;
-import uk.ac.ebi.jmzml.model.mzml.ParamGroup;
-import uk.ac.ebi.jmzml.model.mzml.params.BinaryDataArrayCVParam;
-import uk.ac.ebi.jmzml.model.mzml.utilities.CommonCvParams;
-import uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpressCodec;
-import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
+
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.params.BinaryDataArrayCVParam;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.adapters.IdRefAdapter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.CommonCvParams;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpressCodec;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;

@@ -1,6 +1,6 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXMLObject;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
@@ -31,7 +31,7 @@ import java.io.Serializable;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "CVType")
 public class CV
-        extends MzMLObject
+        extends pepXMLObject
         implements Serializable {
 
     private final static long serialVersionUID = 100L;
@@ -139,7 +139,7 @@ public class CV
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        uk.ac.ebi.jmzml.model.mzml.CV cv = (uk.ac.ebi.jmzml.model.mzml.CV) o;
+        uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CV cv = (uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CV) o;
 
         if (fullName != null ? !fullName.equals(cv.fullName) : cv.fullName != null) return false;
         if (id != null ? !id.equals(cv.id) : cv.id != null) return false;

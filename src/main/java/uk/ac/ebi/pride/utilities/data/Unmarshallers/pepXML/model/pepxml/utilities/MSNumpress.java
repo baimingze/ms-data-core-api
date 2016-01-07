@@ -19,7 +19,7 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities;
 
-import uk.ac.ebi.jmzml.model.mzml.utilities.IntDecoder;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.IntDecoder;
 
 import java.util.Arrays;
 
@@ -37,15 +37,15 @@ public class MSNumpress {
         public static byte[] encode(double[] data, String cvAccession) {
             if (cvAccession.equals(ACC_NUMPRESS_LINEAR)) {
                 byte[] buffer = new byte[8 + (data.length * 5)];
-                int encodedBytes = uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress.encodeLinear(data, data.length, buffer, uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress.optimalLinearFixedPoint(data, data.length));
+                int encodedBytes = uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpress.encodeLinear(data, data.length, buffer, uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress.optimalLinearFixedPoint(data, data.length));
                 return Arrays.copyOf(buffer, encodedBytes);
             } else if (cvAccession.equals(ACC_NUMPRESS_SLOF)) {
                 byte[] buffer = new byte[8 + (data.length * 2)];
-                int encodedBytes = uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress.encodeSlof(data, data.length, buffer, uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress.optimalSlofFixedPoint(data, data.length));
+                int encodedBytes = uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpress.encodeSlof(data, data.length, buffer, uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress.optimalSlofFixedPoint(data, data.length));
                 return Arrays.copyOf(buffer, encodedBytes);
             } else if (cvAccession.equals(ACC_NUMPRESS_PIC)) {
                 byte[] buffer = new byte[data.length * 5];
-                int encodedBytes = uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress.encodePic(data, data.length, buffer);
+                int encodedBytes = uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpress.encodePic(data, data.length, buffer);
                 return Arrays.copyOf(buffer, encodedBytes);
             }
             
@@ -71,21 +71,21 @@ public class MSNumpress {
                 
                 if (cvAccession.equals(ACC_NUMPRESS_LINEAR)) {
                         Double[] buffer         = new Double[data.length * 2];
-                        int nbrOfDoubles         = uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress.decodeLinear(data, data.length, buffer);
+                        int nbrOfDoubles         = uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpress.decodeLinear(data, data.length, buffer);
                         Double[] result         = new Double[nbrOfDoubles];
                         System.arraycopy(buffer, 0, result, 0, nbrOfDoubles);
                         return result;
                         
                 } else if (cvAccession.equals(ACC_NUMPRESS_SLOF)) {
                         Double[] buffer         = new Double[data.length / 2];
-                        int nbrOfDoubles = uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress.decodeSlof(data, data.length, buffer);
+                        int nbrOfDoubles = uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpress.decodeSlof(data, data.length, buffer);
                         Double[] result = new Double[nbrOfDoubles];
                         System.arraycopy(buffer, 0, result, 0, nbrOfDoubles);
                         return result;
                         
                 } else if (cvAccession.equals(ACC_NUMPRESS_PIC)) {
                         Double[] buffer         = new Double[data.length * 2];
-                        int nbrOfDoubles         = uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress.decodePic(data, data.length, buffer);
+                        int nbrOfDoubles         = uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpress.decodePic(data, data.length, buffer);
                         Double[] result         = new Double[nbrOfDoubles];
                         System.arraycopy(buffer, 0, result, 0, nbrOfDoubles);
                         return result;
@@ -320,7 +320,7 @@ public class MSNumpress {
                 long[] ints = new long[3];
                 long extrapol;
                 long y;
-                uk.ac.ebi.jmzml.model.mzml.utilities.IntDecoder dec = new uk.ac.ebi.jmzml.model.mzml.utilities.IntDecoder(data, 16);
+                uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.IntDecoder dec = new uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.IntDecoder(data, 16);
 
                 if (dataSize < 8) return -1;
                 double fixedPoint = decodeFixedPoint(data);
@@ -427,7 +427,7 @@ public class MSNumpress {
         ) {
                 int ri = 0;
                 long count;
-                uk.ac.ebi.jmzml.model.mzml.utilities.IntDecoder dec = new IntDecoder(data, 0);
+                uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.IntDecoder dec = new IntDecoder(data, 0);
 
                 while (dec.pos < dataSize) {
                         if (dec.pos == (dataSize - 1) && dec.half)

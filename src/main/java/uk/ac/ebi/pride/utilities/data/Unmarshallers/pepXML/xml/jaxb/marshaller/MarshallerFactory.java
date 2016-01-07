@@ -24,9 +24,9 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.marshaller;
 
 import org.apache.log4j.Logger;
-import uk.ac.ebi.jmzml.model.mzml.utilities.ModelConstants;
-import uk.ac.ebi.jmzml.xml.Constants;
-import uk.ac.ebi.jmzml.xml.jaxb.marshaller.listeners.ObjectClassListener;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.ModelConstants;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.Constants;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.marshaller.listeners.ObjectClassListener;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -34,11 +34,11 @@ import javax.xml.bind.Marshaller;
 
 public class MarshallerFactory {
 
-    private static final Logger logger = Logger.getLogger(uk.ac.ebi.jmzml.xml.jaxb.marshaller.MarshallerFactory.class);
-    private static uk.ac.ebi.jmzml.xml.jaxb.marshaller.MarshallerFactory instance = new uk.ac.ebi.jmzml.xml.jaxb.marshaller.MarshallerFactory();
+    private static final Logger logger = Logger.getLogger(uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.marshaller.MarshallerFactory.class);
+    private static uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.marshaller.MarshallerFactory instance = new uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.marshaller.MarshallerFactory();
     private static JAXBContext jc = null;
 
-    public static uk.ac.ebi.jmzml.xml.jaxb.marshaller.MarshallerFactory getInstance() {
+    public static uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.marshaller.MarshallerFactory getInstance() {
         return instance;
     }
 

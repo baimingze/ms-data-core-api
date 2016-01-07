@@ -1,7 +1,7 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.Component;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Component;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

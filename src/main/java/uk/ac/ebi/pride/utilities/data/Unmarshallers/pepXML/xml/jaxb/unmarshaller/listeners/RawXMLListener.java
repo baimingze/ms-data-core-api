@@ -23,13 +23,13 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.unmarshaller.listeners;
 
 import org.apache.log4j.Logger;
-import uk.ac.ebi.jmzml.MzMLElement;
-import uk.ac.ebi.jmzml.model.mzml.*;
-import uk.ac.ebi.jmzml.model.mzml.params.*;
-import uk.ac.ebi.jmzml.model.mzml.utilities.ParamGroupUpdater;
-import uk.ac.ebi.jmzml.xml.io.MzMLObjectCache;
-import uk.ac.ebi.jmzml.xml.jaxb.resolver.AbstractReferenceResolver;
-import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLElement;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.*;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.params.*;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.ParamGroupUpdater;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.io.pepXMLObjectCache;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.resolver.AbstractReferenceResolver;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexer;
 
 import javax.xml.bind.Unmarshaller;
 import java.lang.reflect.Constructor;
@@ -40,10 +40,10 @@ public class RawXMLListener extends Unmarshaller.Listener {
 
 
     private static final Logger log = Logger.getLogger(uk.ac.ebi.jmzml.xml.jaxb.unmarshaller.listeners.RawXMLListener.class);
-    private final MzMLIndexer index;
-    private final MzMLObjectCache cache;
+    private final pepXMLIndexer index;
+    private final pepXMLObjectCache cache;
 
-    public RawXMLListener(MzMLIndexer index, MzMLObjectCache cache) {
+    public RawXMLListener(pepXMLIndexer index, pepXMLObjectCache cache) {
         this.index = index;
         this.cache = cache;
     }
@@ -53,7 +53,7 @@ public class RawXMLListener extends Unmarshaller.Listener {
 
         log.debug("Handling " + target.getClass() + " in afterUnmarshal.");
         // retrieve the enum type for this class (for the meta data about this class/element)
-        MzMLElement ele = MzMLElement.getType(target.getClass());
+        pepXMLElement ele = pepXMLElement.getType(target.getClass());
 
         // now perform the automatic reference resolving, if configured to do so
         referenceResolving(target, parent, ele);
@@ -203,14 +203,14 @@ public class RawXMLListener extends Unmarshaller.Listener {
 
     }
 
-    private void referenceResolving(Object target, Object parent, MzMLElement ele) {
+    private void referenceResolving(Object target, Object parent, pepXMLElement ele) {
         if (ele.isAutoRefResolving()) {
             Class cls = ele.getRefResolverClass();
             if (cls == null) {
                 throw new IllegalStateException("Can not auto-resolve references if no reference resolver was defined for class: " + ele.getClazz());
             }
             try {
-                Constructor con = cls.getDeclaredConstructor(MzMLIndexer.class, MzMLObjectCache.class);
+                Constructor con = cls.getDeclaredConstructor(pepXMLIndexer.class, pepXMLObjectCache.class);
                 AbstractReferenceResolver resolver = (AbstractReferenceResolver) con.newInstance(index, cache);
                 resolver.afterUnmarshal(target, parent);
             } catch (Exception e) {

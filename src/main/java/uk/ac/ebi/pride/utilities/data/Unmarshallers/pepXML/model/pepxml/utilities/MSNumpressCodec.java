@@ -22,8 +22,7 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities;
 
-import uk.ac.ebi.jmzml.model.mzml.CVParam;
-import uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CVParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,17 +44,17 @@ public final class MSNumpressCodec {
     }
     
     public static Double[] decode(String numpressAccession, byte[] data) {
-        return uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress.decode(numpressAccession, data);
+        return uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpress.decode(numpressAccession, data);
     }
 
     public static byte[] encode(double[] data, String numpressParamAccession) {
-        return uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress.encode(data, numpressParamAccession);
+        return uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpress.encode(data, numpressParamAccession);
     }
 
     private static List<String> getMSNumpressACs() {
         List<String> msNumpressACs = new ArrayList<String>();
-        msNumpressACs.add(uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress.ACC_NUMPRESS_LINEAR);
-        msNumpressACs.add(uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress.ACC_NUMPRESS_PIC);
+        msNumpressACs.add(uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpress.ACC_NUMPRESS_LINEAR);
+        msNumpressACs.add(uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpress.ACC_NUMPRESS_PIC);
         msNumpressACs.add(MSNumpress.ACC_NUMPRESS_SLOF);
         return msNumpressACs;
     }

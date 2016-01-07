@@ -1,9 +1,7 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.*;
-import uk.ac.ebi.jmzml.model.mzml.ParamGroup;
-import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.adapters.IdRefAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -43,16 +41,16 @@ import java.io.Serializable;
     "activation"
 })
 public class Precursor
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 
     private final static long serialVersionUID = 100L;
-    protected uk.ac.ebi.jmzml.model.mzml.ParamGroup isolationWindow;
+    protected uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ParamGroup isolationWindow;
     protected SelectedIonList selectedIonList;
 
     @XmlElement(required = true)
-    protected uk.ac.ebi.jmzml.model.mzml.ParamGroup activation;
+    protected uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ParamGroup activation;
 
     @XmlAttribute
     protected String spectrumRef;
@@ -79,7 +77,7 @@ public class Precursor
      *     {@link uk.ac.ebi.jmzml.model.mzml.ParamGroup }
      *
      */
-    public uk.ac.ebi.jmzml.model.mzml.ParamGroup getIsolationWindow() {
+    public uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ParamGroup getIsolationWindow() {
         return isolationWindow;
     }
 
@@ -91,7 +89,7 @@ public class Precursor
      *     {@link uk.ac.ebi.jmzml.model.mzml.ParamGroup }
      *
      */
-    public void setIsolationWindow(uk.ac.ebi.jmzml.model.mzml.ParamGroup value) {
+    public void setIsolationWindow(uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ParamGroup value) {
         this.isolationWindow = value;
     }
 
@@ -127,7 +125,7 @@ public class Precursor
      *     {@link uk.ac.ebi.jmzml.model.mzml.ParamGroup }
      *
      */
-    public uk.ac.ebi.jmzml.model.mzml.ParamGroup getActivation() {
+    public uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ParamGroup getActivation() {
         return activation;
     }
 

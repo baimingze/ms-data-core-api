@@ -1,8 +1,6 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.CV;
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.adapters.IdRefAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -36,7 +34,7 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "CVParamType")
 public class CVParam
-        extends MzMLObject
+        extends pepXMLObject
         implements Serializable {
 
     private final static long serialVersionUID = 100L;
@@ -45,7 +43,7 @@ public class CVParam
     @XmlSchemaType(name = "IDREF")
     protected String cvRef;
     @XmlTransient
-    private uk.ac.ebi.jmzml.model.mzml.CV cv;
+    private uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CV cv;
 
     @XmlAttribute(required = true)
     protected String accession;
@@ -63,7 +61,7 @@ public class CVParam
     protected String unitCvRef;
 
     @XmlTransient
-    private uk.ac.ebi.jmzml.model.mzml.CV unitCv;
+    private uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CV unitCv;
 
     /**
      * Added a boolean to indicate whether this CVParam was inferred from
@@ -100,11 +98,11 @@ public class CVParam
         this.cvRef = value;
     }
 
-    public uk.ac.ebi.jmzml.model.mzml.CV getCv() {
+    public uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CV getCv() {
         return cv;
     }
 
-    public void setCv(uk.ac.ebi.jmzml.model.mzml.CV cv) {
+    public void setCv(uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CV cv) {
         this.cv = cv;
         if (cv != null) {
             this.cvRef = cv.getId();
@@ -231,7 +229,7 @@ public class CVParam
         this.unitCvRef = value;
     }
 
-    public uk.ac.ebi.jmzml.model.mzml.CV getUnitCv() {
+    public uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CV getUnitCv() {
         return unitCv;
     }
 
@@ -273,8 +271,8 @@ public class CVParam
      * @param paramList List of CVParam objects.
      * @return Whether CVParam is contained by list.
      */
-    public boolean isContainedBy(List<uk.ac.ebi.jmzml.model.mzml.CVParam> paramList) {
-        for (uk.ac.ebi.jmzml.model.mzml.CVParam param : paramList) {
+    public boolean isContainedBy(List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CVParam> paramList) {
+        for (uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CVParam param : paramList) {
             if (this.getAccession().equals(param.getAccession())) {
                 return true;
             }

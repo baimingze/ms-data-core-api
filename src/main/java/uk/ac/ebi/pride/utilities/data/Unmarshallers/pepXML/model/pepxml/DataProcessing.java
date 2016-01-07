@@ -1,8 +1,8 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.model.mzml.ProcessingMethod;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXMLObject;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ProcessingMethod;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
@@ -39,7 +39,7 @@ import java.util.List;
     "processingMethod"
 })
 public class DataProcessing
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 

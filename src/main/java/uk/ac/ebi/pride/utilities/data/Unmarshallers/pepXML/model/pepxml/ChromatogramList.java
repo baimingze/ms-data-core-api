@@ -1,9 +1,6 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.Chromatogram;
-import uk.ac.ebi.jmzml.model.mzml.DataProcessing;
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.adapters.IdRefAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -38,12 +35,12 @@ import java.util.List;
         "chromatogram"
 })
 public class ChromatogramList
-        extends MzMLObject
+        extends pepXMLObject
         implements Serializable {
 
     private final static long serialVersionUID = 100L;
     @XmlElement(required = true)
-    protected List<uk.ac.ebi.jmzml.model.mzml.Chromatogram> chromatogram;
+    protected List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Chromatogram> chromatogram;
     @XmlAttribute(required = true)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected Integer count;
@@ -75,7 +72,7 @@ public class ChromatogramList
      * Objects of the following type(s) are allowed in the list
      * {@link uk.ac.ebi.jmzml.model.mzml.Chromatogram }
      */
-    public List<uk.ac.ebi.jmzml.model.mzml.Chromatogram> getChromatogram() {
+    public List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Chromatogram> getChromatogram() {
         if (chromatogram == null) {
             chromatogram = new ArrayList<Chromatogram>();
         }

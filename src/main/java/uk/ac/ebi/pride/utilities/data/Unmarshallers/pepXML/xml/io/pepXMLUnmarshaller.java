@@ -23,16 +23,16 @@ import org.apache.commons.collections.buffer.CircularFifoBuffer;
 import org.apache.log4j.Logger;
 import org.xml.sax.InputSource;
 import psidev.psi.tools.xxindex.index.IndexElement;
-import uk.ac.ebi.jmzml.MzMLElement;
-import uk.ac.ebi.jmzml.model.mzml.*;
-import uk.ac.ebi.jmzml.model.mzml.utilities.ModelConstants;
-import uk.ac.ebi.jmzml.xml.io.MzMLObjectCache;
-import uk.ac.ebi.jmzml.xml.jaxb.unmarshaller.UnmarshallerFactory;
-import uk.ac.ebi.jmzml.xml.jaxb.unmarshaller.filters.MzMLNamespaceFilter;
-import uk.ac.ebi.jmzml.xml.util.EscapingXMLUtilities;
-import uk.ac.ebi.jmzml.xml.xxindex.FileUtils;
-import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
-import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexerFactory;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLElement;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.*;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.ModelConstants;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.io.pepXMLObjectCache;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.unmarshaller.UnmarshallerFactory;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.unmarshaller.filters.pepXMLNamespaceFilter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.util.EscapingXMLUtilities;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.FileUtils;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexer;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexerFactory;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.MzMLObjectIterator;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLUnmarshallerException;
 
@@ -57,11 +57,11 @@ public class pepXMLUnmarshaller {
     private static final Logger logger = Logger.getLogger(pepXMLUnmarshaller.class);
     private static final char[] HEX_CHARS = "0123456789abcdef".toCharArray();
 
-    private final File mzMLFile;
-    private final MzMLIndexer index;
+    private final File pepXMLFile;
+    private final pepXMLIndexer index;
     private final boolean useSpectrumCache;
     //    private final AdapterObjectCache cache = new AdapterObjectCache();
-    private final MzMLObjectCache cache;
+    private final pepXMLObjectCache cache;
 
     private IndexList indexList = null;
     private boolean fileCorrupted = false;
@@ -72,12 +72,12 @@ public class pepXMLUnmarshaller {
     private static final Pattern XML_ATT_PATTERN = Pattern.compile("\\s+([A-Za-z:]+)\\s*=\\s*[\"']([^\"'>]+?)[\"']", Pattern.DOTALL);
 
     /**
-     * Creates a new MzMLUnmarshaller object from a URL
+     * Creates a new pepXMLUnmarshaller object from a URL
      *
-     * @param mzMLFileURL the URL to unmarshall
+     * @param pepXMLFileURL the URL to unmarshall
      */
-    public pepXMLUnmarshaller(URL mzMLFileURL) {
-        this(mzMLFileURL, true);
+    public pepXMLUnmarshaller(URL pepXMLFileURL) {
+        this(pepXMLFileURL, true);
     }
 
     /**
@@ -92,22 +92,22 @@ public class pepXMLUnmarshaller {
     /**
      * Creates a new MzMLUnmarshaller object from a URL
      *
-     * @param mzMLFileURL       the URL to unmarshall
+     * @param pepXMLFileURL       the URL to unmarshall
      * @param aUseSpectrumCache if true the spectra are cached
      */
-    public pepXMLUnmarshaller(URL mzMLFileURL, boolean aUseSpectrumCache) {
-        this(FileUtils.getFileFromURL(mzMLFileURL), aUseSpectrumCache, null);
+    public pepXMLUnmarshaller(URL pepXMLFileURL, boolean aUseSpectrumCache) {
+        this(FileUtils.getFileFromURL(pepXMLFileURL), aUseSpectrumCache, null);
     }
 
     /**
      * Creates a new MzMLUnmarshaller object from a file
      *
-     * @param mzMLFile          the file to unmarshall
+     * @param pepXMLFile          the file to unmarshall
      * @param aUseSpectrumCache if true the spectra are cached
      */
-    public pepXMLUnmarshaller(File mzMLFile, boolean aUseSpectrumCache, MzMLObjectCache cache) {
-        this.mzMLFile = mzMLFile;
-        index = MzMLIndexerFactory.getInstance().buildIndex(mzMLFile);
+    public pepXMLUnmarshaller(File pepXMLFile, boolean aUseSpectrumCache, pepXMLObjectCache cache) {
+        this.pepXMLFile = pepXMLFile;
+        index = pepXMLIndexerFactory.getInstance().buildIndex(pepXMLFile);
         useSpectrumCache = aUseSpectrumCache;
         this.cache = cache;
     }
@@ -118,8 +118,8 @@ public class pepXMLUnmarshaller {
      *
      * @return an MzML object
      */
-    public MzML unmarshall() {
-        return unmarshalFromXpath("", MzML.class);
+    public pepXML unmarshall() {
+        return unmarshalFromXpath("", pepXML.class);
     }
 
     /**
@@ -255,15 +255,15 @@ public class pepXMLUnmarshaller {
      * @param cls   the class type to retrieve
      * @return the list of elements of the given class at the selected path
      */
-    public <T extends MzMLObject> T unmarshalFromXpath(String xpath, Class cls) {
+    public <T extends pepXMLObject> T unmarshalFromXpath(String xpath, Class cls) {
         // ToDo: only unmarshalls first element in xxindex!! Document this!
         T retval = null;
         try {
             //we want to unmarshal the whole file
             if (xpath.equals("")) {
-                xpath = MzMLElement.MzML.getXpath();
+                xpath = pepXMLElement.MzML.getXpath();
                 if (isIndexedmzML()) {
-                    xpath = MzMLElement.IndexedmzML.getXpath().concat(xpath);
+                    xpath = pepXMLElement.IndexedmzML.getXpath().concat(xpath);
                 }
 
             }
@@ -281,7 +281,7 @@ public class pepXMLUnmarshaller {
                 }
 
                 //required for the addition of namespaces to top-level objects
-                MzMLNamespaceFilter xmlFilter = new MzMLNamespaceFilter();
+                pepXMLNamespaceFilter xmlFilter = new pepXMLNamespaceFilter();
                 //initializeUnmarshaller will assign the proper reader to the xmlFilter
                 Unmarshaller unmarshaller = UnmarshallerFactory.getInstance().initializeUnmarshaller(index, xmlFilter, cache, useSpectrumCache);
                 //unmarshall the desired object
@@ -309,8 +309,8 @@ public class pepXMLUnmarshaller {
      * @param cls   the class type to retrieve
      * @return the collection of elements of the given class at the selected path
      */
-    public <T extends MzMLObject> MzMLObjectIterator<T> unmarshalCollectionFromXpath(String xpath, Class cls) {
-        return new MzMLObjectIterator<T>(xpath, cls, index, cache, useSpectrumCache);
+    public <T extends pepXMLObject> pepXMLObjectIterator<T> unmarshalCollectionFromXpath(String xpath, Class cls) {
+        return new pepXMLObjectIterator<T>(xpath, cls, index, cache, useSpectrumCache);
     }
 
 
@@ -404,7 +404,7 @@ public class pepXMLUnmarshaller {
             //need to clean up XML to ensure that there are no weird control characters
             String cleanXML = EscapingXMLUtilities.escapeCharacters(xml);
             //required for the addition of namespaces to top-level objects
-            MzMLNamespaceFilter xmlFilter = new MzMLNamespaceFilter();
+            pepXMLNamespaceFilter xmlFilter = new pepXMLNamespaceFilter();
             //initializeUnmarshaller will assign the proper reader to the xmlFilter
             Unmarshaller unmarshaller = UnmarshallerFactory.getInstance().initializeUnmarshaller(index, xmlFilter, cache, useSpectrumCache);
             //unmarshall the desired object
@@ -431,7 +431,7 @@ public class pepXMLUnmarshaller {
             //need to clean up XML to ensure that there are no weird control characters
             String cleanXML = EscapingXMLUtilities.escapeCharacters(xml);
             //required for the addition of namespaces to top-level objects
-            MzMLNamespaceFilter xmlFilter = new MzMLNamespaceFilter();
+            pepXMLNamespaceFilter xmlFilter = new pepXMLNamespaceFilter();
             //initializeUnmarshaller will assign the proper reader to the xmlFilter
             Unmarshaller unmarshaller = UnmarshallerFactory.getInstance().initializeUnmarshaller(index, xmlFilter, cache, useSpectrumCache);
             //unmarshall the desired object
@@ -609,7 +609,7 @@ public class pepXMLUnmarshaller {
             String test = snippet.replace("<fileChecksum>", "");
             checksum = test.replace("</fileChecksum>", "").trim().intern();
         } else {
-            throw new IllegalStateException("Could not find fileChecksum tag in indexedmzML: " + mzMLFile.getName());
+            throw new IllegalStateException("Could not find fileChecksum tag in indexedmzML: " + pepXMLFile.getName());
         }
 
         return checksum;
@@ -625,9 +625,9 @@ public class pepXMLUnmarshaller {
         // end of the fileChecksum start tag).
         // Since this stop location is very near the end of the file, we skip everything
         // until we come within a certain limit of the end of the file
-        long limit = mzMLFile.length() - 200L;
+        long limit = pepXMLFile.length() - 200L;
         logger.debug("Looking for fileChecksum tag between byte " + limit +
-                " and byte " + mzMLFile.length() + " (the end) of the mzML file.");
+                " and byte " + pepXMLFile.length() + " (the end) of the mzML file.");
 
         // initialize the hash algorithm
         MessageDigest hash;
@@ -640,9 +640,9 @@ public class pepXMLUnmarshaller {
         // create the input stream that will calculate the checksum
         FileInputStream fis;
         try {
-            fis = new FileInputStream(mzMLFile);
+            fis = new FileInputStream(pepXMLFile);
         } catch (FileNotFoundException e) {
-            throw new IllegalStateException("File " + mzMLFile.getAbsoluteFile() + " could not be found!", e);
+            throw new IllegalStateException("File " + pepXMLFile.getAbsoluteFile() + " could not be found!", e);
         }
         BufferedInputStream bis = new BufferedInputStream(fis);
         DigestInputStream dis = new DigestInputStream(bis, hash);
@@ -675,7 +675,7 @@ public class pepXMLUnmarshaller {
             }
             dis.close();
         } catch (IOException e) {
-            throw new IllegalStateException("Could not read from file '" + mzMLFile.getAbsolutePath() +
+            throw new IllegalStateException("Could not read from file '" + pepXMLFile.getAbsolutePath() +
                     "' while trying ot calculate hash.", e);
         }
         logger.debug("Read over " + cnt + " bytes while calculating the file hash.");
@@ -744,7 +744,7 @@ public class pepXMLUnmarshaller {
      * @return
      * @throws pepXMLUnmarshallerException
      */
-    private <T extends MzMLObject> T getElementByOffset(String elementName, long offset) throws pepXMLUnmarshallerException {
+    private <T extends pepXMLObject> T getElementByOffset(String elementName, long offset) throws pepXMLUnmarshallerException {
         // now check if we can map the elementName to a xpath from the xxindex
         String aXpath = null;
         for (String xxindexPath : index.getXpath()) {
@@ -774,7 +774,7 @@ public class pepXMLUnmarshaller {
             // ToDo: check this!! try to replace with standard unmarshaller!
             //need to clean up XML to ensure that there are no weird control characters
             String cleanXML = EscapingXMLUtilities.escapeCharacters(xmlSnippet);
-            MzMLNamespaceFilter xmlFilter = new MzMLNamespaceFilter();
+            pepXMLNamespaceFilter xmlFilter = new pepXMLNamespaceFilter();
             // initializeUnmarshaller will assign the proper reader to the xmlFilter
             Unmarshaller unmarshaller = UnmarshallerFactory.getInstance().initializeUnmarshaller(index, xmlFilter, cache, useSpectrumCache);
             // unmarshall the desired object
@@ -797,7 +797,7 @@ public class pepXMLUnmarshaller {
      * @return
      * @throws pepXMLUnmarshallerException
      */
-    public <T extends MzMLObject> T unmarshalFromIndexElement(IndexElement element, Class cls) throws pepXMLUnmarshallerException {
+    public <T extends pepXMLObject> T unmarshalFromIndexElement(IndexElement element, Class cls) throws pepXMLUnmarshallerException {
 
         // now that we have the xpath to use for the requested element, check if the xxindex
         // contains an element start position that matches the offset of the desired element
@@ -807,7 +807,7 @@ public class pepXMLUnmarshaller {
         try {
             // ToDo: check this!! try to replace with standard unmarshaller!
             String cleanXML = EscapingXMLUtilities.escapeCharacters(xmlSnippet);
-            MzMLNamespaceFilter xmlFilter = new MzMLNamespaceFilter();
+            pepXMLNamespaceFilter xmlFilter = new pepXMLNamespaceFilter();
             // initializeUnmarshaller will assign the proper reader to the xmlFilter
             Unmarshaller unmarshaller = UnmarshallerFactory.getInstance().initializeUnmarshaller(index, xmlFilter, cache, useSpectrumCache);
             // unmarshall the desired object
@@ -826,7 +826,7 @@ public class pepXMLUnmarshaller {
      *
      * @return the mzML XXIndex Wrapper for raw acces
      */
-    public MzMLIndexer getMzMLIndexer() {
+    public pepXMLIndexer getMzMLIndexer() {
         return index;
     }
 }

@@ -29,7 +29,7 @@ import java.net.URL;
 
 public class FileUtils {
 
-    private static Logger logger = Logger.getLogger(uk.ac.ebi.jmzml.xml.xxindex.FileUtils.class);
+    private static Logger logger = Logger.getLogger(uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.FileUtils.class);
 
     public static File getFileFromURL(URL url) {
 

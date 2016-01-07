@@ -1,9 +1,6 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.CVParam;
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.model.mzml.UserParam;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
@@ -42,12 +39,12 @@ import java.util.List;
     "userParam"
 })
 public class ReferenceableParamGroup
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 
     private final static long serialVersionUID = 100L;
-    protected List<uk.ac.ebi.jmzml.model.mzml.CVParam> cvParam;
+    protected List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CVParam> cvParam;
     protected List<UserParam> userParam;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -77,7 +74,7 @@ public class ReferenceableParamGroup
      *
      *
      */
-    public List<uk.ac.ebi.jmzml.model.mzml.CVParam> getCvParam() {
+    public List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CVParam> getCvParam() {
         if (cvParam == null) {
             cvParam = new ArrayList<CVParam>();
         }

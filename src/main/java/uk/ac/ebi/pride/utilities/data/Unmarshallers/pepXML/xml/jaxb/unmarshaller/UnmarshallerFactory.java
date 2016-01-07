@@ -31,11 +31,11 @@ import com.ctc.wstx.sax.WstxSAXParserFactory;
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
-import uk.ac.ebi.jmzml.model.mzml.utilities.ModelConstants;
-import uk.ac.ebi.jmzml.xml.io.MzMLObjectCache;
-import uk.ac.ebi.jmzml.xml.jaxb.unmarshaller.filters.MzMLNamespaceFilter;
-import uk.ac.ebi.jmzml.xml.jaxb.unmarshaller.listeners.RawXMLListener;
-import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.ModelConstants;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.io.pepXMLObjectCache;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.unmarshaller.filters.pepXMLNamespaceFilter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.unmarshaller.listeners.RawXMLListener;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexer;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -59,11 +59,11 @@ public class UnmarshallerFactory {
     private UnmarshallerFactory() {
     }
 
-    public Unmarshaller initializeUnmarshaller(MzMLIndexer index, MzMLObjectCache cache, MzMLNamespaceFilter xmlFilter) {
+    public Unmarshaller initializeUnmarshaller(pepXMLIndexer index, pepXMLObjectCache cache, pepXMLNamespaceFilter xmlFilter) {
         return initializeUnmarshaller(index, xmlFilter, cache, true);
     }
 
-    public Unmarshaller initializeUnmarshaller(MzMLIndexer index, MzMLNamespaceFilter xmlFilter, MzMLObjectCache cache, boolean useCacheForSpectra) {
+    public Unmarshaller initializeUnmarshaller(pepXMLIndexer index, pepXMLNamespaceFilter xmlFilter, pepXMLObjectCache cache, boolean useCacheForSpectra) {
 
         try {
             // Lazy caching of the JAXB Context.

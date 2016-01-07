@@ -1,8 +1,6 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.model.mzml.ParamGroup;
 
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
@@ -37,13 +35,13 @@ import java.util.List;
     "target"
 })
 public class TargetList
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 
     private final static long serialVersionUID = 100L;
     @XmlElement(required = true)
-    protected List<uk.ac.ebi.jmzml.model.mzml.ParamGroup> target;
+    protected List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ParamGroup> target;
     @XmlAttribute(required = true)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected Integer count;
@@ -70,7 +68,7 @@ public class TargetList
      *
      *
      */
-    public List<uk.ac.ebi.jmzml.model.mzml.ParamGroup> getTarget() {
+    public List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ParamGroup> getTarget() {
         if (target == null) {
             target = new ArrayList<ParamGroup>();
         }

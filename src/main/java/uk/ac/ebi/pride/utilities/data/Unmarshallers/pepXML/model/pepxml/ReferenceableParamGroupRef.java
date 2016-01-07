@@ -1,9 +1,7 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.model.mzml.ReferenceableParamGroup;
-import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.adapters.IdRefAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -32,7 +30,7 @@ import java.io.Serializable;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ReferenceableParamGroupRefType")
 public class ReferenceableParamGroupRef
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 
@@ -43,7 +41,7 @@ public class ReferenceableParamGroupRef
     protected String ref;
 
     @XmlTransient
-    private uk.ac.ebi.jmzml.model.mzml.ReferenceableParamGroup referenceableParamGroup;
+    private uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ReferenceableParamGroup referenceableParamGroup;
 
 
 
@@ -71,7 +69,7 @@ public class ReferenceableParamGroupRef
         this.ref = value;
     }
 
-    public uk.ac.ebi.jmzml.model.mzml.ReferenceableParamGroup getReferenceableParamGroup() {
+    public uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ReferenceableParamGroup getReferenceableParamGroup() {
         return referenceableParamGroup;
     }
 

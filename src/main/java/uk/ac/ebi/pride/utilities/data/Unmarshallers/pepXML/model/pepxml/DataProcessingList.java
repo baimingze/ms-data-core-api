@@ -1,8 +1,8 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.DataProcessing;
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.DataProcessing;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXMLObject;
 
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
@@ -37,13 +37,13 @@ import java.util.List;
     "dataProcessing"
 })
 public class DataProcessingList
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 
     private final static long serialVersionUID = 100L;
     @XmlElement(required = true)
-    protected List<uk.ac.ebi.jmzml.model.mzml.DataProcessing> dataProcessing;
+    protected List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.DataProcessing> dataProcessing;
     @XmlAttribute(required = true)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected Integer count;
@@ -70,7 +70,7 @@ public class DataProcessingList
      *
      *
      */
-    public List<uk.ac.ebi.jmzml.model.mzml.DataProcessing> getDataProcessing() {
+    public List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.DataProcessing> getDataProcessing() {
         if (dataProcessing == null) {
             dataProcessing = new ArrayList<DataProcessing>();
         }
