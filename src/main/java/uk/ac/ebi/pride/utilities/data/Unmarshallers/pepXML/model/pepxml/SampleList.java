@@ -1,9 +1,10 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.model.mzml.Sample;
-
+//import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXMLObject;
+//import uk.ac.ebi.jmzml.model.mzml.Sample;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Sample;
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -37,13 +38,13 @@ import java.util.List;
     "sample"
 })
 public class SampleList
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 
     private final static long serialVersionUID = 100L;
     @XmlElement(required = true)
-    protected List<uk.ac.ebi.jmzml.model.mzml.Sample> sample;
+    protected List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Sample> sample;
     @XmlAttribute(required = true)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected Integer count;
@@ -70,7 +71,7 @@ public class SampleList
      *
      *
      */
-    public List<uk.ac.ebi.jmzml.model.mzml.Sample> getSample() {
+    public List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Sample> getSample() {
         if (sample == null) {
             sample = new ArrayList<Sample>();
         }

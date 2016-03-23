@@ -1,25 +1,44 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.AnalyzerComponent;
-import uk.ac.ebi.jmzml.model.mzml.BinaryDataArray;
-import uk.ac.ebi.jmzml.model.mzml.BinaryDataArrayList;
-import uk.ac.ebi.jmzml.model.mzml.CV;
-import uk.ac.ebi.jmzml.model.mzml.CVList;
-import uk.ac.ebi.jmzml.model.mzml.CVParam;
-import uk.ac.ebi.jmzml.model.mzml.Chromatogram;
-import uk.ac.ebi.jmzml.model.mzml.ChromatogramList;
-import uk.ac.ebi.jmzml.model.mzml.Component;
-import uk.ac.ebi.jmzml.model.mzml.ComponentList;
-import uk.ac.ebi.jmzml.model.mzml.DataProcessing;
-import uk.ac.ebi.jmzml.model.mzml.DataProcessingList;
-import uk.ac.ebi.jmzml.model.mzml.DetectorComponent;
-import uk.ac.ebi.jmzml.model.mzml.FileDescription;
-import uk.ac.ebi.jmzml.model.mzml.Index;
-import uk.ac.ebi.jmzml.model.mzml.IndexList;
-import uk.ac.ebi.jmzml.model.mzml.*;
-import uk.ac.ebi.jmzml.model.mzml.InstrumentConfiguration;
-import uk.ac.ebi.jmzml.model.mzml.InstrumentConfigurationList;
+//import uk.ac.ebi.jmzml.model.mzml.AnalyzerComponent;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.AnalyzerComponent;
+//import uk.ac.ebi.jmzml.model.mzml.BinaryDataArray;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.BinaryDataArray;
+//import uk.ac.ebi.jmzml.model.mzml.BinaryDataArrayList;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.BinaryDataArrayList;
+//import uk.ac.ebi.jmzml.model.mzml.CV;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CV;
+//import uk.ac.ebi.jmzml.model.mzml.CVList;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CVList;
+//import uk.ac.ebi.jmzml.model.mzml.CVParam;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CVParam;
+//import uk.ac.ebi.jmzml.model.mzml.Chromatogram;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Chromatogram;
+//import uk.ac.ebi.jmzml.model.mzml.ChromatogramList;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ChromatogramList;
+//import uk.ac.ebi.jmzml.model.mzml.Component;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Component;
+//import uk.ac.ebi.jmzml.model.mzml.ComponentList;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ComponentList;
+//import uk.ac.ebi.jmzml.model.mzml.DataProcessing;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.DataProcessing;
+//import uk.ac.ebi.jmzml.model.mzml.DataProcessingList;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.DataProcessingList;
+//import uk.ac.ebi.jmzml.model.mzml.DetectorComponent;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.DetectorComponent;
+//import uk.ac.ebi.jmzml.model.mzml.FileDescription;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.FileDescription;
+//import uk.ac.ebi.jmzml.model.mzml.Index;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Index;
+//import uk.ac.ebi.jmzml.model.mzml.IndexList;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.IndexList;
+//import uk.ac.ebi.jmzml.model.mzml.*;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.*;
+//import uk.ac.ebi.jmzml.model.mzml.InstrumentConfiguration;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.InstrumentConfiguration;
+//import uk.ac.ebi.jmzml.model.mzml.InstrumentConfigurationList;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.InstrumentConfigurationList;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
@@ -57,7 +76,7 @@ public class ObjectFactory {
      * Create an instance of {@link uk.ac.ebi.jmzml.model.mzml.CVParam }
      *
      */
-    public uk.ac.ebi.jmzml.model.mzml.CVParam createCVParam() {
+    public  uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CVParam createCVParam() {
         return new CVParam();
     }
 
@@ -286,11 +305,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link IndexedmzML }
+     * Create an instance of {@link IndexedpepXML }
      *
      */
-    public IndexedmzML createIndexedmzML() {
-        return new IndexedmzML();
+    public IndexedpepXML createIndexedpepXML() {
+        return new IndexedpepXML();
     }
 
     /**
@@ -302,11 +321,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link MzML }
+     * Create an instance of {@link pepXML }
      *
      */
-    public MzML createMzML() {
-        return new MzML();
+    public pepXML createpepXML() {
+        return new pepXML();
     }
 
     /**
@@ -462,12 +481,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link MzML }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link pepXML }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://psi.hupo.org/ms/mzml", name = "mzML")
-    public JAXBElement<MzML> createMzML(MzML value) {
-        return new JAXBElement<MzML>(_MzML_QNAME, MzML.class, null, value);
+    public JAXBElement<pepXML> createMzML(pepXML value) {
+        return new JAXBElement<pepXML>(_MzML_QNAME, pepXML.class, null, value);
     }
 
 }

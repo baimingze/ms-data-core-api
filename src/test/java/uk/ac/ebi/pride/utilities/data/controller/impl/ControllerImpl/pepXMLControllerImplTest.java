@@ -24,7 +24,7 @@ public class pepXMLControllerImplTest {
 
     @Before
     public void setUp() throws Exception {
-        URL url = pepXMLControllerImplTest.class.getClassLoader().getResource("tiny.pwiz.1.1.xml");
+        URL url = pepXMLControllerImplTest.class.getClassLoader().getResource("tiny.pwiz.1.1pepxml.xml");
         if (url == null) {
             throw new IllegalStateException("no file for input found!");
         }

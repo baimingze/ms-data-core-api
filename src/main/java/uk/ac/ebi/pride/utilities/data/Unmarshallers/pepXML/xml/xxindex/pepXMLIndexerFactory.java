@@ -41,17 +41,17 @@ public class pepXMLIndexerFactory {
     }
 
     public pepXMLIndexer buildIndex(File xmlFile) {
-        return new MzMlIndexerImpl(xmlFile);
+        return new pepXMLIndexerImpl(xmlFile);
     }
 
-    private class MzMlIndexerImpl implements pepXMLIndexer {
+    private class pepXMLIndexerImpl implements pepXMLIndexer {
 
         private File xmlFile = null;
         private StandardXpathAccess xpathAccess = null;
         private XmlElementExtractor xmlExtractor = null;
         private XpathIndex index = null;
         private String root = null;
-        private String mzMLAttributeXMLString = null;
+        private String pepXMLAttributeXMLString = null;
         // a unified cache of all the id maps
         private HashMap<Class, LinkedHashMap<String, IndexElement>> idMapCache = new HashMap<Class, LinkedHashMap<String, IndexElement>>();
         private HashMap<Integer, String> spectrumIndexToIDMap = new HashMap<Integer, String>();
@@ -59,7 +59,7 @@ public class pepXMLIndexerFactory {
         ///// ///// ///// ///// ///// ///// ///// ///// ///// /////
         // Constructor
 
-        private MzMlIndexerImpl(File xmlFile) {
+        private pepXMLIndexerImpl(File xmlFile) {
 
             if (xmlFile == null) {
                 throw new IllegalStateException("XML File to index must not be null");
@@ -86,22 +86,22 @@ public class pepXMLIndexerFactory {
 
                 // create index
                 index = xpathAccess.getIndex();
-                root = "/mzML";
+                root = "/pepxml";
                 // check if the xxindex contains this root
-                if (!index.containsXpath(pepXMLElement.MzML.getXpath())) {
+                if (!index.containsXpath(pepXMLElement.pepXML.getXpath())) {
                     // if not contained in the xxindex, then maybe we have a indexedzmML file
-                    if (!index.containsXpath(pepXMLElement.IndexedmzML.getXpath())) {
+                    if (!index.containsXpath(pepXMLElement.IndexedpepXML.getXpath())) {
                         logger.info("Index does not contain mzML root! We are not dealing with an mzML file!");
                         throw new IllegalStateException("Index does not contain mzML root!");
                     }
-                    root = "/indexedmzML/mzML";
+                    root = "/indexedpepXML/pepXML";
                 }
 
                 // initialize the ID maps
                 initIdMaps();
 
                 // extract the MzML attributes from the MzML start tag
-                mzMLAttributeXMLString = extractMzMLStartTag(xmlFile);
+                pepXMLAttributeXMLString = extractpepXMLStartTag(xmlFile);
 
             } catch (IOException e) {
                 logger.error("MzMLIndexerFactory$MzMlIndexerImpl.MzMlIndexerImpl", e);
@@ -139,18 +139,18 @@ public class pepXMLIndexerFactory {
             }
         }
 
-        public String getMzMLAttributeXMLString() {
-            return mzMLAttributeXMLString;
+        public String getpepXMLAttributeXMLString() {
+            return pepXMLAttributeXMLString;
         }
 
-        private String extractMzMLStartTag(File xmlFile) throws IOException {
+        private String extractpepXMLStartTag(File xmlFile) throws IOException {
             // get start position of the mzML element
 
-            List<IndexElement> ie = index.getElements(root + checkRoot(pepXMLElement.MzML.getXpath()));
+            List<IndexElement> ie = index.getElements(root + checkRoot(pepXMLElement.pepXML.getXpath()));
             // there is only one root
             long startPos = ie.get(0).getStart();
 
-            // get end position of the mzML start tag
+            // get end position of the mzML start tagML
             // this is the start position of the next tag (cvList)
             ie = index.getElements(root + checkRoot(pepXMLElement.CVList.getXpath()));
             // there will always be one and only one cvList
@@ -288,14 +288,14 @@ public class pepXMLIndexerFactory {
 
             // get rid of possible '/indexedmzML' root
             String unrootedXpath = xpathExpression;
-            if (unrootedXpath.startsWith("/indexedmzML")) {
-                unrootedXpath = unrootedXpath.substring("/indexedmzML".length());
-                logger.debug("removed /indexedmzML root expression");
+            if (unrootedXpath.startsWith("/indexedpepXML")) {
+                unrootedXpath = unrootedXpath.substring("/indexedpepXML".length());
+                logger.debug("removed /indexedpepXML root expression");
             }
             // get rid of possible '/mzML' root
-            if (unrootedXpath.startsWith("/mzML")) {
-                unrootedXpath = unrootedXpath.substring("/mzML".length());
-                logger.debug("removed /mzML root expression");
+            if (unrootedXpath.startsWith("/pepXML")) {
+                unrootedXpath = unrootedXpath.substring("/pepXML".length());
+                logger.debug("removed /pepXML root expression");
             }
             return unrootedXpath;
         }

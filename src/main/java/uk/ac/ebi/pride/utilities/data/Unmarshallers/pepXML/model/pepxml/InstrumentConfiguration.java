@@ -1,7 +1,9 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.ComponentList;
-import uk.ac.ebi.jmzml.model.mzml.*;
+//import uk.ac.ebi.jmzml.model.mzml.ComponentList;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ComponentList;
+//import uk.ac.ebi.jmzml.model.mzml.*;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.*;
 import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
 import uk.ac.ebi.jmzml.xml.jaxb.adapters.SoftwareRefAdapter;
 
@@ -43,7 +45,7 @@ public class InstrumentConfiguration
         implements Serializable {
 
     private final static long serialVersionUID = 100L;
-    protected uk.ac.ebi.jmzml.model.mzml.ComponentList componentList;
+    protected uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ComponentList componentList;
     @XmlJavaTypeAdapter(SoftwareRefAdapter.class)
     protected String softwareRef;
 
@@ -69,7 +71,7 @@ public class InstrumentConfiguration
      * @return possible object is
      *         {@link uk.ac.ebi.jmzml.model.mzml.ComponentList }
      */
-    public uk.ac.ebi.jmzml.model.mzml.ComponentList getComponentList() {
+    public uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ComponentList getComponentList() {
         return componentList;
     }
 

@@ -1,8 +1,10 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.model.mzml.SourceFileRef;
+//import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXMLObject;
+//import uk.ac.ebi.jmzml.model.mzml.SourceFileRef;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.SourceFileRef;
 
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
@@ -35,12 +37,12 @@ import java.util.List;
     "sourceFileRef"
 })
 public class SourceFileRefList
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 
     private final static long serialVersionUID = 100L;
-    protected List<uk.ac.ebi.jmzml.model.mzml.SourceFileRef> sourceFileRef;
+    protected List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.SourceFileRef> sourceFileRef;
     @XmlAttribute(required = true)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected Integer count;
@@ -67,7 +69,7 @@ public class SourceFileRefList
      *
      *
      */
-    public List<uk.ac.ebi.jmzml.model.mzml.SourceFileRef> getSourceFileRef() {
+    public List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.SourceFileRef> getSourceFileRef() {
         if (sourceFileRef == null) {
             sourceFileRef = new ArrayList<SourceFileRef>();
         }

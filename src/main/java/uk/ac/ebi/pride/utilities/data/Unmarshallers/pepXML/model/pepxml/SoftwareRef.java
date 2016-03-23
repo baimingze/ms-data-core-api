@@ -1,9 +1,12 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.model.mzml.Software;
-import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
+//import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXMLObject;
+//import uk.ac.ebi.jmzml.model.mzml.Software;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Software;
+//import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.adapters.IdRefAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -32,7 +35,7 @@ import java.io.Serializable;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "SoftwareRefType")
 public class SoftwareRef
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 
@@ -42,7 +45,7 @@ public class SoftwareRef
     @XmlSchemaType(name = "IDREF")
     protected String ref;
     @XmlTransient
-    private uk.ac.ebi.jmzml.model.mzml.Software software;
+    private uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Software software;
 
     /**
      * Gets the value of the ref property.
@@ -68,7 +71,7 @@ public class SoftwareRef
         this.ref = value;
     }
 
-    public uk.ac.ebi.jmzml.model.mzml.Software getSoftware() {
+    public uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Software getSoftware() {
         return software;
     }
 

@@ -4,7 +4,8 @@ import org.apache.log4j.Logger;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.*;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.pepXMLElementConfig;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.pepXMLElementProperties;
-import uk.ac.ebi.jmzml.xml.jaxb.resolver.AbstractReferenceResolver;
+//import uk.ac.ebi.jmzml.xml.jaxb.resolver.AbstractReferenceResolver;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.resolver.AbstractReferenceResolver;
 
 import javax.xml.bind.JAXB;
 import java.net.URL;
@@ -26,7 +27,7 @@ public enum pepXMLElement {
     // ToDo: update indexed flag for elements that should be indexed
     // ToDo: check for which elements an id map should be generated
 
-    SetupMzMLElement(), // call the default constructor that will load that data from the configuration file
+    SetuppepXMLElement(), // call the default constructor that will load that data from the configuration file
                         // BEFORE the following enum values are defined!
 
     //                          tag name                        indexed     xpath                                                                                           idMapped    class-name                          refResolving    reference-resolver
@@ -168,7 +169,7 @@ public enum pepXMLElement {
           getCfg().get(Index.class.getName()).getRefResolverClass()),
 
 //    IndexedmzML(                "indexedmzML",                  true,       "/indexedmzML",                                                                                 false,      IndexedmzML.class,                  false,          null),
-    IndexedmzML(getCfg().get(IndexedpepXML.class.getName()).getTagName(),
+    IndexedpepXML(getCfg().get(IndexedpepXML.class.getName()).getTagName(),
                 getCfg().get(IndexedpepXML.class.getName()).isIndexed(),
                 getCfg().get(IndexedpepXML.class.getName()).getXpath(),
                 getCfg().get(IndexedpepXML.class.getName()).isIdMapped(),
@@ -204,7 +205,7 @@ public enum pepXMLElement {
                                 getCfg().get(InstrumentConfigurationList.class.getName()).getRefResolverClass()),
 
 //    MzML(                       "mzML",                         true,       "/mzML",                                                                                        false,      MzML.class,                         false,          null),
-    MzML(getCfg().get(pepXML.class.getName()).getTagName(),
+    pepXML(getCfg().get(pepXML.class.getName()).getTagName(),
          getCfg().get(pepXML.class.getName()).isIndexed(),
          getCfg().get(pepXML.class.getName()).getXpath(),
          getCfg().get(pepXML.class.getName()).isIdMapped(),
@@ -546,10 +547,11 @@ public enum pepXMLElement {
 
         //check to see if we have a project-specific configuration file
         URL xmlFileURL = pepXMLElement.class.getClassLoader().getResource("pepXMLElement.cfg.xml");
-        //if not, use default config
-        if (xmlFileURL == null) {
-            xmlFileURL = pepXMLElement.class.getClassLoader().getResource("defaultpepXMLElement.cfg.xml");
-        }
+        //ToDo
+        // if not, use default config
+        //if (xmlFileURL == null) {
+        //    xmlFileURL = pepXMLElement.class.getClassLoader().getResource("defaultMzMLElement.cfg.xml");
+        //}
         logger.warn("MzIdentML Configuration file: " + xmlFileURL.toString());
 
         pepXMLElementProperties props = JAXB.unmarshal(xmlFileURL, pepXMLElementProperties.class);

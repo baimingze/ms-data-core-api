@@ -1,6 +1,7 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities;
 
-import uk.ac.ebi.jmzml.model.mzml.utilities.MzMLElementConfig;
+//import uk.ac.ebi.jmzml.model.mzml.utilities.MzMLElementConfig;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.pepXMLElementConfig;
 
 import java.util.List;
 

@@ -1,8 +1,10 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.model.mzml.ScanSettings;
+//import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLElement;
+//import uk.ac.ebi.jmzml.model.mzml.ScanSettings;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ScanSettings;
 
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
@@ -37,13 +39,13 @@ import java.util.List;
     "scanSettings"
 })
 public class ScanSettingsList
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 
     private final static long serialVersionUID = 100L;
     @XmlElement(required = true)
-    protected List<uk.ac.ebi.jmzml.model.mzml.ScanSettings> scanSettings;
+    protected List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ScanSettings> scanSettings;
     @XmlAttribute(required = true)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected Integer count;
@@ -70,7 +72,7 @@ public class ScanSettingsList
      *
      *
      */
-    public List<uk.ac.ebi.jmzml.model.mzml.ScanSettings> getScanSettings() {
+    public List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ScanSettings> getScanSettings() {
         if (scanSettings == null) {
             scanSettings = new ArrayList<ScanSettings>();
         }

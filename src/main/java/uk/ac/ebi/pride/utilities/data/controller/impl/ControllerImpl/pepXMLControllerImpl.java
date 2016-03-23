@@ -2,7 +2,8 @@ package uk.ac.ebi.pride.utilities.data.controller.impl.ControllerImpl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import uk.ac.ebi.jmzml.model.mzml.*;
+//import uk.ac.ebi.jmzml.model.mzml.*;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.*;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLCachingStrategy;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLUnmarshallerException;
 import uk.ac.ebi.pride.utilities.data.controller.DataAccessController;
@@ -10,7 +11,8 @@ import uk.ac.ebi.pride.utilities.data.controller.DataAccessException;
 import uk.ac.ebi.pride.utilities.data.controller.DataAccessMode;
 import uk.ac.ebi.pride.utilities.data.controller.DataAccessUtilities;
 import uk.ac.ebi.pride.utilities.data.controller.cache.CacheEntry;
-import uk.ac.ebi.pride.utilities.data.controller.impl.Transformer.MzMLTransformer;
+//import uk.ac.ebi.pride.utilities.data.controller.impl.Transformer.MzMLTransformer;
+import uk.ac.ebi.pride.utilities.data.controller.impl.Transformer.pepXMLTransformer;
 import uk.ac.ebi.pride.utilities.data.core.*;
 import uk.ac.ebi.pride.utilities.data.core.Chromatogram;
 import uk.ac.ebi.pride.utilities.data.core.DataProcessing;
@@ -125,7 +127,7 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
     public List<CVLookup> getCvLookups() {
         try {
             CVList rawCvList = unmarshaller.getCVList();
-            return MzMLTransformer.transformCVList(rawCvList);
+            return pepXMLTransformer.transformCVList(rawCvList);
         } catch (Exception e) {
             String msg = "Exception while trying to read a list of cv lookups";
             logger.error(msg, e);
@@ -143,7 +145,7 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
 
         try {
             ReferenceableParamGroupList rawRefParamGroup = unmarshaller.getReferenceableParamGroupList();
-            return MzMLTransformer.transformReferenceableParamGroupList(rawRefParamGroup);
+            return pepXMLTransformer.transformReferenceableParamGroupList(rawRefParamGroup);
         } catch (Exception e) {
             String msg = "Exception while trying to read referenceable param group";
             logger.error(msg, e);
@@ -163,7 +165,7 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
         if (metaData == null) {
             try {
                 SampleList rawSample = unmarshaller.getSampleList();
-                return MzMLTransformer.transformSampleList(rawSample);
+                return pepXMLTransformer.transformSampleList(rawSample);
             } catch (Exception e) {
                 String msg = "Exception while trying to read samples";
                 logger.error(msg, e);
@@ -183,7 +185,7 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
         try {
             FileDescription rawFileDesc = unmarshaller.getFileDescription();
             // List of Persons
-            return MzMLTransformer.transformFileDescriptionToPerson(rawFileDesc);
+            return pepXMLTransformer.transformFileDescriptionToPerson(rawFileDesc);
         } catch (Exception e) {
             String msg = "Error while getting a list of person contacts";
             logger.error(msg, e);
@@ -200,7 +202,7 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
         try {
             FileDescription rawFileDesc = unmarshaller.getFileDescription();
             // List of Organization
-            return MzMLTransformer.transformFileDescriptionOrganization(rawFileDesc);
+            return pepXMLTransformer.transformFileDescriptionOrganization(rawFileDesc);
         } catch (Exception e) {
             String msg = "Error while getting a list of organizational contacts";
             logger.error(msg, e);
@@ -217,7 +219,7 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
         try {
             FileDescription rawFileDesc = unmarshaller.getFileDescription();
             // List of Persons
-            return MzMLTransformer.transformFileDescriptionToFileSource(rawFileDesc);
+            return pepXMLTransformer.transformFileDescriptionToFileSource(rawFileDesc);
         } catch (Exception e) {
             String msg = "Error while getting a list of source files";
             logger.error(msg, e);
@@ -237,7 +239,7 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
     public ParamGroup getFileContent() {
         try {
             FileDescription rawFileDesc = unmarshaller.getFileDescription();
-            return MzMLTransformer.transformFileDescriptionToFileContent(rawFileDesc);
+            return pepXMLTransformer.transformFileDescriptionToFileContent(rawFileDesc);
         } catch (Exception e) {
             String msg = "Error while getting a list of file content";
             logger.error(msg, e);
@@ -256,7 +258,7 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
         if (metaData == null) {
             try {
                 SoftwareList rawSoftware = unmarshaller.getSoftwares();
-                return MzMLTransformer.transformSoftwareList(rawSoftware);
+                return pepXMLTransformer.transformSoftwareList(rawSoftware);
             } catch (Exception e) {
                 String msg = "Error while getting a list of software";
                 logger.error(msg, e);
@@ -278,7 +280,7 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
         if (metaData == null) {
             try {
                 ScanSettingsList rawScanSettingList = unmarshaller.getScanSettingsList();
-                return MzMLTransformer.transformScanSettingList(rawScanSettingList);
+                return pepXMLTransformer.transformScanSettingList(rawScanSettingList);
             } catch (Exception e) {
                 String msg = "Error while getting a list of scan settings";
                 logger.error(msg, e);
@@ -300,7 +302,7 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
         if (metaData == null) {
             try {
                 InstrumentConfigurationList rawInstrumentList = unmarshaller.getInstrumentConfigurationList();
-                return MzMLTransformer.transformInstrumentConfigurationList(rawInstrumentList);
+                return pepXMLTransformer.transformInstrumentConfigurationList(rawInstrumentList);
             } catch (Exception e) {
                 String msg = "Error while getting a list of instrument configurations";
                 logger.error(msg, e);
@@ -321,8 +323,8 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
 
         if (metaData == null) {
             try {
-                uk.ac.ebi.jmzml.model.mzml.DataProcessingList rawDataProcList = unmarshaller.getDataProcessingList();
-                return MzMLTransformer.transformDataProcessingList(rawDataProcList);
+                uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.DataProcessingList rawDataProcList = unmarshaller.getDataProcessingList();
+                return pepXMLTransformer.transformDataProcessingList(rawDataProcList);
             } catch (Exception e) {
                 String msg = "Error while getting a list of data processings";
                 logger.error(msg, e);
@@ -351,7 +353,7 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
         }
         Date dateCreation = unmarshaller.getCreationDate();
         if (dateCreation != null && paramGroup != null) {
-            paramGroup.addCvParam(MzMLTransformer.transformDateToCvParam(dateCreation));
+            paramGroup.addCvParam(pepXMLTransformer.transformDateToCvParam(dateCreation));
 
         }
         return paramGroup;
@@ -371,10 +373,10 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
         if (spectrum == null) {
             try {
 //                System.out.println(id);
-                uk.ac.ebi.jmzml.model.mzml.Spectrum
+                uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Spectrum
                         rawSpec = unmarshaller.getSpectrumById(id.toString());
 
-                spectrum = MzMLTransformer.transformSpectrum(rawSpec);
+                spectrum = pepXMLTransformer.transformSpectrum(rawSpec);
                 if (useCache) {
                     getCache().store(CacheEntry.SPECTRUM, id, spectrum);
                     getCache().store(CacheEntry.SPECTRUM_LEVEL_PRECURSOR_CHARGE,id, DataAccessUtilities.getPrecursorCharge(spectrum.getPrecursors()));
@@ -400,9 +402,9 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
         Chromatogram chroma = super.getChromatogramById(id, useCache);
         if (chroma == null) {
             try {
-                uk.ac.ebi.jmzml.model.mzml.Chromatogram
+                uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Chromatogram
                         rawChroma = unmarshaller.getChromatogramById(id.toString());
-                chroma = MzMLTransformer.transformChromatogram(rawChroma);
+                chroma = pepXMLTransformer.transformChromatogram(rawChroma);
                 if (useCache) {
                     getCache().store(CacheEntry.CHROMATOGRAM, id, chroma);
                 }

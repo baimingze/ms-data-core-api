@@ -2,7 +2,8 @@ package uk.ac.ebi.pride.utilities.data.io.file;
 
 //~--- non-JDK imports --------------------------------------------------------
 
-import uk.ac.ebi.jmzml.model.mzml.*;
+//import uk.ac.ebi.jmzml.model.mzml.*;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.*;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLUnmarshaller;
 
 import java.io.File;

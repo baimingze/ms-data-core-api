@@ -1,9 +1,13 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.DataProcessing;
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.model.mzml.Spectrum;
-import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
+//import uk.ac.ebi.jmzml.model.mzml.DataProcessing;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.DataProcessing;
+//import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXMLObject;
+//import uk.ac.ebi.jmzml.model.mzml.Spectrum;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Spectrum;
+//import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.adapters.IdRefAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -38,11 +42,11 @@ import java.util.List;
         "spectrum"
 })
 public class SpectrumList
-        extends MzMLObject
+        extends pepXMLObject
         implements Serializable {
 
     private final static long serialVersionUID = 100L;
-    protected List<uk.ac.ebi.jmzml.model.mzml.Spectrum> spectrum;
+    protected List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Spectrum> spectrum;
     @XmlAttribute(required = true)
     @XmlSchemaType(name = "nonNegativeInteger")
     protected Integer count;
@@ -73,7 +77,7 @@ public class SpectrumList
      * Objects of the following type(s) are allowed in the list
      * {@link uk.ac.ebi.jmzml.model.mzml.Spectrum }
      */
-    public List<uk.ac.ebi.jmzml.model.mzml.Spectrum> getSpectrum() {
+    public List<uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Spectrum> getSpectrum() {
         if (spectrum == null) {
             spectrum = new ArrayList<Spectrum>();
         }

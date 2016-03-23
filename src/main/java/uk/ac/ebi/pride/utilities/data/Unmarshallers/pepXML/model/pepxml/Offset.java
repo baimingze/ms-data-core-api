@@ -1,7 +1,8 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
+//import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXMLObject;
 
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
@@ -31,7 +32,7 @@ import java.io.Serializable;
     "value"
 })
 public class Offset
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 

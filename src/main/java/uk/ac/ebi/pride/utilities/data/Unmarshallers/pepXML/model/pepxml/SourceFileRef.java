@@ -1,9 +1,12 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.model.mzml.SourceFile;
-import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
+//import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXMLObject;
+//import uk.ac.ebi.jmzml.model.mzml.SourceFile;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.SourceFile;
+//import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.adapters.IdRefAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -30,7 +33,7 @@ import java.io.Serializable;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "SourceFileRefType")
 public class SourceFileRef
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 
@@ -40,7 +43,7 @@ public class SourceFileRef
     @XmlSchemaType(name = "IDREF")
     protected String ref;
     @XmlTransient
-    private uk.ac.ebi.jmzml.model.mzml.SourceFile sourceFile;
+    private uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.SourceFile sourceFile;
 
     /**
      * Gets the value of the ref property.
@@ -66,7 +69,7 @@ public class SourceFileRef
         this.ref = value;
     }
 
-    public uk.ac.ebi.jmzml.model.mzml.SourceFile getSourceFile() {
+    public uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.SourceFile getSourceFile() {
         return sourceFile;
     }
 

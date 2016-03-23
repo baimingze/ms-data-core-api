@@ -1,9 +1,12 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.IndexList;
-import uk.ac.ebi.jmzml.model.mzml.MzML;
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
+//import uk.ac.ebi.jmzml.model.mzml.IndexList;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.IndexList;
+//import uk.ac.ebi.jmzml.model.mzml.MzML;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXML;
+//import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXMLObject;
 
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
@@ -33,21 +36,21 @@ import java.io.Serializable;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "mzML",
+    "pepXML",
     "indexList",
     "indexListOffset",
     "fileChecksum"
 })
-@XmlRootElement(name = "indexedmzML")
+@XmlRootElement(name = "indexedpepXML")
 public class IndexedpepXML
-    extends MzMLObject
+    extends pepXMLObject
     implements Serializable
 {
 
     private final static long serialVersionUID = 100L;
 
     @XmlElement(required = true)
-    protected MzML mzML;
+    protected pepXML pepXML;
 
     @XmlElement(required = true)
     protected IndexList indexList;
@@ -63,11 +66,11 @@ public class IndexedpepXML
      * 
      * @return
      *     possible object is
-     *     {@link MzML }
+     *     {@link pepXML }
      *     
      */
-    public MzML getMzML() {
-        return mzML;
+    public pepXML getpepXML() {
+        return pepXML;
     }
 
     /**
@@ -75,11 +78,11 @@ public class IndexedpepXML
      * 
      * @param value
      *     allowed object is
-     *     {@link MzML }
+     *     {@link pepXML }
      *     
      */
-    public void setMzML(MzML value) {
-        this.mzML = value;
+    public void setMzML(pepXML value) {
+        this.pepXML = value;
     }
 
     /**

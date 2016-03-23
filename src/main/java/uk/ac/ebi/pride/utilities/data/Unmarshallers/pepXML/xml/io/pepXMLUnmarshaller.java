@@ -33,7 +33,7 @@ import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.util.EscapingXMLU
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.FileUtils;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexer;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexerFactory;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.MzMLObjectIterator;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLObjectIterator;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLUnmarshallerException;
 
 import javax.xml.bind.JAXBElement;
@@ -129,7 +129,7 @@ public class pepXMLUnmarshaller {
      */
     public String getMzMLVersion() {
 
-        Matcher match = VERSION_PATTERN.matcher(index.getMzMLAttributeXMLString());
+        Matcher match = VERSION_PATTERN.matcher(index.getpepXMLAttributeXMLString());
 
         if (match.find()) {
             return match.group(1);
@@ -145,7 +145,7 @@ public class pepXMLUnmarshaller {
      */
     public String getMzMLAccession() {
 
-        Matcher match = AC_PATTERN.matcher(index.getMzMLAttributeXMLString());
+        Matcher match = AC_PATTERN.matcher(index.getpepXMLAttributeXMLString());
 
         if (match.find()) {
             return match.group(1);
@@ -161,7 +161,7 @@ public class pepXMLUnmarshaller {
      */
     public String getMzMLId() {
 
-        Matcher match = ID_PATTERN.matcher(index.getMzMLAttributeXMLString());
+        Matcher match = ID_PATTERN.matcher(index.getpepXMLAttributeXMLString());
 
         if (match.find()) {
             return match.group(1);
@@ -261,9 +261,9 @@ public class pepXMLUnmarshaller {
         try {
             //we want to unmarshal the whole file
             if (xpath.equals("")) {
-                xpath = pepXMLElement.MzML.getXpath();
+                xpath = pepXMLElement.pepXML.getXpath();
                 if (isIndexedmzML()) {
-                    xpath = pepXMLElement.IndexedmzML.getXpath().concat(xpath);
+                    xpath = pepXMLElement.IndexedpepXML.getXpath().concat(xpath);
                 }
 
             }

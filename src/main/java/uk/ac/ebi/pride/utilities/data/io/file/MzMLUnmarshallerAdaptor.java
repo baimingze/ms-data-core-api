@@ -20,9 +20,7 @@ import java.util.*;
 public class MzMLUnmarshallerAdaptor extends MzMLUnmarshaller {
 
 
-    public MzMLUnmarshallerAdaptor(File mzMLFile) {
-        super(mzMLFile);
-    }
+    public MzMLUnmarshallerAdaptor(File mzMLFile) {super(mzMLFile);}
 
     public CVList getCVList() {
         return (CVList) unmarshalFromXpath("/mzML/cvList", CVList.class);

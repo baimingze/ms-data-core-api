@@ -1,8 +1,11 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-import uk.ac.ebi.jmzml.model.mzml.CV;
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
+//import uk.ac.ebi.jmzml.model.mzml.CV;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CV;
+//import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXMLObject;
+//import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.adapters.IdRefAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -34,7 +37,7 @@ import java.io.Serializable;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "UserParamType")
 public class UserParam
-        extends MzMLObject
+        extends pepXMLObject
         implements Serializable {
 
     private final static long serialVersionUID = 100L;
@@ -53,7 +56,7 @@ public class UserParam
     @XmlSchemaType(name = "IDREF")
     protected String unitCvRef;
     @XmlTransient
-    private uk.ac.ebi.jmzml.model.mzml.CV unitCv;
+    private uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CV unitCv;
 
     /**
      * Added a boolean to indicate whether this UserParam was inferred from
@@ -185,7 +188,7 @@ public class UserParam
         this.unitCvRef = value;
     }
 
-    public uk.ac.ebi.jmzml.model.mzml.CV getUnitCv() {
+    public uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CV getUnitCv() {
         return unitCv;
     }
 

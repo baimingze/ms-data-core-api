@@ -52,7 +52,7 @@ public interface pepXMLIndexer {
 
     public Set<String> getChromatogramIDs();
 
-    public String getMzMLAttributeXMLString();
+    public String getpepXMLAttributeXMLString();
 
     public String getStartTag(String xpath);
 
