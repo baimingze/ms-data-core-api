@@ -31,7 +31,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SelectedIonListType", propOrder = {
+@XmlType(name = "SelectedIonListTypes", propOrder = {
     "selectedIon"
 })
 public class SelectedIonList

@@ -30,7 +30,7 @@ import java.io.Serializable;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SourceComponentType")
+@XmlType(name = "SourceComponentTypes")
 public class SourceComponent
     extends Component
     implements Serializable

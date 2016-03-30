@@ -37,11 +37,11 @@ public class MSNumpress {
         public static byte[] encode(double[] data, String cvAccession) {
             if (cvAccession.equals(ACC_NUMPRESS_LINEAR)) {
                 byte[] buffer = new byte[8 + (data.length * 5)];
-                int encodedBytes = uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpress.encodeLinear(data, data.length, buffer, uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress.optimalLinearFixedPoint(data, data.length));
+                int encodedBytes = uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpress.encodeLinear(data, data.length, buffer, uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpress.optimalLinearFixedPoint(data, data.length));
                 return Arrays.copyOf(buffer, encodedBytes);
             } else if (cvAccession.equals(ACC_NUMPRESS_SLOF)) {
                 byte[] buffer = new byte[8 + (data.length * 2)];
-                int encodedBytes = uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpress.encodeSlof(data, data.length, buffer, uk.ac.ebi.jmzml.model.mzml.utilities.MSNumpress.optimalSlofFixedPoint(data, data.length));
+                int encodedBytes = uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpress.encodeSlof(data, data.length, buffer, uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.MSNumpress.optimalSlofFixedPoint(data, data.length));
                 return Arrays.copyOf(buffer, encodedBytes);
             } else if (cvAccession.equals(ACC_NUMPRESS_PIC)) {
                 byte[] buffer = new byte[data.length * 5];

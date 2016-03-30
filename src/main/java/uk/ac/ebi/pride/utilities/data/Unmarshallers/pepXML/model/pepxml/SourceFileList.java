@@ -35,7 +35,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SourceFileListType", propOrder = {
+@XmlType(name = "SourceFileListTypes", propOrder = {
     "sourceFile"
 })
 public class SourceFileList

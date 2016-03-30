@@ -22,8 +22,8 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.io;
 
-import uk.ac.ebi.jmzml.xml.io.MzMLMarshaller;
-
+//import uk.ac.ebi.jmzml.xml.io.MzMLMarshaller;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.io.pepXMLMarshaller;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -35,7 +35,7 @@ import java.util.Set;
  * problems with large MzML objects.
  * @author SPerkins
  */
-public class pepXMLInstantMarshaller extends MzMLMarshaller {
+public class pepXMLInstantMarshaller extends pepXMLMarshaller {
     /**
      * The MzML namespace, used in the MzML header.
      */
@@ -66,8 +66,8 @@ public class pepXMLInstantMarshaller extends MzMLMarshaller {
      * @param fileName MzML file name
      * @return MzML start tag.
      */
-    public final String createMzMLStartTag(final String fileName) {
-        return createMzMLStartTag(fileName, DEFAULT_VERSION);
+    public final String createpepXMLStartTag(final String fileName) {
+        return createpepXMLStartTag(fileName, DEFAULT_VERSION);
     }
     
     /**
@@ -76,8 +76,8 @@ public class pepXMLInstantMarshaller extends MzMLMarshaller {
      * @param version MzML version number
      * @return MzML start tag
      */
-    public final String createMzMLStartTag(final String fileName, final String version) {
-        return "<mzML xmlns=\""
+    public final String createpepXMLStartTag(final String fileName, final String version) {
+        return "<pepXML xmlns=\""
                 + MZML_NAMESPACE
                 + "\" id=\""
                 + fileName
@@ -90,8 +90,8 @@ public class pepXMLInstantMarshaller extends MzMLMarshaller {
      * Creates the MzML close tag and returns it.
      * @return MzML close tag
      */
-    public final String createMzMLCloseTag() {
-        return "</mzML>";
+    public final String createpepXMLCloseTag() {
+        return "</pepXML>";
     }
     
     /**

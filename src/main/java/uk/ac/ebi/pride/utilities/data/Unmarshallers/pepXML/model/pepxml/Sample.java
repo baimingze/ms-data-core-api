@@ -29,7 +29,7 @@ import java.io.Serializable;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SampleType")
+@XmlType(name = "SampleTypes")
 public class Sample
     extends ParamGroup
     implements Serializable

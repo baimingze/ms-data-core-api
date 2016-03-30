@@ -35,7 +35,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SoftwareListType", propOrder = {
+@XmlType(name = "SoftwareListTypes", propOrder = {
     "software"
 })
 public class SoftwareList

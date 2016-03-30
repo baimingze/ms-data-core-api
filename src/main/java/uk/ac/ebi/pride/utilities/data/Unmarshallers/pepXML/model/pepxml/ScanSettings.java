@@ -29,7 +29,7 @@ import java.io.Serializable;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ScanSettingsType", propOrder = {
+@XmlType(name = "ScanSettingsTypes", propOrder = {
         "sourceFileRefList",
         "targetList"
 })

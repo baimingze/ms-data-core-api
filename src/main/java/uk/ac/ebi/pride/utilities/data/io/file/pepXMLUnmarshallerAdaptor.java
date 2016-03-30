@@ -21,40 +21,41 @@ import java.util.*;
 public class pepXMLUnmarshallerAdaptor extends pepXMLUnmarshaller {
 
 
-    public pepXMLUnmarshallerAdaptor(File mzMLFile) {
-        super(mzMLFile);
+    public pepXMLUnmarshallerAdaptor(File pepXMLFile) {
+        super(pepXMLFile);
+
     }
 
     public CVList getCVList() {
-        return (CVList) unmarshalFromXpath("/mzML/cvList", CVList.class);
+        return (CVList) unmarshalFromXpath("/pepXML/cvList", CVList.class);
     }
 
     public FileDescription getFileDescription() {
-        return (FileDescription) unmarshalFromXpath("/mzML/fileDescription", FileDescription.class);
+        return (FileDescription) unmarshalFromXpath("/pepXML/fileDescription", FileDescription.class);
     }
 
     public ReferenceableParamGroupList getReferenceableParamGroupList() {
-        return (ReferenceableParamGroupList) unmarshalFromXpath("/mzML/referenceableParamGroupList", ReferenceableParamGroupList.class);
+        return (ReferenceableParamGroupList) unmarshalFromXpath("/pepXML/referenceableParamGroupList", ReferenceableParamGroupList.class);
     }
 
     public SampleList getSampleList() {
-        return (SampleList) unmarshalFromXpath("/mzML/sampleList", SampleList.class);
+        return (SampleList) unmarshalFromXpath("/pepXML/sampleList", SampleList.class);
     }
 
     public SoftwareList getSoftwares() {
-        return (SoftwareList) unmarshalFromXpath("/mzML/softwareList", SoftwareList.class);
+        return (SoftwareList) unmarshalFromXpath("/pepXML/softwareList", SoftwareList.class);
     }
 
     public ScanSettingsList getScanSettingsList() {
-        return (ScanSettingsList) unmarshalFromXpath("/mzML/scanSettingsList", ScanSettingsList.class);
+        return (ScanSettingsList) unmarshalFromXpath("/pepXML/scanSettingsList", ScanSettingsList.class);
     }
 
     public InstrumentConfigurationList getInstrumentConfigurationList() {
-        return (InstrumentConfigurationList) unmarshalFromXpath("/mzML/instrumentConfigurationList", InstrumentConfigurationList.class);
+        return (InstrumentConfigurationList) unmarshalFromXpath("/pepXML/instrumentConfigurationList", InstrumentConfigurationList.class);
     }
 
     public DataProcessingList getDataProcessingList() {
-        return (DataProcessingList) unmarshalFromXpath("/mzML/dataProcessingList", DataProcessingList.class);
+        return (DataProcessingList) unmarshalFromXpath("/pepXML/dataProcessingList", DataProcessingList.class);
     }
 
     public Set<String> getSpectrumIds() {
@@ -66,7 +67,7 @@ public class pepXMLUnmarshallerAdaptor extends pepXMLUnmarshaller {
     }
 
     public Date getCreationDate() {
-        Map<String, String> runAttributes = getSingleElementAttributes("/mzML/run");
+        Map<String, String> runAttributes = getSingleElementAttributes("/pepXML/run");
         String startTimeStamp = runAttributes.get("startTimeStamp");
         Date dateCreation = null;
 

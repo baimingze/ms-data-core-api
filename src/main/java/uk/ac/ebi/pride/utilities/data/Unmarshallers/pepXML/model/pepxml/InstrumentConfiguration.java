@@ -4,8 +4,10 @@ package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ComponentList;
 //import uk.ac.ebi.jmzml.model.mzml.*;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.*;
-import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
-import uk.ac.ebi.jmzml.xml.jaxb.adapters.SoftwareRefAdapter;
+//import uk.ac.ebi.jmzml.xml.jaxb.adapters.IdRefAdapter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.adapters.IdRefAdapter;
+//import uk.ac.ebi.jmzml.xml.jaxb.adapters.SoftwareRefAdapter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.adapters.SoftwareRefAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
@@ -36,7 +38,7 @@ import java.io.Serializable;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "InstrumentConfigurationType", propOrder = {
+@XmlType(name = "InstrumentConfigurationTypes", propOrder = {
         "componentList",
         "softwareRef"
 })

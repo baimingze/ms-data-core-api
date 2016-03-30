@@ -29,7 +29,7 @@ import java.io.Serializable;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ProductType", propOrder = {
+@XmlType(name = "ProductTypes", propOrder = {
     "isolationWindow"
 })
 public class Product

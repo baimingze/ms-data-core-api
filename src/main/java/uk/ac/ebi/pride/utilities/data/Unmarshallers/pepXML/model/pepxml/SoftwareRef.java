@@ -33,7 +33,7 @@ import java.io.Serializable;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SoftwareRefType")
+@XmlType(name = "SoftwareRefTypes")
 public class SoftwareRef
     extends pepXMLObject
     implements Serializable

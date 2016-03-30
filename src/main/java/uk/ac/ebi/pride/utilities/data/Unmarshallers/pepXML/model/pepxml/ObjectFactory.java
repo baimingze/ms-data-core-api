@@ -485,7 +485,7 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://psi.hupo.org/ms/mzml", name = "mzML")
-    public JAXBElement<pepXML> createMzML(pepXML value) {
+    public JAXBElement<pepXML> createpepXML(pepXML value) {
         return new JAXBElement<pepXML>(_MzML_QNAME, pepXML.class, null, value);
     }
 

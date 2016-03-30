@@ -2,11 +2,16 @@ package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.resolver;
 
 import org.apache.log4j.Logger;
 import org.xml.sax.InputSource;
-import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
-import uk.ac.ebi.jmzml.xml.io.MzMLObjectCache;
-import uk.ac.ebi.jmzml.xml.jaxb.unmarshaller.UnmarshallerFactory;
-import uk.ac.ebi.jmzml.xml.jaxb.unmarshaller.filters.MzMLNamespaceFilter;
-import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
+//import uk.ac.ebi.jmzml.model.mzml.MzMLObject;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXMLObject;
+//import uk.ac.ebi.jmzml.xml.io.MzMLObjectCache;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.io.pepXMLObjectCache;
+//import uk.ac.ebi.jmzml.xml.jaxb.unmarshaller.UnmarshallerFactory;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.unmarshaller.UnmarshallerFactory;
+//import uk.ac.ebi.jmzml.xml.jaxb.unmarshaller.filters.MzMLNamespaceFilter;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.unmarshaller.filters.pepXMLNamespaceFilter;
+//import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexer;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
@@ -23,23 +28,23 @@ import java.io.StringReader;
  *         Date: 12-Nov-2010
  * @since 1.0
  */
-public abstract class AbstractReferenceResolver<T extends MzMLObject> extends Unmarshaller.Listener {
+public abstract class AbstractReferenceResolver<T extends pepXMLObject> extends Unmarshaller.Listener {
 
     private static final Logger log = Logger.getLogger(AbstractReferenceResolver.class);
 
     // ToDo: check if we need the cache here or if we can handle this from another level (e.g. the MzMLUnmarshaller)
-    private MzMLIndexer index = null;
-    private MzMLObjectCache cache = null;
+    private pepXMLIndexer index = null;
+    private pepXMLObjectCache cache = null;
 
 
-    protected AbstractReferenceResolver(MzMLIndexer index, MzMLObjectCache cache) {
+    protected AbstractReferenceResolver(pepXMLIndexer index, pepXMLObjectCache cache) {
         this.index = index;
         this.cache = cache;
     }
 
 
 
-    public <R extends MzMLObject> R unmarshal(String refId, Class<R> cls) {
+    public <R extends pepXMLObject> R unmarshal(String refId, Class<R> cls) {
         R retVal = null;
 
         // check if we have a cache to look up, if so see if it contains the referenced object already
@@ -60,7 +65,7 @@ public abstract class AbstractReferenceResolver<T extends MzMLObject> extends Un
 
             try {
                 // required for the addition of namespaces to top-level objects
-                MzMLNamespaceFilter xmlFilter = new MzMLNamespaceFilter();
+                pepXMLNamespaceFilter xmlFilter = new pepXMLNamespaceFilter();
 
                 // initializeUnmarshaller will assign the proper reader to the xmlFilter
                 Unmarshaller unmarshaller = UnmarshallerFactory.getInstance().initializeUnmarshaller(index, cache, xmlFilter);

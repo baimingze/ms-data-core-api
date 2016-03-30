@@ -65,7 +65,7 @@ import java.util.zip.Inflater;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BinaryDataArrayType", propOrder = {
+@XmlType(name = "BinaryDataArrayTypes", propOrder = {
         "binary"
 })
 public class BinaryDataArray

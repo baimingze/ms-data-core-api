@@ -37,7 +37,7 @@ import java.util.Calendar;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "RunType", propOrder = {
+@XmlType(name = "RunTypes", propOrder = {
         "spectrumList",
         "chromatogramList"
 })

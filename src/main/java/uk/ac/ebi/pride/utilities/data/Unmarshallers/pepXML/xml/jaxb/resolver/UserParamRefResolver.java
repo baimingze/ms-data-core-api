@@ -1,11 +1,17 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.resolver;
 
-import uk.ac.ebi.jmzml.MzMLElement;
-import uk.ac.ebi.jmzml.model.mzml.CV;
-import uk.ac.ebi.jmzml.model.mzml.DataProcessing;
-import uk.ac.ebi.jmzml.model.mzml.UserParam;
-import uk.ac.ebi.jmzml.xml.io.MzMLObjectCache;
-import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
+//import uk.ac.ebi.jmzml.MzMLElement;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLElement;
+//import uk.ac.ebi.jmzml.model.mzml.CV;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CV;
+//import uk.ac.ebi.jmzml.model.mzml.DataProcessing;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.DataProcessing;
+//import uk.ac.ebi.jmzml.model.mzml.UserParam;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.UserParam;
+//import uk.ac.ebi.jmzml.xml.io.MzMLObjectCache;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.io.pepXMLObjectCache;
+//import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexer;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,14 +21,14 @@ import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
  * To change this template use File | Settings | File Templates.
  */
 public class UserParamRefResolver extends AbstractReferenceResolver<UserParam>{
-    public UserParamRefResolver(MzMLIndexer index, MzMLObjectCache cache) {
+    public UserParamRefResolver(pepXMLIndexer index, pepXMLObjectCache cache) {
              super(index, cache);
          }
 
          @Override
          public void updateObject(UserParam object) {
              // if we automatically resolve the references, then update the object with the referenced object
-             if (MzMLElement.UserParam.isAutoRefResolving()) {
+             if (pepXMLElement.UserParam.isAutoRefResolving()) {
                  // add objects for the refID
                  String ref = object.getUnitCvRef();
                  if (ref != null) {

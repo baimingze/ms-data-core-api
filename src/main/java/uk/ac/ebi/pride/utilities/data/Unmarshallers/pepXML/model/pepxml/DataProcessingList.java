@@ -33,7 +33,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "DataProcessingListType", propOrder = {
+@XmlType(name = "DataProcessingListTypes", propOrder = {
     "dataProcessing"
 })
 public class DataProcessingList

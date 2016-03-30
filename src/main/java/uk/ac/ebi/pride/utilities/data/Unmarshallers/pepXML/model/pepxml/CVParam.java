@@ -32,7 +32,7 @@ import java.util.List;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "CVParamType")
+@XmlType(name = "CVParamTypes")
 public class CVParam
         extends pepXMLObject
         implements Serializable {

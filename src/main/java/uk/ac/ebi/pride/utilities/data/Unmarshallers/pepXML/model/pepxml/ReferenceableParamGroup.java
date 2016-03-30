@@ -34,7 +34,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ReferenceableParamGroupType", propOrder = {
+@XmlType(name = "ReferenceableParamGroupTypes", propOrder = {
     "cvParam",
     "userParam"
 })

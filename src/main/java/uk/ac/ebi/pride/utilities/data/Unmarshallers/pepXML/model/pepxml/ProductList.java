@@ -35,7 +35,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ProductListType", propOrder = {
+@XmlType(name = "ProductListTypes", propOrder = {
     "product"
 })
 public class ProductList

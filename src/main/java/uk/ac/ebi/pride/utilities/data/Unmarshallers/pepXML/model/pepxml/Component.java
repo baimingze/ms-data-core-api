@@ -24,7 +24,7 @@ import java.io.Serializable;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ComponentType")
+@XmlType(name = "ComponentTypes")
 @XmlSeeAlso({
     SourceComponent.class,
     DetectorComponent.class,

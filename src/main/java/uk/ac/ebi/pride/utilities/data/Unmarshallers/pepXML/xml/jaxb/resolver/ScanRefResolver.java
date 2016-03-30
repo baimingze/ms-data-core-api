@@ -1,11 +1,17 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.resolver;
 
-import uk.ac.ebi.jmzml.MzMLElement;
-import uk.ac.ebi.jmzml.model.mzml.InstrumentConfiguration;
-import uk.ac.ebi.jmzml.model.mzml.Scan;
-import uk.ac.ebi.jmzml.model.mzml.SourceFile;
-import uk.ac.ebi.jmzml.xml.io.MzMLObjectCache;
-import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
+//import uk.ac.ebi.jmzml.MzMLElement;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLElement;
+//import uk.ac.ebi.jmzml.model.mzml.InstrumentConfiguration;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.InstrumentConfiguration;
+//import uk.ac.ebi.jmzml.model.mzml.Scan;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Scan;
+//import uk.ac.ebi.jmzml.model.mzml.SourceFile;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.SourceFile;
+//import uk.ac.ebi.jmzml.xml.io.MzMLObjectCache;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.io.pepXMLObjectCache;
+//import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexer;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,14 +21,14 @@ import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
  * To change this template use File | Settings | File Templates.
  */
 public class ScanRefResolver extends AbstractReferenceResolver<Scan> {
-    public ScanRefResolver(MzMLIndexer index, MzMLObjectCache cache) {
+    public ScanRefResolver(pepXMLIndexer index, pepXMLObjectCache cache) {
         super(index, cache);
     }
 
     @Override
     public void updateObject(Scan object) {
         // if we automatically resolve the references, then update the object with the referenced object
-        if (MzMLElement.Scan.isAutoRefResolving()) {
+        if (pepXMLElement.Scan.isAutoRefResolving()) {
             // add objects for the refID
             String ref = object.getSourceFileRef();
             if (ref != null) {

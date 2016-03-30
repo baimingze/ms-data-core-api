@@ -29,7 +29,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ScanWindowListType", propOrder = {
+@XmlType(name = "ScanWindowListTypes", propOrder = {
     "scanWindow"
 })
 public class ScanWindowList

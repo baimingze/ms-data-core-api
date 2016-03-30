@@ -35,7 +35,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "DataProcessingType", propOrder = {
+@XmlType(name = "DataProcessingTypes", propOrder = {
     "processingMethod"
 })
 public class DataProcessing

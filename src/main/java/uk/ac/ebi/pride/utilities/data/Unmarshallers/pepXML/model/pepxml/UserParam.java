@@ -35,7 +35,7 @@ import java.io.Serializable;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "UserParamType")
+@XmlType(name = "UserParamTypes")
 public class UserParam
         extends pepXMLObject
         implements Serializable {

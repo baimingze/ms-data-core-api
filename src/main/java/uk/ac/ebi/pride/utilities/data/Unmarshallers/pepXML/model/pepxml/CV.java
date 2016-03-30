@@ -29,7 +29,7 @@ import java.io.Serializable;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "CVType")
+@XmlType(name = "CVTypes")
 public class CV
         extends pepXMLObject
         implements Serializable {

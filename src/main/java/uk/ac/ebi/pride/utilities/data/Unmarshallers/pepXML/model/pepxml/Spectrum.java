@@ -42,7 +42,7 @@ import java.io.Serializable;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SpectrumType", propOrder = {
+@XmlType(name = "SpectrumTypes", propOrder = {
         "scanList",
         "precursorList",
         "productList",

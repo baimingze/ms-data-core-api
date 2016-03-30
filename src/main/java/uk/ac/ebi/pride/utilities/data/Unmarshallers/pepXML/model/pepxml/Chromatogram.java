@@ -38,7 +38,7 @@ import java.io.Serializable;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ChromatogramType", propOrder = {
+@XmlType(name = "ChromatogramTypes", propOrder = {
     "precursor",
     "product",
     "binaryDataArrayList"

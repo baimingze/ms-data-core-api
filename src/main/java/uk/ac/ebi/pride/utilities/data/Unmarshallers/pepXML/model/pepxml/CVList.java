@@ -33,7 +33,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "CVListType", propOrder = {
+@XmlType(name = "CVListTypes", propOrder = {
     "cv"
 })
 public class CVList

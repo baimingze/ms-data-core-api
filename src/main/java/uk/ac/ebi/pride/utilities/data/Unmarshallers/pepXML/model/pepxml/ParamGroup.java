@@ -33,7 +33,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ParamGroupType", propOrder = {
+@XmlType(name = "ParamGroupTypes", propOrder = {
     "referenceableParamGroupRef",
     "cvParam",
     "userParam"

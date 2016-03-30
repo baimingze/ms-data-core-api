@@ -31,7 +31,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "IndexListType", propOrder = {
+@XmlType(name = "IndexListTypes", propOrder = {
     "index"
 })
 public class IndexList

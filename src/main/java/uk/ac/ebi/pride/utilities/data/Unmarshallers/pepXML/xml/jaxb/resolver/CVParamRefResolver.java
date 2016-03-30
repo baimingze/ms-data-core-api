@@ -1,10 +1,15 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.resolver;
 
-import uk.ac.ebi.jmzml.MzMLElement;
-import uk.ac.ebi.jmzml.model.mzml.CV;
-import uk.ac.ebi.jmzml.model.mzml.CVParam;
-import uk.ac.ebi.jmzml.xml.io.MzMLObjectCache;
-import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
+//import uk.ac.ebi.jmzml.MzMLElement;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLElement;
+//import uk.ac.ebi.jmzml.model.mzml.CV;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CV;
+//import uk.ac.ebi.jmzml.model.mzml.CVParam;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CVParam;
+//import uk.ac.ebi.jmzml.xml.io.MzMLObjectCache;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.io.pepXMLObjectCache;
+//import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexer;
 
 /**
  * Created by IntelliJ IDEA.
@@ -14,14 +19,14 @@ import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
  * To change this template use File | Settings | File Templates.
  */
 public class CVParamRefResolver extends AbstractReferenceResolver<CVParam>{
-    public CVParamRefResolver(MzMLIndexer index, MzMLObjectCache cache) {
+    public CVParamRefResolver(pepXMLIndexer index, pepXMLObjectCache cache) {
            super(index, cache);
        }
 
        @Override
        public void updateObject(CVParam object) {
            // if we automatically resolve the references, then update the object with the referenced object
-           if (MzMLElement.CVParam.isAutoRefResolving()) {
+           if (pepXMLElement.CVParam.isAutoRefResolving()) {
                // add objects for the refID
                String ref = object.getCvRef();
                if (ref != null) {

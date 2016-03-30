@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 //import uk.ac.ebi.jmzml.model.mzml.*;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.*;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLCachingStrategy;
+import uk.ac.ebi.pride.utilities.data.controller.cache.strategy.pepXMLCachingStrategy;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLUnmarshallerException;
 import uk.ac.ebi.pride.utilities.data.controller.DataAccessController;
 import uk.ac.ebi.pride.utilities.data.controller.DataAccessException;
@@ -48,7 +48,7 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
     /**
      * Pattern for validating mzML format
      */
-    private static final Pattern mzMLHeaderPattern = Pattern.compile("^[^<]*(<\\?xml [^>]*>\\s*(<!--[^>]*-->\\s*)*)?<(mzML)|(indexedmzML) xmlns=.*", Pattern.MULTILINE);
+    private static final Pattern pepXMLHeaderPattern = Pattern.compile("^[^<]*(<\\?xml [^>]*>\\s*(<!--[^>]*-->\\s*)*)?<(pepXML)|(indexedpepXML) xmlns=.*", Pattern.MULTILINE);
 
     /**
      * Reader for getting information from mzML file
@@ -432,9 +432,9 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
 
         if (metaData == null) {
             // id , accession and version
-            String id = unmarshaller.getMzMLId();
-            String accession = unmarshaller.getMzMLAccession();
-            String version = unmarshaller.getMzMLVersion();
+            String id = unmarshaller.getpepXMLId();
+            String accession = unmarshaller.getpepXMLAccession();
+            String version = unmarshaller.getpepXMLVersion();
 
             // SourceFile List
             List<SourceFile> sourceFileList = getSourceFiles();
@@ -513,7 +513,7 @@ public class pepXMLControllerImpl extends CachedDataAccessController {
                 content.append(reader.readLine());
             }
 
-            Matcher matcher = mzMLHeaderPattern.matcher(content);
+            Matcher matcher = pepXMLHeaderPattern.matcher(content);
 
             valid = matcher.find();
         } catch (Exception e) {

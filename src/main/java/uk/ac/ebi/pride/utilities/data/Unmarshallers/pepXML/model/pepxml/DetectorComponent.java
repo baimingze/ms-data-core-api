@@ -30,7 +30,7 @@ import java.io.Serializable;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "DetectorComponentType")
+@XmlType(name = "DetectorComponentTypes")
 public class DetectorComponent
     extends Component
     implements Serializable

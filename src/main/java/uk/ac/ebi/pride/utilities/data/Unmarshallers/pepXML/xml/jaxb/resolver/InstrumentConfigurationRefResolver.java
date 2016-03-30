@@ -1,11 +1,17 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.resolver;
 
-import uk.ac.ebi.jmzml.MzMLElement;
-import uk.ac.ebi.jmzml.model.mzml.InstrumentConfiguration;
-import uk.ac.ebi.jmzml.model.mzml.ScanSettings;
-import uk.ac.ebi.jmzml.model.mzml.Software;
-import uk.ac.ebi.jmzml.xml.io.MzMLObjectCache;
-import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
+//import uk.ac.ebi.jmzml.MzMLElement;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLElement;
+//import uk.ac.ebi.jmzml.model.mzml.InstrumentConfiguration;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.InstrumentConfiguration;
+//import uk.ac.ebi.jmzml.model.mzml.ScanSettings;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ScanSettings;
+//import uk.ac.ebi.jmzml.model.mzml.Software;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Software;
+//import uk.ac.ebi.jmzml.xml.io.MzMLObjectCache;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.io.pepXMLObjectCache;
+//import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexer;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,14 +21,14 @@ import uk.ac.ebi.jmzml.xml.xxindex.MzMLIndexer;
  * To change this template use File | Settings | File Templates.
  */
 public class InstrumentConfigurationRefResolver extends AbstractReferenceResolver<InstrumentConfiguration> {
-    public InstrumentConfigurationRefResolver(MzMLIndexer index, MzMLObjectCache cache) {
+    public InstrumentConfigurationRefResolver(pepXMLIndexer index, pepXMLObjectCache cache) {
         super(index, cache);
     }
 
     @Override
     public void updateObject(InstrumentConfiguration object) {
         // if we automatically resolve the references, then update the object with the referenced object
-        if (MzMLElement.InstrumentConfiguration.isAutoRefResolving()) {
+        if (pepXMLElement.InstrumentConfiguration.isAutoRefResolving()) {
             // add objects for the refID
             String ref = object.getScanSettingsRef();
             if (ref != null) {

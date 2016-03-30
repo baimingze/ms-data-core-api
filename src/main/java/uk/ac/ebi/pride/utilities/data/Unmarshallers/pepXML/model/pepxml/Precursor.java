@@ -35,7 +35,7 @@ import java.io.Serializable;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "PrecursorType", propOrder = {
+@XmlType(name = "PrecursorTypes", propOrder = {
     "isolationWindow",
     "selectedIonList",
     "activation"

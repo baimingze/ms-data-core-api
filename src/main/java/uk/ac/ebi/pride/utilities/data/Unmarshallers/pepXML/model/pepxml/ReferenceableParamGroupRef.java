@@ -28,7 +28,7 @@ import java.io.Serializable;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ReferenceableParamGroupRefType")
+@XmlType(name = "ReferenceableParamGroupRefTypes")
 public class ReferenceableParamGroupRef
     extends pepXMLObject
     implements Serializable

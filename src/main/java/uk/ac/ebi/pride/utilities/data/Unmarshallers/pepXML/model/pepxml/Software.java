@@ -29,7 +29,7 @@ import java.io.Serializable;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SoftwareType")
+@XmlType(name = "SoftwareTypes")
 public class Software
     extends ParamGroup
     implements Serializable

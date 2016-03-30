@@ -30,7 +30,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BinaryDataArrayListType", propOrder = {
+@XmlType(name = "BinaryDataArrayListTypes", propOrder = {
     "binaryDataArray"
 })
 public class BinaryDataArrayList

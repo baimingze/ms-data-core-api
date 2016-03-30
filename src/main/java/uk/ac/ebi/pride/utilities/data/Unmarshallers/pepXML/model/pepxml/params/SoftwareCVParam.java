@@ -1,6 +1,6 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.params;
 
-import uk.ac.ebi.jmzml.model.mzml.CVParam;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CVParam;
 
 /**
  * Created by IntelliJ IDEA.

@@ -35,7 +35,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "PrecursorListType", propOrder = {
+@XmlType(name = "PrecursorListTypes", propOrder = {
     "precursor"
 })
 public class PrecursorList

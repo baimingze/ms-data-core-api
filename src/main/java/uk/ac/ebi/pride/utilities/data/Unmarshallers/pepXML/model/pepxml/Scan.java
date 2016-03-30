@@ -36,7 +36,7 @@ import java.io.Serializable;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ScanType", propOrder = {
+@XmlType(name = "ScanTypes", propOrder = {
     "scanWindowList"
 })
 public class Scan

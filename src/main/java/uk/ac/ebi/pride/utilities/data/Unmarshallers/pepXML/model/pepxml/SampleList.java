@@ -34,7 +34,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SampleListType", propOrder = {
+@XmlType(name = "SampleListTypes", propOrder = {
     "sample"
 })
 public class SampleList

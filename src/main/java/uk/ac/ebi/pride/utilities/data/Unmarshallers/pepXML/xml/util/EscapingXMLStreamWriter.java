@@ -1,7 +1,7 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.util;
 
-import uk.ac.ebi.jmzml.xml.util.EscapingXMLUtilities;
-
+//import uk.ac.ebi.jmzml.xml.util.EscapingXMLUtilities;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.util.EscapingXMLUtilities;
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;

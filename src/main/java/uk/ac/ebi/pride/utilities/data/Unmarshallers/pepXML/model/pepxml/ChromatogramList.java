@@ -31,7 +31,7 @@ import java.util.List;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ChromatogramListType", propOrder = {
+@XmlType(name = "ChromatogramListTypes", propOrder = {
         "chromatogram"
 })
 public class ChromatogramList

@@ -31,7 +31,7 @@ import java.io.Serializable;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AnalyzerComponentType")
+@XmlType(name = "AnalyzerComponentTypes")
 public class AnalyzerComponent
     extends Component
     implements Serializable

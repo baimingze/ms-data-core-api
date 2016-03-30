@@ -31,7 +31,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TargetListType", propOrder = {
+@XmlType(name = "TargetListTypes", propOrder = {
     "target"
 })
 public class TargetList

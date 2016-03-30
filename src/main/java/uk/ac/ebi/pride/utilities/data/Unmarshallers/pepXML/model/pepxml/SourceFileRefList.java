@@ -33,7 +33,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SourceFileRefListType", propOrder = {
+@XmlType(name = "SourceFileRefListTypes", propOrder = {
     "sourceFileRef"
 })
 public class SourceFileRefList

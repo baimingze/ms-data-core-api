@@ -31,7 +31,7 @@ import java.io.Serializable;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SourceFileRefType")
+@XmlType(name = "SourceFileRefTypes")
 public class SourceFileRef
     extends pepXMLObject
     implements Serializable

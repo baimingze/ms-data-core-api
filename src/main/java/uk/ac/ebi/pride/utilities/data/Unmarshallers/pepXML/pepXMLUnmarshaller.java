@@ -135,7 +135,7 @@ public class pepXMLUnmarshaller {
      *
      * @return the mzML version, null if not found
      */
-    public String getMzMLVersion() {
+    public String getpepXMLVersion() {
 
         Matcher match = VERSION_PATTERN.matcher(index.getpepXMLAttributeXMLString());
 
@@ -151,7 +151,7 @@ public class pepXMLUnmarshaller {
      *
      * @return the mzML accession number, null if not found
      */
-    public String getMzMLAccession() {
+    public String getpepXMLAccession() {
 
         Matcher match = AC_PATTERN.matcher(index.getpepXMLAttributeXMLString());
 
@@ -167,7 +167,7 @@ public class pepXMLUnmarshaller {
      *
      * @return the mzML ID, null if not found
      */
-    public String getMzMLId() {
+    public String getpepXMLId() {
 
         Matcher match = ID_PATTERN.matcher(index.getpepXMLAttributeXMLString());
 
@@ -270,7 +270,7 @@ public class pepXMLUnmarshaller {
             //we want to unmarshal the whole file
             if (xpath.equals("")) {
                 xpath = pepXMLElement.pepXML.getXpath();
-                if (isIndexedmzML()) {
+                if (isIndexedpepXML()) {
                     xpath = pepXMLElement.IndexedpepXML.getXpath().concat(xpath);
                 }
 
@@ -332,12 +332,12 @@ public class pepXMLUnmarshaller {
      *
      * @return true of the mzML file is indexed
      */
-    public boolean isIndexedmzML() {
+    public boolean isIndexedpepXML() {
         // ToDo: find better way to check this?
         // ToDo: maybe change log level in StandardXpathAccess class
         // this check will log an ERROR if it is not an indexedmzML file, since we
         // are trying to retrieve an entry that will not be in the XML
-        Iterator iter = index.getXmlStringIterator("/indexedmzML/indexList");
+        Iterator iter = index.getXmlStringIterator("/indexedpepXML/indexList");
         return iter.hasNext();
     }
 
@@ -354,7 +354,7 @@ public class pepXMLUnmarshaller {
         }
 
         // if it is not even an indexedmzML, then we throw an exception right away
-        if (!isIndexedmzML()) {
+        if (!isIndexedpepXML()) {
             throw new pepXMLUnmarshallerException("Attempted check of file checksum on un-indexed mzML file.");
         }
 
@@ -380,13 +380,13 @@ public class pepXMLUnmarshaller {
      * @return the mzML index
      * @throws pepXMLUnmarshallerException
      */
-    public IndexList getMzMLIndex() throws pepXMLUnmarshallerException {
+    public IndexList getpepXMLIndex() throws pepXMLUnmarshallerException {
         IndexList retval;
         // check if already cached
         if (indexList == null) {
             // not yet cached, so we have to unmarshal it
             if (isOkFileChecksum()) {
-                retval = unmarshalFromXpath("/indexedmzML/indexList", IndexList.class);
+                retval = unmarshalFromXpath("/indexedpepXML/indexList", IndexList.class);
                 indexList = retval; // save, so we don't have to generate it again
             } else {
                 throw new pepXMLUnmarshallerException("File checksum did not match! This file has been changed after the index was created. The index is invalid.");
@@ -603,13 +603,13 @@ public class pepXMLUnmarshaller {
      */
     private String getFileChecksumFromIndex() throws pepXMLUnmarshallerException {
         // there will only be a fileChecksum tag it is a indexedmzML
-        if (!isIndexedmzML()) {
+        if (!isIndexedpepXML()) {
             throw new pepXMLUnmarshallerException("Can not retrieve fileChecksum from a non indexed mzML file!");
         }
 
         // now fetch the fileChecksum stored in the indexedmzML
         String checksum;
-        Iterator<String> snipIter = index.getXmlStringIterator("/indexedmzML/fileChecksum");
+        Iterator<String> snipIter = index.getXmlStringIterator("/indexedpepXML/fileChecksum");
         if (snipIter.hasNext()) {
             String snippet = snipIter.next();
             // we need to cut of the start and stop tag
@@ -732,7 +732,7 @@ public class pepXMLUnmarshaller {
      * @throws pepXMLUnmarshallerException
      */
     private Index getIndex(String elementName) throws pepXMLUnmarshallerException {
-        IndexList list = getMzMLIndex();
+        IndexList list = getpepXMLIndex();
 
         for (Index entry : list.getIndex()) {
             if (entry.getName().equalsIgnoreCase(elementName)) {
@@ -834,7 +834,7 @@ public class pepXMLUnmarshaller {
      *
      * @return the mzML XXIndex Wrapper for raw acces
      */
-    public pepXMLIndexer getMzMLIndexer() {
+    public pepXMLIndexer getpepXMLIndexer() {
         return index;
     }
 }

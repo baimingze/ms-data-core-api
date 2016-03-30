@@ -38,7 +38,7 @@ import java.util.List;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SpectrumListType", propOrder = {
+@XmlType(name = "SpectrumListTypes", propOrder = {
         "spectrum"
 })
 public class SpectrumList

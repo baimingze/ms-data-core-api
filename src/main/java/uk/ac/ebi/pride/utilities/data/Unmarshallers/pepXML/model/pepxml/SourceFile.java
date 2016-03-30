@@ -30,7 +30,7 @@ import java.io.Serializable;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SourceFileType")
+@XmlType(name = "SourceFileTypes")
 public class SourceFile
     extends ParamGroup
     implements Serializable

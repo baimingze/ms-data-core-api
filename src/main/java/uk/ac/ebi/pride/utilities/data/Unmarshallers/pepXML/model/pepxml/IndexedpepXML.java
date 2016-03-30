@@ -81,7 +81,7 @@ public class IndexedpepXML
      *     {@link pepXML }
      *     
      */
-    public void setMzML(pepXML value) {
+    public void setpepXML(pepXML value) {
         this.pepXML = value;
     }
 

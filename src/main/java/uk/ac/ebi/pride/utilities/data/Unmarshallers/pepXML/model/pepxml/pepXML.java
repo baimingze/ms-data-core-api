@@ -42,7 +42,7 @@ import java.io.Serializable;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "mzMLType", propOrder = {
+@XmlType(name = "pepXMLType", propOrder = {
         "cvList",
         "fileDescription",
         "referenceableParamGroupList",

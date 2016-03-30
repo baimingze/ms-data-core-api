@@ -39,7 +39,7 @@ import java.util.List;
 public class RawXMLListener extends Unmarshaller.Listener {
 
 
-    private static final Logger log = Logger.getLogger(uk.ac.ebi.jmzml.xml.jaxb.unmarshaller.listeners.RawXMLListener.class);
+    private static final Logger log = Logger.getLogger(uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.unmarshaller.listeners.RawXMLListener.class);
     private final pepXMLIndexer index;
     private final pepXMLObjectCache cache;
 

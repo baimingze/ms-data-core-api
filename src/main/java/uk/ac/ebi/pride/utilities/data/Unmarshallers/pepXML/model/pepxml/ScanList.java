@@ -31,7 +31,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ScanListType", propOrder = {
+@XmlType(name = "ScanListTypes", propOrder = {
     "scan"
 })
 public class ScanList

@@ -5,7 +5,7 @@
  */
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities;
 
-import uk.ac.ebi.jmzml.model.mzml.params.BinaryDataArrayCVParam;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.params.BinaryDataArrayCVParam;
 
 /**
  *

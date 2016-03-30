@@ -33,7 +33,7 @@ import java.util.List;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ComponentListType", propOrder = {
+@XmlType(name = "ComponentListTypes", propOrder = {
         "components"
 })
 public class ComponentList
@@ -43,7 +43,7 @@ public class ComponentList
     private final static long serialVersionUID = 100L;
     @XmlElements({
             @XmlElement(name = "detector", required = true, type = DetectorComponent.class),
-            @XmlElement(name = "analyzer", required = true, type = uk.ac.ebi.jmzml.model.mzml.AnalyzerComponent.class),
+            @XmlElement(name = "analyzer", required = true, type = uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.AnalyzerComponent.class),
             @XmlElement(name = "source", required = true, type = SourceComponent.class)
     })
     protected List<Component> components;

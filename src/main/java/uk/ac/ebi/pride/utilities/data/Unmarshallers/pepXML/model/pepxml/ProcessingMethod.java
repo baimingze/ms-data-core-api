@@ -25,7 +25,7 @@ import java.io.Serializable;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ProcessingMethodType")
+@XmlType(name = "ProcessingMethodTypes")
 public class ProcessingMethod
         extends ParamGroup
         implements Serializable {

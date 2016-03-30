@@ -1,7 +1,7 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.adapters;
 
-import uk.ac.ebi.jmzml.model.mzml.SoftwareRef;
-
+//import uk.ac.ebi.jmzml.model.mzml.SoftwareRef;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.SoftwareRef;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**

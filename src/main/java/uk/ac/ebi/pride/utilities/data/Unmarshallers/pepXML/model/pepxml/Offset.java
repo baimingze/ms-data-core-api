@@ -28,7 +28,7 @@ import java.io.Serializable;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "OffsetType", propOrder = {
+@XmlType(name = "OffsetTypes", propOrder = {
     "value"
 })
 public class Offset
