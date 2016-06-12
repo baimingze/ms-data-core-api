@@ -1,53 +1,28 @@
-/*
- * Date: 22/7/2008
- * Author: rcote
- * File: uk.ac.ebi.jmzml.model.mzml.utilities.ModelConstants
- *
- * jmzml is Copyright 2008 The European Bioinformatics Institute
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- *
- *
- */
-
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities;
 
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLElement;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXML;
+/**
+ * Author: Zhe Sang, Yang Luo, Miao Hao
+ */
 
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLElement;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.MsmsPipelineAnalysis;
 import javax.xml.namespace.QName;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Richard Cote
- * @author Florian Reisinger
- *         Date: 13-Jun-2008
- *         Time: 10:45:32
- *         $Id: $
- */
+
 public class ModelConstants {
 
-    public static final String PACKAGE = pepXML.class.getPackage().getName();
-    public static final String MZML_NS = "http://psi.hupo.org/ms/mzml";
+    public static final String PACKAGE = MsmsPipelineAnalysis.class.getPackage().getName();
+    public static final String pepXML_NS = "http://regis-web.systemsbiology.net/pepXML";
 
     private static Map<Class, QName> modelQNames = new HashMap<Class, QName>();
 
     static {
        for (pepXMLElement element : pepXMLElement.values()) {
             if (element.getTagName() != null) {
-                modelQNames.put(element.getClazz(), new QName(MZML_NS, element.getTagName()));
+                modelQNames.put(element.getClazz(), new QName(pepXML_NS, element.getTagName()));
             }
         }
 

@@ -1,19 +1,10 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.util;
 
-//import uk.ac.ebi.jmzml.xml.util.EscapingXMLUtilities;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.util.EscapingXMLUtilities;
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
-/**
- * Delegating {@link XMLStreamWriter} that filters out UTF-8 characters that
- * are illegal in XML.
- * <p/>
- * See forum post: http://glassfish.10926.n7.nabble.com/Escaping-illegal-characters-during-marshalling-td59751.html#a20090044
- *
- * @author Erik van Zijst
- */
+
 public class EscapingXMLStreamWriter implements XMLStreamWriter {
 
     private final XMLStreamWriter writer;

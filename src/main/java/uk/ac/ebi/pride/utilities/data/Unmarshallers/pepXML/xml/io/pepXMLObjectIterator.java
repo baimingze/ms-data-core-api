@@ -1,36 +1,13 @@
-/*
- * Date: 22/7/2008
- * Author: rcote
- * File: uk.ac.ebi.jmzml.xml.io.MzMLObjectIterator
- *
- * jmzml is Copyright 2008 The European Bioinformatics Institute
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- *
- *
- */
-
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.io;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXMLObject;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.io.pepXMLObjectCache;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.io.pepXMLObjectIterator;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.unmarshaller.UnmarshallerFactory;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.unmarshaller.filters.pepXMLNamespaceFilter;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.util.EscapingXMLUtilities;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexer;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXMLObject;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
@@ -41,7 +18,7 @@ import java.util.Iterator;
 
 public class pepXMLObjectIterator<X extends pepXMLObject> implements Iterator<X> {
 
-    private static Logger logger = Logger.getLogger(pepXMLObjectIterator.class);
+    private static Logger logger = LoggerFactory.getLogger(pepXMLObjectIterator.class);
 
     private pepXMLIndexer index;
 
@@ -97,7 +74,7 @@ public class pepXMLObjectIterator<X extends pepXMLObject> implements Iterator<X>
 
             return retval;
         } catch (JAXBException e) {
-            logger.error("MzMLObjectIterator.next", e);
+            logger.error("pepXMLObjectIterator.next", e);
             throw new IllegalStateException("Could not unmarshal object at xpath:" + xpath);
         }
 
@@ -106,5 +83,6 @@ public class pepXMLObjectIterator<X extends pepXMLObject> implements Iterator<X>
     public void remove() {
         throw new UnsupportedOperationException(pepXMLObjectIterator.class.getName() + " can't be used to remove objects while iterating");
     }
+
 
 }

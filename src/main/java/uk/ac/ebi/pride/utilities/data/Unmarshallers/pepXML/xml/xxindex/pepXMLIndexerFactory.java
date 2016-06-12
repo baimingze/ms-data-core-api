@@ -1,36 +1,35 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex;
 
-import org.apache.log4j.Logger;
+
+/**
+ * Author: Zhe Sang
+ */
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import psidev.psi.tools.xxindex.SimpleXmlElementExtractor;
 import psidev.psi.tools.xxindex.StandardXpathAccess;
 import psidev.psi.tools.xxindex.XmlElementExtractor;
 import psidev.psi.tools.xxindex.index.IndexElement;
 import psidev.psi.tools.xxindex.index.XpathIndex;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.MsmsRunSummary;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.SpectrumQuery;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.SearchSummary;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLElement;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Chromatogram;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Spectrum;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.Constants;
-//import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexer;
-//import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexerFactory;
-
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.Constants;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * User: rcote
- * Date: 11-Jun-2008
- * Time: 17:09:40
- * $Id: $
- */
 public class pepXMLIndexerFactory {
 
-    private static final Logger logger = Logger.getLogger(pepXMLIndexerFactory.class);
+    private static final Logger logger = LoggerFactory.getLogger(pepXMLIndexerFactory.class);
 
     private static final pepXMLIndexerFactory instance = new pepXMLIndexerFactory();
-    private static final Pattern ID_PATTERN = Pattern.compile("\\sid\\s*=\\s*['\"]([^'\"]*)['\"]", Pattern.CASE_INSENSITIVE);
+    private static final Pattern SPECTRUM_PATTERN = Pattern.compile("\\sspectrum\\s*=\\s*['\"]([^'\"]*)['\"]", Pattern.CASE_INSENSITIVE);
+    private static final Pattern BASENAME_PATTERN = Pattern.compile("\\sbase_name\\s*=\\s*['\"]([^'\"]*)['\"]", Pattern.CASE_INSENSITIVE);
     private static final Pattern INDEX_PATTERN = Pattern.compile("\\sindex\\s*=\\s*['\"]([^'\"]*)['\"]", Pattern.CASE_INSENSITIVE);
 
     private pepXMLIndexerFactory() {
@@ -45,13 +44,12 @@ public class pepXMLIndexerFactory {
     }
 
     private class pepXMLIndexerImpl implements pepXMLIndexer {
-
         private File xmlFile = null;
         private StandardXpathAccess xpathAccess = null;
         private XmlElementExtractor xmlExtractor = null;
         private XpathIndex index = null;
         private String root = null;
-        private String pepXMLAttributeXMLString = null;
+//        private String pepXMLAttributeXMLString = null;
         // a unified cache of all the id maps
         private HashMap<Class, LinkedHashMap<String, IndexElement>> idMapCache = new HashMap<Class, LinkedHashMap<String, IndexElement>>();
         private HashMap<Integer, String> spectrumIndexToIDMap = new HashMap<Integer, String>();
@@ -80,39 +78,39 @@ public class pepXMLIndexerFactory {
                 // create xml element extractor
                 xmlExtractor = new SimpleXmlElementExtractor();
                 String encoding = xmlExtractor.detectFileEncoding(xmlFile.toURI().toURL());
-                if (encoding != null){
+                if (encoding != null) {
                     xmlExtractor.setEncoding(encoding);
                 }
 
                 // create index
                 index = xpathAccess.getIndex();
-                root = "/pepxml";
+                root = "/msms_pipeline_analysis";
                 // check if the xxindex contains this root
-                if (!index.containsXpath(pepXMLElement.pepXML.getXpath())) {
-                    // if not contained in the xxindex, then maybe we have a indexedzmML file
-                    if (!index.containsXpath(pepXMLElement.IndexedpepXML.getXpath())) {
-                        logger.info("Index does not contain mzML root! We are not dealing with an mzML file!");
-                        throw new IllegalStateException("Index does not contain mzML root!");
-                    }
-                    root = "/indexedpepXML/pepXML";
-                }
+                //if (!index.containsXpath(pepXMLElement.MsmsPipeLineAnalysis.getXpath())) {
+                //    // if not contained in the xxindex, then maybe we have a indexedzmML file
+                //    if (!index.containsXpath(pepXMLElement.IndexedpepXML.getXpath())) {
+                //        logger.info("Index does not contain mzML root! We are not dealing with an mzML file!");
+                //        throw new IllegalStateException("Index does not contain mzML root!");
+                //    }
+                //    root = "/indexedpepXML/jpepxml";
+                //}
 
                 // initialize the ID maps
                 initIdMaps();
 
-                // extract the MzML attributes from the MzML start tag
-                pepXMLAttributeXMLString = extractpepXMLStartTag(xmlFile);
+                // extract the MsmsPipelineAnalysis attributes from the MsmsPipelineAnalysis start tag
+//                pepXMLAttributeXMLString = extractpepXMLStartTag(xmlFile);
 
             } catch (IOException e) {
-                logger.error("MzMLIndexerFactory$MzMlIndexerImpl.MzMlIndexerImpl", e);
-                throw new IllegalStateException("Could not generate MzML index for file: " + xmlFile);
+                logger.error("pepMLIndexerFactory$pepMlIndexerImpl.pepMlIndexerImpl", e);
+                throw new IllegalStateException("Could not generate jpepxml index for file: " + xmlFile);
             }
 
         }
 
         /**
          * Method to generate and populate ID maps for the XML elements that should be
-         * mapped to a unique ID. This will require that these elements are indexes and
+         * mapped to a unique SPECTRUM or BASENAME. This will require that these elements are indexes and
          * that they extend the Identifiable class to make sure they have a unique ID.
          *
          * @throws IOException in case of a read error from the underlying XML file.
@@ -139,24 +137,24 @@ public class pepXMLIndexerFactory {
             }
         }
 
-        public String getpepXMLAttributeXMLString() {
-            return pepXMLAttributeXMLString;
-        }
+//        public String getpepXMLAttributeXMLString() {
+//            return pepXMLAttributeXMLString;
+//        }
 
         private String extractpepXMLStartTag(File xmlFile) throws IOException {
             // get start position of the mzML element
 
-            List<IndexElement> ie = index.getElements(root + checkRoot(pepXMLElement.pepXML.getXpath()));
+            List<IndexElement> ie = index.getElements(root + checkRoot(pepXMLElement.MsmsPipeLineAnalysis.getXpath()));
             // there is only one root
             long startPos = ie.get(0).getStart();
 
-            // get end position of the mzML start tagML
-            // this is the start position of the next tag (cvList)
-            ie = index.getElements(root + checkRoot(pepXMLElement.CVList.getXpath()));
-            // there will always be one and only one cvList
+            // get end position of the msms_pipeline_analysis start tagML
+            // this is the start position of the next tag (analysis_summary)
+            ie = index.getElements(root + checkRoot(pepXMLElement.AnalysisSummary.getXpath()));
+            // the first analysis_summary tag
             long stopPos = ie.get(0).getStart() - 1;
 
-            // get mzML start tag content
+            // get MsmsPipelineAnalysis start tag content
             String startTag = xmlExtractor.readString(startPos, stopPos, xmlFile);
             if (startTag != null) {
                 //strip newlines that might interfere with later on regex matching
@@ -217,7 +215,7 @@ public class pepXMLIndexerFactory {
                 } else {
                     throw new IllegalStateException("Error initializing ID cache: No id attribute found for element " + xml);
                 }
-                if (xpath.equalsIgnoreCase(root + checkRoot(pepXMLElement.Spectrum.getXpath()))) {
+                if (xpath.equalsIgnoreCase(root + checkRoot(pepXMLElement.SpectrumQuery.getXpath()))) {
                     Integer index = getIndexFromRawXML(xml);
                     if (index != null) {
                         spectrumIndexToIDMap.put(index, id);
@@ -226,10 +224,14 @@ public class pepXMLIndexerFactory {
             }
         }
 
+        /////////////////////////useless////////////////////////////////
         private String getIdFromRawXML(String xml) {
-            Matcher match = ID_PATTERN.matcher(xml);
-            if (match.find()) {
-                return match.group(1).intern();
+            Matcher match_spectrum = SPECTRUM_PATTERN.matcher(xml);
+            Matcher match_basename = BASENAME_PATTERN.matcher(xml);
+            if (match_spectrum.find()) {
+                return match_spectrum.group(1).intern();
+            } else if (match_basename.find()) {
+                return match_basename.group(1).intern();
             } else {
                 throw new IllegalStateException("Invalid ID in xml: " + xml);
             }
@@ -250,9 +252,13 @@ public class pepXMLIndexerFactory {
             }
         }
 
+        public Set<String> getMsmsRunsummaryIDs(){
+//            return MsmsRunSummaryIDs.keySet();
+            return idMapCache.get(MsmsRunSummary.class).keySet();
+        }
         public Set<String> getSpectrumIDs() {
 //            return spectrumIdMap.keySet();
-            return idMapCache.get(Spectrum.class).keySet();
+            return idMapCache.get(SpectrumQuery.class).keySet();
         }
 
         // TODO: do we need those 2 methods ??
@@ -267,35 +273,30 @@ public class pepXMLIndexerFactory {
 //            return null;
         }
 
-        public Set<String> getChromatogramIDs() {
+        public Set<String> getSearchSummaryIDs() {
 //            return chromatogramIdMap.keySet();
-            return idMapCache.get(Chromatogram.class).keySet();
+            return idMapCache.get(SearchSummary.class).keySet();
         }
 
         public Iterator<String> getXmlStringIterator(String xpathExpression) {
-            if (xpathExpression.contains("indexList") || xpathExpression.contains("fileChecksum")) {
-                // we can not use the root "mzML", since the mzML index list is outside the mzML!
-                return xpathAccess.getXmlSnippetIterator(checkRoot(root + xpathExpression));
-            } else {
-                // Note: ! root is always the mzML element (even if we are dealing with indexedmzML) !
-                return xpathAccess.getXmlSnippetIterator(root + checkRoot(xpathExpression));
-            }
+            //    if (xpathExpression.contains("indexList") || xpathExpression.contains("fileChecksum")) {
+            // we can not use the root "mzML", since the mzML index list is outside the mzML!
+            //      return xpathAccess.getXmlSnippetIterator(checkRoot(root + xpathExpression));
+            //   } else {
+            //     // Note: ! root is always the mzML element (even if we are dealing with indexedmzML) !
+            return xpathAccess.getXmlSnippetIterator(root + checkRoot(xpathExpression));
         }
 
         private String checkRoot(String xpathExpression) {
             // since we're appending the root we've already checked, make
             // sure that the xpath doesn't erroneously contain that root
 
-            // get rid of possible '/indexedmzML' root
             String unrootedXpath = xpathExpression;
-            if (unrootedXpath.startsWith("/indexedpepXML")) {
-                unrootedXpath = unrootedXpath.substring("/indexedpepXML".length());
-                logger.debug("removed /indexedpepXML root expression");
-            }
-            // get rid of possible '/mzML' root
-            if (unrootedXpath.startsWith("/pepXML")) {
-                unrootedXpath = unrootedXpath.substring("/pepXML".length());
-                logger.debug("removed /pepXML root expression");
+
+            // get rid of possible '/msms_pipeline_analysis' root
+            if (unrootedXpath.startsWith("/msms_pipeline_analysis")) {
+                unrootedXpath = unrootedXpath.substring("/msms_pipeline_analysis".length());
+                logger.debug("removed /msms_pipeline_analysis root expression");
             }
             return unrootedXpath;
         }
@@ -353,7 +354,7 @@ public class pepXMLIndexerFactory {
                     throw new IllegalStateException("Attempting to read NULL ByteRange");
                 }
             } catch (IOException e) {
-                logger.error("MzMLIndexerFactory$MzMlIndexerImpl.readXML", e);
+                logger.error("pepXMLIndexerFactory$pepXMlIndexerImpl.readXML", e);
                 throw new IllegalStateException("Could not extract XML from file: " + xmlFile);
             }
         }
@@ -361,7 +362,7 @@ public class pepXMLIndexerFactory {
         /**
          * @param xpathExpression the xpath defining the XML element.
          * @return the number of XML elements matching the xpath or -1
-         *         if no elements were found for the specified xpath.
+         * if no elements were found for the specified xpath.
          */
         public int getCount(String xpathExpression) {
             int retval = -1;
@@ -372,24 +373,6 @@ public class pepXMLIndexerFactory {
             return retval;
         }
 
-        public String getXmlString(String xpath, long offset) {
-            String retVal = null;
-            List<IndexElement> indexElements = index.getElements(xpath);
-            for (IndexElement indexElement : indexElements) {
-                if (indexElement.getStart() == offset) {
-                    // found what we are looking for
-                    try {
-                        retVal = xmlExtractor.readString(indexElement.getStart(), indexElement.getStop(), xmlFile);
-                    } catch (IOException ioe) {
-                        logger.error("MzMLIndexerFactory$MzMlIndexerImpl.getXmlString(xpath, offset)", ioe);
-                        throw new IllegalStateException("Could not extract XML from file: " + xmlFile);
-                    }
-                    break; // there will only be max one element with a specific offset,
-                    // but it does not harm to step out of the loop manually
-                }
-            }
-            return retVal;
-        }
 
         // ToDo: find better way. we don't want to expose this!
 
@@ -400,8 +383,5 @@ public class pepXMLIndexerFactory {
         public Set<String> getXpath() {
             return index.getKeys();
         }
-
     }
-
-
 }

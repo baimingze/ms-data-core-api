@@ -1,55 +1,13 @@
 
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml;
 
-//import uk.ac.ebi.jmzml.model.mzml.AnalyzerComponent;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.AnalyzerComponent;
-//import uk.ac.ebi.jmzml.model.mzml.BinaryDataArray;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.BinaryDataArray;
-//import uk.ac.ebi.jmzml.model.mzml.BinaryDataArrayList;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.BinaryDataArrayList;
-//import uk.ac.ebi.jmzml.model.mzml.CV;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CV;
-//import uk.ac.ebi.jmzml.model.mzml.CVList;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CVList;
-//import uk.ac.ebi.jmzml.model.mzml.CVParam;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CVParam;
-//import uk.ac.ebi.jmzml.model.mzml.Chromatogram;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Chromatogram;
-//import uk.ac.ebi.jmzml.model.mzml.ChromatogramList;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ChromatogramList;
-//import uk.ac.ebi.jmzml.model.mzml.Component;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Component;
-//import uk.ac.ebi.jmzml.model.mzml.ComponentList;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.ComponentList;
-//import uk.ac.ebi.jmzml.model.mzml.DataProcessing;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.DataProcessing;
-//import uk.ac.ebi.jmzml.model.mzml.DataProcessingList;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.DataProcessingList;
-//import uk.ac.ebi.jmzml.model.mzml.DetectorComponent;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.DetectorComponent;
-//import uk.ac.ebi.jmzml.model.mzml.FileDescription;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.FileDescription;
-//import uk.ac.ebi.jmzml.model.mzml.Index;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.Index;
-//import uk.ac.ebi.jmzml.model.mzml.IndexList;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.IndexList;
-//import uk.ac.ebi.jmzml.model.mzml.*;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.*;
-//import uk.ac.ebi.jmzml.model.mzml.InstrumentConfiguration;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.InstrumentConfiguration;
-//import uk.ac.ebi.jmzml.model.mzml.InstrumentConfigurationList;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.InstrumentConfigurationList;
-
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
-import javax.xml.namespace.QName;
 
 
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the uk.ac.ebi.jmzml.model.mzml package. 
+ * generated in the uk.ac.ebi.pride.utilities.data.Unmarshallers.jpepxml.model.pepxml package.
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -63,430 +21,484 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _MzML_QNAME = new QName("http://psi.hupo.org/ms/mzml", "mzML");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: uk.ac.ebi.jmzml.model.mzml
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: uk.ac.ebi.pride.utilities.data.Unmarshallers.jpepxml.model.pepxml
      * 
      */
     public ObjectFactory() {
     }
 
     /**
-     * Create an instance of {@link uk.ac.ebi.jmzml.model.mzml.CVParam }
-     *
-     */
-    public  uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.CVParam createCVParam() {
-        return new CVParam();
-    }
-
-    /**
-     * Create an instance of {@link Spectrum }
-     *
-     */
-    public Spectrum createSpectrum() {
-        return new Spectrum();
-    }
-
-    /**
-     * Create an instance of {@link SoftwareList }
-     *
-     */
-    public SoftwareList createSoftwareList() {
-        return new SoftwareList();
-    }
-
-    /**
-     * Create an instance of {@link PrecursorList }
-     *
-     */
-    public PrecursorList createPrecursorList() {
-        return new PrecursorList();
-    }
-
-    /**
-     * Create an instance of {@link Component }
-     *
-     */
-    public Component createComponent() {
-        return new Component();
-    }
-
-    /**
-     * Create an instance of {@link DataProcessing }
-     *
-     */
-    public DataProcessing createDataProcessing() {
-        return new DataProcessing();
-    }
-
-    /**
-     * Create an instance of {@link AnalyzerComponent }
-     *
-     */
-    public AnalyzerComponent createAnalyzerComponent() {
-        return new AnalyzerComponent();
-    }
-
-    /**
-     * Create an instance of {@link ReferenceableParamGroupList }
-     *
-     */
-    public ReferenceableParamGroupList createReferenceableParamGroupList() {
-        return new ReferenceableParamGroupList();
-    }
-
-    /**
-     * Create an instance of {@link ScanList }
-     *
-     */
-    public ScanList createScanList() {
-        return new ScanList();
-    }
-
-    /**
-     * Create an instance of {@link ReferenceableParamGroup }
-     *
-     */
-    public ReferenceableParamGroup createReferenceableParamGroup() {
-        return new ReferenceableParamGroup();
-    }
-
-    /**
-     * Create an instance of {@link InstrumentConfiguration }
-     *
-     */
-    public InstrumentConfiguration createInstrumentConfiguration() {
-        return new InstrumentConfiguration();
-    }
-
-    /**
-     * Create an instance of {@link SourceFileRefList }
-     *
-     */
-    public SourceFileRefList createSourceFileRefList() {
-        return new SourceFileRefList();
-    }
-
-    /**
-     * Create an instance of {@link ChromatogramList }
-     *
-     */
-    public ChromatogramList createChromatogramList() {
-        return new ChromatogramList();
-    }
-
-    /**
-     * Create an instance of {@link Run }
-     *
-     */
-    public Run createRun() {
-        return new Run();
-    }
-
-    /**
-     * Create an instance of {@link Scan }
-     *
-     */
-    public Scan createScan() {
-        return new Scan();
-    }
-
-    /**
-     * Create an instance of {@link SelectedIonList }
-     *
-     */
-    public SelectedIonList createSelectedIonList() {
-        return new SelectedIonList();
-    }
-
-    /**
-     * Create an instance of {@link ParamGroup }
-     *
-     */
-    public ParamGroup createParamGroup() {
-        return new ParamGroup();
-    }
-
-    /**
-     * Create an instance of {@link Index }
-     *
-     */
-    public Index createIndex() {
-        return new Index();
-    }
-
-    /**
-     * Create an instance of {@link ReferenceableParamGroupRef }
-     *
-     */
-    public ReferenceableParamGroupRef createReferenceableParamGroupRef() {
-        return new ReferenceableParamGroupRef();
-    }
-
-    /**
-     * Create an instance of {@link SpectrumList }
-     *
-     */
-    public SpectrumList createSpectrumList() {
-        return new SpectrumList();
-    }
-
-    /**
-     * Create an instance of {@link Product }
-     *
-     */
-    public Product createProduct() {
-        return new Product();
-    }
-
-    /**
-     * Create an instance of {@link SampleList }
-     *
-     */
-    public SampleList createSampleList() {
-        return new SampleList();
-    }
-
-    /**
-     * Create an instance of {@link Sample }
-     *
-     */
-    public Sample createSample() {
-        return new Sample();
-    }
-
-    /**
-     * Create an instance of {@link Software }
-     *
-     */
-    public Software createSoftware() {
-        return new Software();
-    }
-
-    /**
-     * Create an instance of {@link SourceFileList }
-     *
-     */
-    public SourceFileList createSourceFileList() {
-        return new SourceFileList();
-    }
-
-    /**
-     * Create an instance of {@link ProcessingMethod }
-     *
-     */
-    public ProcessingMethod createProcessingMethod() {
-        return new ProcessingMethod();
-    }
-
-    /**
-     * Create an instance of {@link BinaryDataArrayList }
-     *
-     */
-    public BinaryDataArrayList createBinaryDataArrayList() {
-        return new BinaryDataArrayList();
-    }
-
-    /**
-     * Create an instance of {@link ComponentList }
-     *
-     */
-    public ComponentList createComponentList() {
-        return new ComponentList();
-    }
-
-    /**
-     * Create an instance of {@link IndexList }
-     *
-     */
-    public IndexList createIndexList() {
-        return new IndexList();
-    }
-
-    /**
-     * Create an instance of {@link IndexedpepXML }
-     *
-     */
-    public IndexedpepXML createIndexedpepXML() {
-        return new IndexedpepXML();
-    }
-
-    /**
-     * Create an instance of {@link FileDescription }
-     *
-     */
-    public FileDescription createFileDescription() {
-        return new FileDescription();
-    }
-
-    /**
-     * Create an instance of {@link pepXML }
-     *
-     */
-    public pepXML createpepXML() {
-        return new pepXML();
-    }
-
-    /**
-     * Create an instance of {@link SourceComponent }
-     *
-     */
-    public SourceComponent createSourceComponent() {
-        return new SourceComponent();
-    }
-
-    /**
-     * Create an instance of {@link ScanSettingsList }
-     *
-     */
-    public ScanSettingsList createScanSettingsList() {
-        return new ScanSettingsList();
-    }
-
-    /**
-     * Create an instance of {@link Precursor }
-     *
-     */
-    public Precursor createPrecursor() {
-        return new Precursor();
-    }
-
-    /**
-     * Create an instance of {@link ScanWindowList }
-     *
-     */
-    public ScanWindowList createScanWindowList() {
-        return new ScanWindowList();
-    }
-
-    /**
-     * Create an instance of {@link SourceFileRef }
-     *
-     */
-    public SourceFileRef createSourceFileRef() {
-        return new SourceFileRef();
-    }
-
-    /**
-     * Create an instance of {@link ScanSettings }
-     *
-     */
-    public ScanSettings createScanSettings() {
-        return new ScanSettings();
-    }
-
-    /**
-     * Create an instance of {@link Offset }
-     *
-     */
-    public Offset createOffset() {
-        return new Offset();
-    }
-
-    /**
-     * Create an instance of {@link SoftwareRef }
-     *
-     */
-    public SoftwareRef createSoftwareRef() {
-        return new SoftwareRef();
-    }
-
-    /**
-     * Create an instance of {@link Chromatogram }
-     *
-     */
-    public Chromatogram createChromatogram() {
-        return new Chromatogram();
-    }
-
-    /**
-     * Create an instance of {@link ProductList }
-     *
-     */
-    public ProductList createProductList() {
-        return new ProductList();
-    }
-
-    /**
-     * Create an instance of {@link UserParam }
-     *
-     */
-    public UserParam createUserParam() {
-        return new UserParam();
-    }
-
-    /**
-     * Create an instance of {@link InstrumentConfigurationList }
-     *
-     */
-    public InstrumentConfigurationList createInstrumentConfigurationList() {
-        return new InstrumentConfigurationList();
-    }
-
-    /**
-     * Create an instance of {@link CVList }
-     *
-     */
-    public CVList createCVList() {
-        return new CVList();
-    }
-
-    /**
-     * Create an instance of {@link DetectorComponent }
-     *
-     */
-    public DetectorComponent createDetectorComponent() {
-        return new DetectorComponent();
-    }
-
-    /**
-     * Create an instance of {@link BinaryDataArray }
-     *
-     */
-    public BinaryDataArray createBinaryDataArray() {
-        return new BinaryDataArray();
-    }
-
-    /**
-     * Create an instance of {@link DataProcessingList }
-     *
-     */
-    public DataProcessingList createDataProcessingList() {
-        return new DataProcessingList();
-    }
-
-    /**
-     * Create an instance of {@link SourceFile }
-     *
-     */
-    public SourceFile createSourceFile() {
-        return new SourceFile();
-    }
-
-    /**
-     * Create an instance of {@link TargetList }
-     *
-     */
-    public TargetList createTargetList() {
-        return new TargetList();
-    }
-
-    /**
-     * Create an instance of {@link CV }
-     *
-     */
-    public CV createCV() {
-        return new CV();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link pepXML }{@code >}}
+     * Create an instance of {@link AsapratioPeptideData }
      * 
      */
-    @XmlElementDecl(namespace = "http://psi.hupo.org/ms/mzml", name = "mzML")
-    public JAXBElement<pepXML> createpepXML(pepXML value) {
-        return new JAXBElement<pepXML>(_MzML_QNAME, pepXML.class, null, value);
+    public AsapratioPeptideData createAsapratioPeptideData() {
+        return new AsapratioPeptideData();
+    }
+
+    /**
+     * Create an instance of {@link MixtureModel }
+     * 
+     */
+    public MixtureModel createMixtureModel() {
+        return new MixtureModel();
+    }
+
+    /**
+     * Create an instance of {@link Intensity }
+     * 
+     */
+    public Intensity createIntensity() {
+        return new Intensity();
+    }
+
+    /**
+     * Create an instance of {@link SearchScoreSummary }
+     * 
+     */
+    public SearchScoreSummary createSearchScoreSummary() {
+        return new SearchScoreSummary();
+    }
+
+    /**
+     * Create an instance of {@link MsmsPipelineAnalysis }
+     * 
+     */
+    public MsmsPipelineAnalysis createMsmsPipelineAnalysis() {
+        return new MsmsPipelineAnalysis();
+    }
+
+    /**
+     * Create an instance of {@link LibraSummary }
+     * 
+     */
+    public LibraSummary createLibraSummary() {
+        return new LibraSummary();
+    }
+
+    /**
+     * Create an instance of {@link Specificity }
+     * 
+     */
+    public Specificity createSpecificity() {
+        return new Specificity();
+    }
+
+    /**
+     * Create an instance of {@link SearchHit }
+     * 
+     */
+    public SearchHit createSearchHit() {
+        return new SearchHit();
+    }
+
+    /**
+     * Create an instance of {@link RocDataPoint }
+     * 
+     */
+    public RocDataPoint createRocDataPoint() {
+        return new RocDataPoint();
+    }
+
+    /**
+     * Create an instance of {@link InterprophetResult }
+     * 
+     */
+    public InterprophetResult createInterprophetResult() {
+        return new InterprophetResult();
+    }
+
+    /**
+     * Create an instance of {@link DatasetDerivation }
+     * 
+     */
+    public DatasetDerivation createDatasetDerivation() {
+        return new DatasetDerivation();
+    }
+
+    /**
+     * Create an instance of {@link EnzymaticSearchConstraint }
+     * 
+     */
+    public EnzymaticSearchConstraint createEnzymaticSearchConstraint() {
+        return new EnzymaticSearchConstraint();
+    }
+
+    /**
+     * Create an instance of {@link Mixturemodelbase }
+     * 
+     */
+    public Mixturemodelbase createMixturemodelbase() {
+        return new Mixturemodelbase();
+    }
+
+    /**
+     * Create an instance of {@link XpressratioTimestamp }
+     * 
+     */
+    public XpressratioTimestamp createXpressratioTimestamp() {
+        return new XpressratioTimestamp();
+    }
+
+    /**
+     * Create an instance of {@link MixturemodelPoint }
+     * 
+     */
+    public MixturemodelPoint createMixturemodelPoint() {
+        return new MixturemodelPoint();
+    }
+
+    /**
+     * Create an instance of {@link PeptideprophetResult }
+     * 
+     */
+    public PeptideprophetResult createPeptideprophetResult() {
+        return new PeptideprophetResult();
+    }
+
+    /**
+     * Create an instance of {@link XpressratioSummary }
+     * 
+     */
+    public XpressratioSummary createXpressratioSummary() {
+        return new XpressratioSummary();
+    }
+
+    /**
+     * Create an instance of {@link AnalysisResult }
+     * 
+     */
+    public AnalysisResult createAnalysisResult() {
+        return new AnalysisResult();
+    }
+
+    /**
+     * Create an instance of {@link AnalysisSummary }
+     * 
+     */
+    public AnalysisSummary createAnalysisSummary() {
+        return new AnalysisSummary();
+    }
+
+    /**
+     * Create an instance of {@link AlternativeProtein }
+     * 
+     */
+    public AlternativeProtein createAlternativeProtein() {
+        return new AlternativeProtein();
+    }
+
+    /**
+     * Create an instance of {@link RocErrorDataType }
+     * 
+     */
+    public RocErrorDataType createRocErrorDataType() {
+        return new RocErrorDataType();
+    }
+
+    /**
+     * Create an instance of {@link AsapratioResult }
+     * 
+     */
+    public AsapratioResult createAsapratioResult() {
+        return new AsapratioResult();
+    }
+
+    /**
+     * Create an instance of {@link SearchDatabase }
+     * 
+     */
+    public SearchDatabase createSearchDatabase() {
+        return new SearchDatabase();
+    }
+
+    /**
+     * Create an instance of {@link XpressratioResult }
+     * 
+     */
+    public XpressratioResult createXpressratioResult() {
+        return new XpressratioResult();
+    }
+
+    /**
+     * Create an instance of {@link NameValueType }
+     * 
+     */
+    public NameValueType createNameValueType() {
+        return new NameValueType();
+    }
+
+    /**
+     * Create an instance of {@link SearchSummary }
+     * 
+     */
+    public SearchSummary createSearchSummary() {
+        return new SearchSummary();
+    }
+
+    /**
+     * Create an instance of {@link AsapratioSummary }
+     * 
+     */
+    public AsapratioSummary createAsapratioSummary() {
+        return new AsapratioSummary();
+    }
+
+    /**
+     * Create an instance of {@link DistributionPoint }
+     * 
+     */
+    public DistributionPoint createDistributionPoint() {
+        return new DistributionPoint();
+    }
+
+    /**
+     * Create an instance of {@link AsapratioTimestamp }
+     * 
+     */
+    public AsapratioTimestamp createAsapratioTimestamp() {
+        return new AsapratioTimestamp();
+    }
+
+    /**
+     * Create an instance of {@link SampleEnzyme }
+     * 
+     */
+    public SampleEnzyme createSampleEnzyme() {
+        return new SampleEnzyme();
+    }
+
+    /**
+     * Create an instance of {@link PosmodelDistribution }
+     * 
+     */
+    public PosmodelDistribution createPosmodelDistribution() {
+        return new PosmodelDistribution();
+    }
+
+    /**
+     * Create an instance of {@link IsotopicContributions }
+     * 
+     */
+    public IsotopicContributions createIsotopicContributions() {
+        return new IsotopicContributions();
+    }
+
+    /**
+     * Create an instance of {@link NegmodelDistribution }
+     * 
+     */
+    public NegmodelDistribution createNegmodelDistribution() {
+        return new NegmodelDistribution();
+    }
+
+    /**
+     * Create an instance of {@link AminoacidModification }
+     * 
+     */
+    public AminoacidModification createAminoacidModification() {
+        return new AminoacidModification();
+    }
+
+    /**
+     * Create an instance of {@link AsapratioLcHeavypeak }
+     * 
+     */
+    public AsapratioLcHeavypeak createAsapratioLcHeavypeak() {
+        return new AsapratioLcHeavypeak();
+    }
+
+    /**
+     * Create an instance of {@link LibraResult }
+     * 
+     */
+    public LibraResult createLibraResult() {
+        return new LibraResult();
+    }
+
+    /**
+     * Create an instance of {@link AffectedChannel }
+     * 
+     */
+    public AffectedChannel createAffectedChannel() {
+        return new AffectedChannel();
+    }
+
+    /**
+     * Create an instance of {@link SearchResult }
+     * 
+     */
+    public SearchResult createSearchResult() {
+        return new SearchResult();
+    }
+
+    /**
+     * Create an instance of {@link MsmsRunSummary }
+     * 
+     */
+    public MsmsRunSummary createMsmsRunSummary() {
+        return new MsmsRunSummary();
+    }
+
+    /**
+     * Create an instance of {@link TerminalModification }
+     * 
+     */
+    public TerminalModification createTerminalModification() {
+        return new TerminalModification();
+    }
+
+    /**
+     * Create an instance of {@link FragmentMasses }
+     * 
+     */
+    public FragmentMasses createFragmentMasses() {
+        return new FragmentMasses();
+    }
+
+    /**
+     * Create an instance of {@link AsapratioContribution }
+     * 
+     */
+    public AsapratioContribution createAsapratioContribution() {
+        return new AsapratioContribution();
+    }
+
+    /**
+     * Create an instance of {@link InterprophetSummary }
+     * 
+     */
+    public InterprophetSummary createInterprophetSummary() {
+        return new InterprophetSummary();
+    }
+
+    /**
+     * Create an instance of {@link Point }
+     * 
+     */
+    public Point createPoint() {
+        return new Point();
+    }
+
+    /**
+     * Create an instance of {@link SpectrumQuery }
+     * 
+     */
+    public SpectrumQuery createSpectrumQuery() {
+        return new SpectrumQuery();
+    }
+
+    /**
+     * Create an instance of {@link ErrorPoint }
+     * 
+     */
+    public ErrorPoint createErrorPoint() {
+        return new ErrorPoint();
+    }
+
+    /**
+     * Create an instance of {@link InteractSummary }
+     * 
+     */
+    public InteractSummary createInteractSummary() {
+        return new InteractSummary();
+    }
+
+    /**
+     * Create an instance of {@link MixturemodelDistribution }
+     * 
+     */
+    public MixturemodelDistribution createMixturemodelDistribution() {
+        return new MixturemodelDistribution();
+    }
+
+    /**
+     * Create an instance of {@link DataFilter }
+     * 
+     */
+    public DataFilter createDataFilter() {
+        return new DataFilter();
+    }
+
+    /**
+     * Create an instance of {@link ModAminoacidMass }
+     * 
+     */
+    public ModAminoacidMass createModAminoacidMass() {
+        return new ModAminoacidMass();
+    }
+
+    /**
+     * Create an instance of {@link AnalysisTimestamp }
+     * 
+     */
+    public AnalysisTimestamp createAnalysisTimestamp() {
+        return new AnalysisTimestamp();
+    }
+
+    /**
+     * Create an instance of {@link DatabaseRefreshTimestamp }
+     * 
+     */
+    public DatabaseRefreshTimestamp createDatabaseRefreshTimestamp() {
+        return new DatabaseRefreshTimestamp();
+    }
+
+    /**
+     * Create an instance of {@link ContributingChannel }
+     * 
+     */
+    public ContributingChannel createContributingChannel() {
+        return new ContributingChannel();
+    }
+
+    /**
+     * Create an instance of {@link ModificationInfo }
+     * 
+     */
+    public ModificationInfo createModificationInfo() {
+        return new ModificationInfo();
+    }
+
+    /**
+     * Create an instance of {@link MixtureModelType }
+     * 
+     */
+    public MixtureModelType createMixtureModelType() {
+        return new MixtureModelType();
+    }
+
+    /**
+     * Create an instance of {@link SequenceSearchConstraint }
+     * 
+     */
+    public SequenceSearchConstraint createSequenceSearchConstraint() {
+        return new SequenceSearchConstraint();
+    }
+
+    /**
+     * Create an instance of {@link InputFileType }
+     * 
+     */
+    public InputFileType createInputFileType() {
+        return new InputFileType();
+    }
+
+    /**
+     * Create an instance of {@link PeptideprophetSummary }
+     * 
+     */
+    public PeptideprophetSummary createPeptideprophetSummary() {
+        return new PeptideprophetSummary();
+    }
+
+    /**
+     * Create an instance of {@link AsapratioLcLightpeak }
+     * 
+     */
+    public AsapratioLcLightpeak createAsapratioLcLightpeak() {
+        return new AsapratioLcLightpeak();
     }
 
 }

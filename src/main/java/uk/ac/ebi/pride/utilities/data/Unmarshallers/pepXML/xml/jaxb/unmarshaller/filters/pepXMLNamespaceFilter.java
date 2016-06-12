@@ -1,34 +1,12 @@
-/*
- * Date: 22/7/2008
- * Author: rcote
- * File: uk.ac.ebi.jmzml.xml.jaxb.unmarshaller.filters.MzMLNamespaceFilter
- *
- * jmzml is Copyright 2008 The European Bioinformatics Institute
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- *
- *
- */
-
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.unmarshaller.filters;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLFilterImpl;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.ModelConstants;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.unmarshaller.filters.pepXMLNamespaceFilter;
 
 
 public class pepXMLNamespaceFilter extends XMLFilterImpl {
@@ -41,10 +19,10 @@ public class pepXMLNamespaceFilter extends XMLFilterImpl {
         will replace the empty uri with the namespace defined for the mzML schema.
      */
 
-    private static final Logger logger = Logger.getLogger(pepXMLNamespaceFilter.class);
+    private static final Logger logger = LoggerFactory.getLogger(pepXMLNamespaceFilter.class);
 
     public pepXMLNamespaceFilter() {
-        logger.debug("MzMLNamespaceFilter created. Remember to call setParent(XMLReader)");
+        logger.debug("pepXMLNamespaceFilter created. Remember to call setParent(XMLReader)");
     }
 
     public pepXMLNamespaceFilter(XMLReader reader) {
@@ -56,7 +34,7 @@ public class pepXMLNamespaceFilter extends XMLFilterImpl {
         // the elements are defined by a qualified schema, but we rip them out of context with the xxindex
         // so the namespace information is lost and we have to add it again here manually
         logger.trace("Changing namespace. uri: " + uri + " \tlocalName: " + localName + " \tqName: " + qName + " \tatts: " + atts);
-        if ( uri.length()== 0 ) super.startElement(ModelConstants.MZML_NS, localName, qName, atts);
+        if ( uri.length()== 0 ) super.startElement(ModelConstants.pepXML_NS, localName, qName, atts);
         else super.startElement(uri, localName, qName, atts);
     }
 }

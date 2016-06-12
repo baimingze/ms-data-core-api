@@ -4,15 +4,10 @@ import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.pepXMLOb
 
 import java.util.List;
 
-/**
- * @author Florian Reisinger
- *         Date: 11-Nov-2010
- * @since 1.0
- */
+
 public interface pepXMLObjectCache {
 
-    // ToDo: change to only handle MzMLObjects
-    // ToDo: that would also mean we can not cache CvParams or UserParams, etc
+    // ToDo: change to only handle pepXMLObjects
     // that way we make sure that the objects have an ID which identifies them!
 
     public void putInCache(String id, pepXMLObject object);

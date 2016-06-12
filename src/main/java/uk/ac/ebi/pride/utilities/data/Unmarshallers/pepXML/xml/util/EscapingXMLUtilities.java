@@ -2,13 +2,6 @@ package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.util;
 
 import it.unimi.dsi.fastutil.chars.CharOpenHashSet;
 
-/**
- * Created with IntelliJ IDEA.
- * User: rcote
- * Date: 04/04/13
- * Time: 14:39
- * To change this template use File | Settings | File Templates.
- */
 public class EscapingXMLUtilities {
 
     public static final char substitute = '\uFFFD';
@@ -111,7 +104,7 @@ public class EscapingXMLUtilities {
 
     /**
      * Substitutes all illegal characters in the given string by the value of
-     * {@link uk.ac.ebi.jmzml.xml.util.EscapingXMLUtilities#substitute}. If no illegal characters
+     * {@link EscapingXMLUtilities#substitute}. If no illegal characters
      * were found, no copy is made and the given string is returned.
      *
      * @param string

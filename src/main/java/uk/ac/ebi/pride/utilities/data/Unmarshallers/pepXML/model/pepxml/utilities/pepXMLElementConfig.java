@@ -1,10 +1,7 @@
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities;
 
-/**
- * @author Florian Reisinger
- *         Date: 19/12/11
- * @since $version
- */
+
+
 public class pepXMLElementConfig {
 
     private String tagName;
@@ -12,13 +9,7 @@ public class pepXMLElementConfig {
     private String xpath;
     private boolean idMapped;
     private Class clazz;
-    private boolean autoRefResolving;
-    private Class refResolverClass;
 
-    // additional values that are used in the jmzidentml API
-    //    private boolean cached;
-    //    private Class cvParamClass;
-    //    private Class userParamClass;
 
 
     public String getTagName() {return tagName;}
@@ -59,19 +50,5 @@ public class pepXMLElementConfig {
         this.clazz = clazz;
     }
 
-    public boolean isAutoRefResolving() {
-        return autoRefResolving;
-    }
 
-    public void setAutoRefResolving(boolean autoRefResolving) {
-        this.autoRefResolving = autoRefResolving;
-    }
-
-    public Class getRefResolverClass() {
-        return refResolverClass;
-    }
-
-    public void setRefResolverClass(Class refResolverClass) {
-        this.refResolverClass = refResolverClass;
-    }
 }

@@ -1,40 +1,21 @@
-/*
- * Date: 22/7/2008
- * Author: rcote
- * File: uk.ac.ebi.jmzml.xml.io.MzMLUnmarshaller
- *
- * jmzml is Copyright 2008 The European Bioinformatics Institute
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.io;
 
-import org.apache.commons.collections.buffer.CircularFifoBuffer;
-import org.apache.log4j.Logger;
+/**
+ * Author: Zhe Sang, Luo Yang, Miao Hao
+ */
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
 import psidev.psi.tools.xxindex.index.IndexElement;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLElement;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.*;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.model.pepxml.utilities.ModelConstants;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.io.pepXMLObjectCache;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLElement;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.unmarshaller.UnmarshallerFactory;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.jaxb.unmarshaller.filters.pepXMLNamespaceFilter;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.util.EscapingXMLUtilities;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.FileUtils;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexer;
 import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.pepXMLIndexerFactory;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLObjectIterator;
-import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.pepXMLUnmarshallerException;
+import uk.ac.ebi.pride.utilities.data.Unmarshallers.pepXML.xml.xxindex.FileUtils;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
@@ -42,9 +23,6 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.sax.SAXSource;
 import java.io.*;
 import java.net.URL;
-import java.security.DigestInputStream;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -54,8 +32,7 @@ import java.util.regex.Pattern;
 
 public class pepXMLUnmarshaller {
 
-    private static final Logger logger = Logger.getLogger(pepXMLUnmarshaller.class);
-    private static final char[] HEX_CHARS = "0123456789abcdef".toCharArray();
+    private static final Logger logger = LoggerFactory.getLogger(pepXMLUnmarshaller.class);
 
     private final File pepXMLFile;
     private final pepXMLIndexer index;
@@ -63,12 +40,8 @@ public class pepXMLUnmarshaller {
     //    private final AdapterObjectCache cache = new AdapterObjectCache();
     private final pepXMLObjectCache cache;
 
-    private IndexList indexList = null;
-    private boolean fileCorrupted = false;
+//    private boolean fileCorrupted = false;
 
-    private final Pattern ID_PATTERN = Pattern.compile("id *= *\"([^\"]*)?\"", Pattern.CASE_INSENSITIVE);
-    private final Pattern AC_PATTERN = Pattern.compile("accession *= *\"([^\"]*)?\"", Pattern.CASE_INSENSITIVE);
-    private final Pattern VERSION_PATTERN = Pattern.compile("version *= *\"([^\"]*)?\"", Pattern.CASE_INSENSITIVE);
     private static final Pattern XML_ATT_PATTERN = Pattern.compile("\\s+([A-Za-z:]+)\\s*=\\s*[\"']([^\"'>]+?)[\"']", Pattern.DOTALL);
 
     /**
@@ -81,16 +54,16 @@ public class pepXMLUnmarshaller {
     }
 
     /**
-     * Creates a new MzMLUnmarshaller object from a file
+     * Creates a new pepXMLUnmarshaller object from a file
      *
-     * @param mzMLFile the file to unmarshall
+     * @param pepXMLFile the file to unmarshall
      */
-    public pepXMLUnmarshaller(File mzMLFile) {
-        this(mzMLFile, true, null);
+    public pepXMLUnmarshaller(File pepXMLFile) {
+        this(pepXMLFile, true, null);
     }
 
     /**
-     * Creates a new MzMLUnmarshaller object from a URL
+     * Creates a new pepXMLUnmarshaller object from a URL
      *
      * @param pepXMLFileURL       the URL to unmarshall
      * @param aUseSpectrumCache if true the spectra are cached
@@ -100,7 +73,7 @@ public class pepXMLUnmarshaller {
     }
 
     /**
-     * Creates a new MzMLUnmarshaller object from a file
+     * Creates a new pepXMLUnmarshaller object from a file
      *
      * @param pepXMLFile          the file to unmarshall
      * @param aUseSpectrumCache if true the spectra are cached
@@ -113,62 +86,16 @@ public class pepXMLUnmarshaller {
     }
 
     /**
-     * USE WITH CAUTION - This will unmarshall a complete MzML object and
+     * USE WITH CAUTION - This will unmarshall a complete MsmsPipelineAnalysis object and
      * will likely cause an OutOfMemoryError for very large files.
      *
-     * @return an MzML object
+     * @return an MsmsPipelineAnalysis object
      */
-    public pepXML unmarshall() {
-        return unmarshalFromXpath("", pepXML.class);
+    public MsmsPipelineAnalysis unmarshall() {
+        return unmarshalFromXpath("", MsmsPipelineAnalysis.class);
     }
 
-    /**
-     * Returns the mzML version.
-     *
-     * @return the mzML version, null if not found
-     */
-    public String getpepXMLVersion() {
 
-        Matcher match = VERSION_PATTERN.matcher(index.getpepXMLAttributeXMLString());
-
-        if (match.find()) {
-            return match.group(1);
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Returns the mzML accession number.
-     *
-     * @return the mzML accession number, null if not found
-     */
-    public String getpepXMLAccession() {
-
-        Matcher match = AC_PATTERN.matcher(index.getpepXMLAttributeXMLString());
-
-        if (match.find()) {
-            return match.group(1);
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Returns the mzML ID.
-     *
-     * @return the mzML ID, null if not found
-     */
-    public String getpepXMLId() {
-
-        Matcher match = ID_PATTERN.matcher(index.getpepXMLAttributeXMLString());
-
-        if (match.find()) {
-            return match.group(1);
-        } else {
-            return null;
-        }
-    }
 
     public Map<String, String> getSingleElementAttributes(String xpath) {
         Map<String, String> attributes = new HashMap<String, String>();
@@ -247,8 +174,8 @@ public class pepXMLUnmarshaller {
     /**
      * Retrieves the list of elements of the given class at the selected path.
      * <p/>
-     * Exp.: CVList cvList = unmarshaller.unmarshallFromXPath("/cvList", CVList.class);
-     * Retrieves the cvList from element of the mzML file, given it's XPath
+     * Exp.: MsmsPipelineAnalysis pipelineAnylysis = unmarshaller.unmarshallFromXPath("/msms_pipeline_analysis", MsmsPipelineAnalysis.class);
+     * Retrieves the MsmsPipelineAnalysis from element of the jpepxml file, given it's XPath
      *
      * @param <T>
      * @param xpath the path to search
@@ -261,10 +188,10 @@ public class pepXMLUnmarshaller {
         try {
             //we want to unmarshal the whole file
             if (xpath.equals("")) {
-                xpath = pepXMLElement.pepXML.getXpath();
-                if (isIndexedpepXML()) {
-                    xpath = pepXMLElement.IndexedpepXML.getXpath().concat(xpath);
-                }
+                xpath = pepXMLElement.MsmsPipeLineAnalysis.getXpath();
+            //    if (isIndexedpepXML()) {
+              //      xpath = pepXMLElement.IndexedpepXML.getXpath().concat(xpath);
+               // }
 
             }
             Iterator<String> xpathIter = index.getXmlStringIterator(xpath);
@@ -294,7 +221,7 @@ public class pepXMLUnmarshaller {
             }
 
         } catch (JAXBException e) {
-            logger.error("MzMLUnmarshaller.unmarshalFromXpath", e);
+            logger.error("pepXMLUnmarshaller.unmarshalFromXpath", e);
             throw new IllegalStateException("Could not unmarshal object at xpath:" + xpath);
         }
 
@@ -313,93 +240,27 @@ public class pepXMLUnmarshaller {
         return new pepXMLObjectIterator<T>(xpath, cls, index, cache, useSpectrumCache);
     }
 
-
-    ///// ///// ///// ///// ///// ///// ///// ///// ///// //////
-    // additional unmarshal operations for indexedmzML
-
-    // ToDo: add schema validation step or implicit validation with the marshaller/unmarshaller
-
-    /**
-     * Returns true of the mzML file is indexed.
-     *
-     * @return true of the mzML file is indexed
-     */
-    public boolean isIndexedpepXML() {
-        // ToDo: find better way to check this?
-        // ToDo: maybe change log level in StandardXpathAccess class
-        // this check will log an ERROR if it is not an indexedmzML file, since we
-        // are trying to retrieve an entry that will not be in the XML
-        Iterator iter = index.getXmlStringIterator("/indexedpepXML/indexList");
-        return iter.hasNext();
+    public Iterator<SampleEnzyme> getSampleEnzymes(){
+        String xpath = pepXMLElement.SampleEnzyme.getXpath();
+        Iterator<SampleEnzyme> enzymes = unmarshalCollectionFromXpath(xpath,SampleEnzyme.class);
+        return enzymes;
     }
 
-    /**
-     * Returns true if the mzML file's check sum is ok.
-     *
-     * @return true if the mzML file's check sum is ok
-     * @throws pepXMLUnmarshallerException
-     */
-    public boolean isOkFileChecksum() throws pepXMLUnmarshallerException {
-        // if we already have established that the checksum has changed, then don't check again
-        if (fileCorrupted) {
-            return false;
-        }
-
-        // if it is not even an indexedmzML, then we throw an exception right away
-        if (!isIndexedpepXML()) {
-            throw new pepXMLUnmarshallerException("Attempted check of file checksum on un-indexed mzML file.");
-        }
-
-        // ok, now compare the two checksums (provided and calculated)
-        String indexChecksum = getFileChecksumFromIndex();
-        logger.info("provided checksum (index)  : " + indexChecksum);
-        String calcChecksum = calculateChecksum();
-        logger.info("calculated checksum (jmzml): " + calcChecksum);
-        boolean checkSumOK = indexChecksum.equals(calcChecksum);
-//        boolean checkSumOK = true;
-
-        // if the checksums don't match, mark the file as corrupted
-        if (!checkSumOK) {
-            fileCorrupted = true;
-        }
-
-        return checkSumOK;
+    public PeptideprophetSummary getPeptideprophetSummary(){
+        String xpath = pepXMLElement.PeptideprophetSummary.getXpath();
+        PeptideprophetSummary result = unmarshalFromXpath(xpath,PeptideprophetSummary.class);
+        return result;
     }
 
-    /**
-     * Returns the mzML index.
-     *
-     * @return the mzML index
-     * @throws pepXMLUnmarshallerException
-     */
-    public IndexList getpepXMLIndex() throws pepXMLUnmarshallerException {
-        IndexList retval;
-        // check if already cached
-        if (indexList == null) {
-            // not yet cached, so we have to unmarshal it
-            if (isOkFileChecksum()) {
-                retval = unmarshalFromXpath("/indexedpepXML/indexList", IndexList.class);
-                indexList = retval; // save, so we don't have to generate it again
-            } else {
-                throw new pepXMLUnmarshallerException("File checksum did not match! This file has been changed after the index was created. The index is invalid.");
-            }
-        } else {
-            retval = indexList;
-        }
-
-        return retval;
+    public InteractSummary getInteractSummary(){
+        String xpath = pepXMLElement.InteractSummary.getXpath();
+        InteractSummary result = unmarshalFromXpath(xpath,InteractSummary.class);
+        return result;
     }
 
-    /**
-     * Returns the spectrum corresponding to the provided spectrum ID.
-     *
-     * @param aID the ID of the spectrum to get
-     * @return the spectrum corresponding to the provided spectrum ID, null if no matching spectrum is found
-     * @throws pepXMLUnmarshallerException
-     */
-    public Spectrum getSpectrumById(String aID) throws pepXMLUnmarshallerException {
-        Spectrum result = null;
-        String xml = index.getXmlString(aID, Spectrum.class);
+    public MsmsRunSummary getMsmsRunsummaryById(String aID) throws pepXMLUnmarshallerException{
+        MsmsRunSummary result = null;
+        String xml = index.getXmlString(aID,MsmsRunSummary.class);
         try {
             //need to clean up XML to ensure that there are no weird control characters
             String cleanXML = EscapingXMLUtilities.escapeCharacters(xml);
@@ -408,25 +269,57 @@ public class pepXMLUnmarshaller {
             //initializeUnmarshaller will assign the proper reader to the xmlFilter
             Unmarshaller unmarshaller = UnmarshallerFactory.getInstance().initializeUnmarshaller(index, xmlFilter, cache, useSpectrumCache);
             //unmarshall the desired object
-            JAXBElement<Spectrum> holder = unmarshaller.unmarshal(new SAXSource(xmlFilter, new InputSource(new StringReader(cleanXML))), Spectrum.class);
+            JAXBElement<MsmsRunSummary> holder = unmarshaller.unmarshal(new SAXSource(xmlFilter, new InputSource(new StringReader(cleanXML))), MsmsRunSummary.class);
+            result = holder.getValue();
+            } catch (JAXBException je) {
+                logger.error("pepXMLUnmarshaller.getMsmsRunSummaryByID", je);
+                throw new IllegalStateException("Could not unmarshal msms_run_summary with ID: " + aID);
+            }
+            return result;
+        }
+    /**
+     * Returns the SpectrumQuery corresponding to the provided spectrum .
+     *
+     * @param aID the spectrum of the SpectrumQuery to get
+     * @return the spectrumquery corresponding to the provided spectrum , null if no matching spectrum is found
+     * @throws pepXMLUnmarshallerException
+     */
+    public SpectrumQuery getSpectrumById(String aID) throws pepXMLUnmarshallerException {
+        SpectrumQuery result = null;
+        String xml = index.getXmlString(aID, SpectrumQuery.class);
+        try {
+            //need to clean up XML to ensure that there are no weird control characters
+            String cleanXML = EscapingXMLUtilities.escapeCharacters(xml);
+            //required for the addition of namespaces to top-level objects
+            pepXMLNamespaceFilter xmlFilter = new pepXMLNamespaceFilter();
+            //initializeUnmarshaller will assign the proper reader to the xmlFilter
+            Unmarshaller unmarshaller = UnmarshallerFactory.getInstance().initializeUnmarshaller(index, xmlFilter, cache, useSpectrumCache);
+            //unmarshall the desired object
+            JAXBElement<SpectrumQuery> holder = unmarshaller.unmarshal(new SAXSource(xmlFilter, new InputSource(new StringReader(cleanXML))), SpectrumQuery.class);
             result = holder.getValue();
         } catch (JAXBException je) {
-            logger.error("MzMLUnmarshaller.getSpectrumByID", je);
+            logger.error("pepXMLUnmarshaller.getSpectrumByID", je);
             throw new IllegalStateException("Could not unmarshal spectrum with ID: " + aID);
         }
         return result;
     }
 
+    public SpectrumQuery getSpectrumByIndex(int aIndex) throws pepXMLUnmarshallerException{
+        SpectrumQuery result = null;
+        String aID = getSpectrumIDFromSpectrumIndex(aIndex);
+        return getSpectrumById(aID);
+    }
+
     /**
-     * Returns the chromatogram corresponding to the provided chromatogram ID.
+     * Returns the SearchSummary corresponding to the provided search_summary base_name.
      *
-     * @param aID the ID of the chromatogram to get
-     * @return the chromatogram corresponding to the provided chromatogram ID, null if no matching chromatogram is found
+     * @param aID the basename of the SearchSummary to get
+     * @return the searchsummary corresponding to the provided search_summary base_name, null if no matching searchsummaray is found
      * @throws pepXMLUnmarshallerException
      */
-    public Chromatogram getChromatogramById(String aID) throws pepXMLUnmarshallerException {
-        Chromatogram result = null;
-        String xml = index.getXmlString(aID, Chromatogram.class);
+    public SearchSummary getSearchSummaryById(String aID) throws pepXMLUnmarshallerException {
+        SearchSummary result = null;
+        String xml = index.getXmlString(aID, SearchSummary.class);
         try {
             //need to clean up XML to ensure that there are no weird control characters
             String cleanXML = EscapingXMLUtilities.escapeCharacters(xml);
@@ -435,116 +328,24 @@ public class pepXMLUnmarshaller {
             //initializeUnmarshaller will assign the proper reader to the xmlFilter
             Unmarshaller unmarshaller = UnmarshallerFactory.getInstance().initializeUnmarshaller(index, xmlFilter, cache, useSpectrumCache);
             //unmarshall the desired object
-            JAXBElement<Chromatogram> holder = unmarshaller.unmarshal(new SAXSource(xmlFilter, new InputSource(new StringReader(cleanXML))), Chromatogram.class);
+            JAXBElement<SearchSummary> holder = unmarshaller.unmarshal(new SAXSource(xmlFilter, new InputSource(new StringReader(cleanXML))), SearchSummary.class);
             result = holder.getValue();
         } catch (JAXBException je) {
-            logger.error("MzMLUnmarshaller.getChromatogramByID", je);
-            throw new IllegalStateException("Could not unmarshal chromatogram with ID: " + aID);
+            logger.error("pepXMLUnmarshaller.getSearchSummaryByID", je);
+            throw new IllegalStateException("Could not unmarshal searchsummary with ID: " + aID);
         }
         return result;
     }
 
-    /**
-     * Returns the spectrum corresponding to a given refId.
-     *
-     * @param refId the refId of the spectrum to retrieve
-     * @return the corresponding spectrum, or null if no spectrum is found
-     * @throws pepXMLUnmarshallerException
-     */
-    public Spectrum getSpectrumByRefId(String refId) throws pepXMLUnmarshallerException {
-        // get the index entry for 'spectrum'
-        Index aIndexEntry = getIndex("spectrum");
-
-        // find the offset for the specified refId
-        for (Offset offset : aIndexEntry.getOffset()) {
-            if (offset.getIdRef().equalsIgnoreCase(refId)) {
-                return getElementByOffset("spectrum", offset.getValue());
-            }
-        }
-
-        return null;
-    }
 
     /**
-     * Returns the spectrum with a given spotId.
+     * Return a set containing all msmsRunSummary IDs
      *
-     * @param spotId the spotId of the spectrum to retrieve
-     * @return the corresponding spectrum, or null if no spectrum is found
-     * @throws pepXMLUnmarshallerException
+     * @return a set containing all msmsRunSummary IDs
      */
-    public Spectrum getSpectrumBySpotId(String spotId) throws pepXMLUnmarshallerException {
-        // get the index entry for 'chromatogram'
-        Index aIndexEntry = getIndex("spectrum");
-
-        // find the offset for the specified spotId
-        for (Offset offset : aIndexEntry.getOffset()) {
-            if (offset.getSpotID() != null && offset.getSpotID().equalsIgnoreCase(spotId)) {
-                return getElementByOffset("spectrum", offset.getValue());
-            }
-        }
-
-        return null;
+    public Set<String> getMsmsRunsummaryIDs() {
+        return this.index.getMsmsRunsummaryIDs();
     }
-
-    /**
-     * Returns the spectrum with a given scan time.
-     *
-     * @param scanTime the scan time for the wanted spectrum
-     * @return the spectrum with a given scan time, null of no spectrum is found
-     * @throws pepXMLUnmarshallerException
-     */
-    public Spectrum getSpectrumByScanTime(double scanTime) throws pepXMLUnmarshallerException {
-        // get the index entry for 'chromatogram'
-        Index aIndexEntry = getIndex("spectrum");
-
-        // find the offset for the specified scanTime
-        for (Offset offset : aIndexEntry.getOffset()) {
-            if (offset.getScanTime() != null && offset.getScanTime() == scanTime) {
-                return getElementByOffset("spectrum", offset.getValue());
-            }
-        }
-
-        return null;
-    }
-
-
-    /**
-     * Returns the spectrum with a given index.
-     *
-     * @param aIndex Integer with the index for the desired spectrum
-     * @return the spectrum with the given index, or 'null' if none is found.
-     * @throws pepXMLUnmarshallerException
-     */
-    public Spectrum getSpectrumByScanTime(Integer aIndex) throws pepXMLUnmarshallerException {
-        // Resolve the index to an ID.
-        String specID = index.getSpectrumIDFromSpectrumIndex(aIndex);
-
-        return this.getSpectrumById(specID);
-    }
-
-    /**
-     * Returns the chromatogram corresponding to a given refId.
-     *
-     * @param refId the refId of the chromatogram to retrieve
-     * @return the chromatogram corresponding to a given refId, null if no chromatogram found
-     * @throws pepXMLUnmarshallerException
-     */
-    public Chromatogram getChromatogramByRefId(String refId) throws pepXMLUnmarshallerException {
-        // get the index entry for 'chromatogram'
-        Index aIndexEntry = getIndex("chromatogram");
-
-        // find the offset for the specified refId
-        for (Offset offset : aIndexEntry.getOffset()) {
-            // we are only interested in a particular refId
-            if (offset.getIdRef().equalsIgnoreCase(refId)) {
-                return getElementByOffset("chromatogram", offset.getValue());
-            }
-        }
-
-        return null;
-    }
-
-
     /**
      * Returns a set containing all spectrum IDs
      *
@@ -580,214 +381,10 @@ public class pepXMLUnmarshaller {
      *
      * @return a set containing all chromatogram IDs
      */
-    public Set<String> getChromatogramIDs() {
-        return this.index.getChromatogramIDs();
+    public Set<String> getSearchSummaryIDs() {
+        return this.index.getSearchSummaryIDs();
     }
 
-    ///// ///// ///// ///// ///// ///// ///// ///// ///// //////
-    // private helper method primarily for indexedmzML stuff
-
-    /**
-     * Returns the file's check sum from the index.
-     *
-     * @return the file's check sum from the index
-     * @throws pepXMLUnmarshallerException
-     */
-    private String getFileChecksumFromIndex() throws pepXMLUnmarshallerException {
-        // there will only be a fileChecksum tag it is a indexedmzML
-        if (!isIndexedpepXML()) {
-            throw new pepXMLUnmarshallerException("Can not retrieve fileChecksum from a non indexed mzML file!");
-        }
-
-        // now fetch the fileChecksum stored in the indexedmzML
-        String checksum;
-        Iterator<String> snipIter = index.getXmlStringIterator("/indexedpepXML/fileChecksum");
-        if (snipIter.hasNext()) {
-            String snippet = snipIter.next();
-            // we need to cut of the start and stop tag
-//            checksum = snippet.substring(14, snippet.length()-15).intern();
-            String test = snippet.replace("<fileChecksum>", "");
-            checksum = test.replace("</fileChecksum>", "").trim().intern();
-        } else {
-            throw new IllegalStateException("Could not find fileChecksum tag in indexedmzML: " + pepXMLFile.getName());
-        }
-
-        return checksum;
-    }
-
-    /**
-     * Calcultes the check sum.
-     *
-     * @return the check sum as hexidecimal
-     */
-    private String calculateChecksum() {
-        // we have to create the checksum for the mzML file (from its beginning to the
-        // end of the fileChecksum start tag).
-        // Since this stop location is very near the end of the file, we skip everything
-        // until we come within a certain limit of the end of the file
-        long limit = pepXMLFile.length() - 200L;
-        logger.debug("Looking for fileChecksum tag between byte " + limit +
-                " and byte " + pepXMLFile.length() + " (the end) of the mzML file.");
-
-        // initialize the hash algorithm
-        MessageDigest hash;
-        try {
-            hash = MessageDigest.getInstance("SHA-1");
-        } catch (NoSuchAlgorithmException e) {
-            throw new IllegalStateException("SHA-1 not recognized as Secure Hash Algorithm.", e);
-        }
-
-        // create the input stream that will calculate the checksum
-        FileInputStream fis;
-        try {
-            fis = new FileInputStream(pepXMLFile);
-        } catch (FileNotFoundException e) {
-            throw new IllegalStateException("File " + pepXMLFile.getAbsoluteFile() + " could not be found!", e);
-        }
-        BufferedInputStream bis = new BufferedInputStream(fis);
-        DigestInputStream dis = new DigestInputStream(bis, hash);
-
-        // prepare for input stream processing
-        // we read through the file until we reach a specified limit before the end of the file
-        // from there we populate a buffer with the read bytes (characters) and check if we have
-        // already reached the position up to where we have to calculate the hash.
-        CircularFifoBuffer bBuf = new CircularFifoBuffer(15);
-        long cnt = 0; // counter to keep track of our position
-        byte[] b = new byte[1]; // we only read one byte at a time
-        try {
-            while (dis.read(b) >= 0) {
-                bBuf.add(b[0]);
-                cnt++;
-                // check if we have already reached the last bit of the file, where we have
-                // to find the right position to stop (after the 'fileChecksum' start tag)
-                if (cnt > limit) {
-                    // we should have reached the start of the <fileChecksum> tag,
-                    // now we have to find the end
-                    String readBuffer = convert2String(bBuf);
-                    if (readBuffer.endsWith("<fileChecksum>")) {
-                        // we have found the end of the fileChecksum start tag, we have to stop the hash
-                        if (b[0] != '>') { // check that we are really at the last character of the tag
-                            throw new IllegalStateException("We are not at the end of <fileChecksum> tag!");
-                        }
-                        break;
-                    }
-                } // else if not yet near the end of the file, just keep on going
-            }
-            dis.close();
-        } catch (IOException e) {
-            throw new IllegalStateException("Could not read from file '" + pepXMLFile.getAbsolutePath() +
-                    "' while trying ot calculate hash.", e);
-        }
-        logger.debug("Read over " + cnt + " bytes while calculating the file hash.");
-
-        byte[] bytesDigest = dis.getMessageDigest().digest();
-
-        return asHex(bytesDigest);
-    }
-
-    /**
-     * TODO: Javadoc missing
-     *
-     * @param bBuf
-     * @return
-     */
-    private String convert2String(CircularFifoBuffer bBuf) {
-        byte[] tmp = new byte[bBuf.size()];
-        int tmpCnt = 0;
-        for (Object aBBuf : bBuf) {
-            tmp[tmpCnt++] = (Byte) aBBuf;
-        }
-        return new String(tmp);
-    }
-
-    /**
-     * TODO: Javadoc missing
-     *
-     * @param buf
-     * @return
-     */
-    public static String asHex(byte[] buf) {
-        // from: http://forums.xkcd.com/viewtopic.php?f=11&t=16666&p=553936
-        char[] chars = new char[2 * buf.length];
-        for (int i = 0; i < buf.length; ++i) {
-            chars[2 * i] = HEX_CHARS[(buf[i] & 0xF0) >>> 4];
-            chars[2 * i + 1] = HEX_CHARS[buf[i] & 0x0F];
-        }
-        return new String(chars);
-    }
-
-    /**
-     * TODO: Javadoc missing
-     *
-     * @param elementName
-     * @return
-     * @throws pepXMLUnmarshallerException
-     */
-    private Index getIndex(String elementName) throws pepXMLUnmarshallerException {
-        IndexList list = getpepXMLIndex();
-
-        for (Index entry : list.getIndex()) {
-            if (entry.getName().equalsIgnoreCase(elementName)) {
-                return entry;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * TODO: Javadoc missing
-     *
-     * @param <T>
-     * @param elementName
-     * @param offset
-     * @return
-     * @throws pepXMLUnmarshallerException
-     */
-    private <T extends pepXMLObject> T getElementByOffset(String elementName, long offset) throws pepXMLUnmarshallerException {
-        // now check if we can map the elementName to a xpath from the xxindex
-        String aXpath = null;
-        for (String xxindexPath : index.getXpath()) {
-            // we are looking for a xpath that ends in the elementName (e.g. points to
-            // an element with the requested name)
-            if (xxindexPath.endsWith(elementName)) {
-                aXpath = xxindexPath;
-            }
-        }
-        // if we don't have the xpath, then this method has been used incorrectly!
-        if (aXpath == null) {
-            throw new pepXMLUnmarshallerException("Could not find a valid xpath " +
-                    "(in xxindex) for the requested mzML index element '" + elementName + "'!");
-        }
-
-        // now that we have the xpath to use for the requested element, check if the xxindex
-        // contains an element start position that matches the offset of the desired element
-        String xmlSnippet = index.getXmlString(aXpath, offset);
-        if (xmlSnippet == null) {
-            throw new pepXMLUnmarshallerException("No element '" + elementName + "' with the specified " +
-                    "offset (" + offset + ") could be found (xpath: '" + aXpath + "')! Perhaps the " +
-                    "mzML index containing the offset was corrupted.");
-        }
-
-        T retval;
-        try {
-            // ToDo: check this!! try to replace with standard unmarshaller!
-            //need to clean up XML to ensure that there are no weird control characters
-            String cleanXML = EscapingXMLUtilities.escapeCharacters(xmlSnippet);
-            pepXMLNamespaceFilter xmlFilter = new pepXMLNamespaceFilter();
-            // initializeUnmarshaller will assign the proper reader to the xmlFilter
-            Unmarshaller unmarshaller = UnmarshallerFactory.getInstance().initializeUnmarshaller(index, xmlFilter, cache, useSpectrumCache);
-            // unmarshall the desired object
-            Class cls = ModelConstants.getClassForElementName(elementName);
-            JAXBElement<T> holder = unmarshaller.unmarshal(new SAXSource(xmlFilter, new InputSource(new StringReader(cleanXML))), cls);
-            retval = holder.getValue();
-        } catch (JAXBException e) {
-            logger.error("MzMLUnmarshaller.getObjectFromXml", e);
-            throw new IllegalStateException("Could not unmarshal object from XML string:" + xmlSnippet);
-        }
-
-        return retval;
-    }
 
     /**
      * TODO: Javadoc missing
@@ -814,7 +411,7 @@ public class pepXMLUnmarshaller {
             JAXBElement<T> holder = unmarshaller.unmarshal(new SAXSource(xmlFilter, new InputSource(new StringReader(cleanXML))), cls);
             retval = holder.getValue();
         } catch (JAXBException e) {
-            logger.error("MzMLUnmarshaller.getObjectFromXml", e);
+            logger.error("pepXMLUnmarshaller.getObjectFromXml", e);
             throw new IllegalStateException("Could not unmarshal object from XML string:" + xmlSnippet);
         }
 
@@ -822,9 +419,9 @@ public class pepXMLUnmarshaller {
     }
 
     /**
-     * Returns the mzML XXIndex Wrapper for raw access. This is usually a developer-level method.
+     * Returns the jpepxml XXIndex Wrapper for raw access. This is usually a developer-level method.
      *
-     * @return the mzML XXIndex Wrapper for raw acces
+     * @return the jpepxml XXIndex Wrapper for raw acces
      */
     public pepXMLIndexer getpepXMLIndexer() {
         return index;
